@@ -1,0 +1,404 @@
+//
+//  ZoneDetailView.swift
+//  Orange Cloud
+//
+//  单域名中枢（设计稿 zone-detail.jsx）：
+//  hero 卡（头像 + 域名 + 状态/套餐 + 24h 流量统计）+ 管理 / 分析 / 操作分组 + 区域 ID。
+//
+
+import SwiftUI
+import SwiftData
+
+struct ZoneDetailView: View {
+
+    let zone: CachedZone
+    let session: SessionStore
+
+    @Environment(AuthManager.self) private var auth
+    @Environment(\.modelContext) private var modelContext
+    @Query private var records: [CachedDNSRecord]
+
+    // 分析区（内嵌第一层级，ViewModel 由本页持有，下拉刷新共用）
+    @State private var analyticsViewModel: ZoneAnalyticsViewModel
+
+    // 操作区
+    @State private var actionsViewModel: ZoneActionsViewModel
+    @State private var showPurgeConfirm = false
+    @State private var showPurgeDone = false
+    @State private var showActionDenied = false
+    @State private var deniedScopeHint = ""
+    /// 开关类操作先收口到这里，confirmationDialog 确认后才调 API
+    @State private var pendingAction: PendingZoneAction?
+
+    init(zone: CachedZone, session: SessionStore) {
+        self.zone = zone
+        self.session = session
+        let zoneId = zone.id
+        _records = Query(filter: #Predicate<CachedDNSRecord> { $0.zoneId == zoneId })
+        _analyticsViewModel = State(initialValue: ZoneAnalyticsViewModel(
+            analyticsService: session.analyticsService, zoneId: zoneId
+        ))
+        _actionsViewModel = State(initialValue: ZoneActionsViewModel(
+            service: session.zoneSettingsService, zoneId: zoneId
+        ))
+    }
+
+    private var canReadSettings: Bool { auth.hasScope("zone-settings.read") }
+    private var canEditSettings: Bool { auth.hasScope("zone-settings.write") }
+    private var canPurge: Bool { auth.hasScope("cache.purge") }
+
+    private var statusText: String {
+        switch zone.status {
+        case "active":                  String(localized: "已启用")
+        case "pending", "initializing": String(localized: "待激活")
+        default:                        String(localized: "已暂停")
+        }
+    }
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 22) {
+                heroCard
+
+                // 分析：图表直接内嵌第一层级，置于管理之前
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("分析")
+                        .font(.footnote.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                        .textCase(.uppercase)
+                        .padding(.horizontal, 4)
+                    if auth.hasScope("analytics.read") {
+                        ZoneAnalyticsSection(viewModel: analyticsViewModel)
+                    } else {
+                        Label("需要「流量分析」权限才能展示流量图表", systemImage: "lock")
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.vertical, 16)
+                            .glassIsland(cornerRadius: OCLayout.chipRadius)
+                    }
+                }
+
+                sectionCard(String(localized: "管理")) {
+                    PermissionGatedNavigationLink(
+                        label: String(localized: "DNS 记录"),
+                        systemImage: "network",
+                        requiredScope: "dns.read",
+                        showsChevron: true
+                    ) {
+                        DNSListView(zoneId: zone.id, zoneName: zone.name, session: session)
+                    }
+                    .listRowStyleValue(String(localized: "\(records.count) 条"))
+
+                    ProGatedNavigationLink(
+                        label: String(localized: "WAF 防火墙"),
+                        systemImage: "shield",
+                        requiredScope: "zone-waf.read",
+                        feature: .waf,
+                        tint: .purple,
+                        showsChevron: true
+                    ) {
+                        WAFRuleListView(zoneId: zone.id, zoneName: zone.name, session: session)
+                    }
+                }
+
+                sectionCard(String(localized: "操作")) {
+                    settingToggleRow(
+                        title: String(localized: "Under Attack 模式"),
+                        subtitle: String(localized: "对所有访客启用质询页"),
+                        icon: "shield.lefthalf.filled",
+                        tint: .red,
+                        isOn: actionsViewModel.underAttack,
+                        isBusy: actionsViewModel.isTogglingUnderAttack,
+                        requestToggle: { on in pendingAction = .underAttack(on) }
+                    )
+
+                    settingToggleRow(
+                        title: String(localized: "开发模式"),
+                        subtitle: String(localized: "临时绕过缓存（3 小时后自动关闭）"),
+                        icon: "hammer",
+                        tint: .blue,
+                        isOn: actionsViewModel.devMode,
+                        isBusy: actionsViewModel.isTogglingDevMode,
+                        requestToggle: { on in pendingAction = .devMode(on) }
+                    )
+
+                    Button {
+                        if canPurge {
+                            showPurgeConfirm = true
+                        } else {
+                            deniedScopeHint = "cache.purge"
+                            showActionDenied = true
+                        }
+                    } label: {
+                        HStack(spacing: 12) {
+                            TintIcon(systemImage: "trash", color: .ocOrange)
+                            Text("清理全部缓存")
+                                .foregroundStyle(.primary)
+                            Spacer()
+                            if actionsViewModel.isPurging {
+                                ProgressView()
+                            } else if !canPurge {
+                                Image(systemName: "lock.fill")
+                                    .font(.caption)
+                                    .foregroundStyle(.tertiary)
+                            }
+                        }
+                    }
+                    .disabled(actionsViewModel.isPurging)
+                }
+
+                if !zone.nameServers.isEmpty {
+                    sectionCard("Name Servers") {
+                        VStack(alignment: .leading, spacing: 8) {
+                            ForEach(zone.nameServers, id: \.self) { server in
+                                Text(server)
+                                    .font(.callout.monospaced())
+                                    .textSelection(.enabled)
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+
+                // Zone ID footer
+                Text("Zone ID · \(zone.id)")
+                    .font(.caption2.monospaced())
+                    .foregroundStyle(.tertiary)
+                    .textSelection(.enabled)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.bottom, 8)
+            }
+            .padding()
+        }
+        .background { SkyBackground() }
+        .navigationTitle(zone.name)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(zone.pinned ? String(localized: "取消固定") : String(localized: "固定到首页"),
+                       systemImage: zone.pinned ? "pin.fill" : "pin") {
+                    withAnimation(.smooth) {
+                        zone.pinned.toggle()
+                    }
+                    try? modelContext.save()
+                }
+                .contentTransition(.symbolEffect(.replace))
+            }
+        }
+        .sensoryFeedback(.impact(weight: .light), trigger: zone.pinned)
+        .sensoryFeedback(.success, trigger: actionsViewModel.didPurge)
+        .task {
+            if canReadSettings {
+                await actionsViewModel.loadSettings()
+            }
+        }
+        .refreshable {
+            if auth.hasScope("analytics.read") {
+                await analyticsViewModel.refresh()
+            }
+            if canReadSettings {
+                await actionsViewModel.loadSettings()
+            }
+        }
+        .confirmationDialog(
+            pendingAction?.title ?? "",
+            isPresented: .init(
+                get: { pendingAction != nil },
+                set: { if !$0 { pendingAction = nil } }
+            ),
+            titleVisibility: .visible,
+            presenting: pendingAction
+        ) { action in
+            Button(action.confirmLabel) {
+                Task {
+                    switch action {
+                    case .underAttack(let on): await actionsViewModel.setUnderAttack(on)
+                    case .devMode(let on):     await actionsViewModel.setDevMode(on)
+                    }
+                }
+            }
+        } message: { action in
+            Text(action.message(zoneName: zone.name))
+        }
+        .confirmationDialog("清理全部缓存？", isPresented: $showPurgeConfirm, titleVisibility: .visible) {
+            Button("清理", role: .destructive) {
+                Task { await actionsViewModel.purgeCache() }
+            }
+        } message: {
+            Text("将清空 \(zone.name) 在 Cloudflare 边缘的所有缓存，回源流量会短暂上升。")
+        }
+        .alert("缓存已清理", isPresented: $showPurgeDone) {
+            Button("好", role: .cancel) {}
+        } message: {
+            Text("边缘节点将在数秒内完成清理。")
+        }
+        .onChange(of: actionsViewModel.didPurge) {
+            showPurgeDone = true
+        }
+        .alert("权限不足", isPresented: $showActionDenied) {
+            Button("好", role: .cancel) {}
+        } message: {
+            Text("当前授权未包含此操作所需权限（\(deniedScopeHint)）。\n请在设置中退出登录后重新授权「缓存与防护」。")
+        }
+        .alert("操作失败", isPresented: .init(
+            get: { actionsViewModel.error != nil },
+            set: { if !$0 { actionsViewModel.error = nil } }
+        )) {
+            Button("好", role: .cancel) {}
+        } message: {
+            Text(actionsViewModel.error ?? "")
+        }
+    }
+
+    // MARK: - 设置开关行
+
+    private func settingToggleRow(
+        title: String,
+        subtitle: String,
+        icon: String,
+        tint: Color,
+        isOn: Bool,
+        isBusy: Bool,
+        requestToggle: @escaping (Bool) -> Void
+    ) -> some View {
+        HStack(spacing: 12) {
+            TintIcon(systemImage: icon, color: tint)
+            VStack(alignment: .leading, spacing: 1) {
+                Text(title)
+                Text(subtitle)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            Spacer()
+            if isBusy {
+                ProgressView()
+            } else if canEditSettings && actionsViewModel.settingsLoaded {
+                Toggle("", isOn: Binding(
+                    get: { isOn },
+                    set: { on in requestToggle(on) }
+                ))
+                .labelsHidden()
+            } else {
+                Button {
+                    deniedScopeHint = canReadSettings ? "zone-settings.write" : "zone-settings.read"
+                    showActionDenied = true
+                } label: {
+                    if actionsViewModel.settingsLoaded {
+                        // 只读授权：显示当前状态
+                        Text(isOn ? String(localized: "开") : String(localized: "关"))
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    } else {
+                        Image(systemName: "lock.fill")
+                            .font(.caption)
+                            .foregroundStyle(.tertiary)
+                    }
+                }
+                .buttonStyle(.plain)
+            }
+        }
+    }
+
+    // MARK: - Hero 卡
+
+    private var heroCard: some View {
+        VStack(spacing: 10) {
+            ZoneAvatar(domain: zone.name, size: 52)
+            Text(zone.name)
+                .font(.system(.title2, weight: .bold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+            HStack(spacing: 8) {
+                HStack(spacing: 5) {
+                    StatusDot(status: zone.status, size: 7)
+                    Text(statusText)
+                        .font(.footnote.weight(.medium))
+                        .foregroundStyle(zone.status == "active" ? Color.green : Color.secondary)
+                }
+                PlanBadge(planName: zone.planName)
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity)
+        .glassIsland()
+    }
+
+    // MARK: - 分组卡
+
+    private func sectionCard(_ title: String, @ViewBuilder content: () -> some View) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(title)
+                .font(.footnote.weight(.semibold))
+                .foregroundStyle(.secondary)
+                .textCase(.uppercase)
+                .padding(.horizontal, 4)
+            VStack(spacing: 0) {
+                content()
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 11)
+            }
+            .glassIsland(cornerRadius: OCLayout.chipRadius)
+        }
+    }
+
+}
+
+// MARK: - 操作区待确认动作
+
+/// 「操作」区的开关动作：先弹确认说明影响，确认后才调 API
+private nonisolated enum PendingZoneAction: Identifiable {
+    case underAttack(Bool)
+    case devMode(Bool)
+
+    var id: String {
+        switch self {
+        case .underAttack(let on): "underAttack-\(on)"
+        case .devMode(let on):     "devMode-\(on)"
+        }
+    }
+
+    var title: String {
+        switch self {
+        case .underAttack(true):  String(localized: "开启 Under Attack 模式？")
+        case .underAttack(false): String(localized: "关闭 Under Attack 模式？")
+        case .devMode(true):      String(localized: "开启开发模式？")
+        case .devMode(false):     String(localized: "关闭开发模式？")
+        }
+    }
+
+    var confirmLabel: String {
+        switch self {
+        case .underAttack(true), .devMode(true):   String(localized: "确认开启")
+        case .underAttack(false), .devMode(false): String(localized: "确认关闭")
+        }
+    }
+
+    func message(zoneName: String) -> String {
+        switch self {
+        case .underAttack(true):
+            String(localized: "开启后，访问 \(zoneName) 的所有访客都会先看到约 5 秒的质询页，可能影响正常用户体验。适合正在遭受攻击时使用。")
+        case .underAttack(false):
+            String(localized: "关闭后，\(zoneName) 的安全级别将恢复为「中」。")
+        case .devMode(true):
+            String(localized: "开启后，\(zoneName) 将临时绕过 Cloudflare 缓存，源站负载会上升；3 小时后自动关闭。")
+        case .devMode(false):
+            String(localized: "关闭后，\(zoneName) 立即恢复缓存加速。")
+        }
+    }
+}
+
+// MARK: - 行尾 value 标注
+
+private extension View {
+    /// 给 PermissionGatedNavigationLink 行附加右侧 value 文本的轻量包装
+    func listRowStyleValue(_ value: String) -> some View {
+        overlay(alignment: .trailing) {
+            Text(value)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .padding(.trailing, 24)
+                .allowsHitTesting(false)
+        }
+    }
+}

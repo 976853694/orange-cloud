@@ -1,0 +1,1187 @@
+//
+//  DashboardView.swift
+//  Orange Cloud
+//
+//  账号概览：问候区 + 2×2 指标卡 + 每个域名的信息卡（24h 请求迷你图，点击进详情）+ 网络入口。
+//
+
+import SwiftUI
+import SwiftData
+import TipKit
+import WidgetKit
+
+struct DashboardView: View {
+
+    @Environment(SessionStore.self) private var session
+    @Environment(AuthManager.self) private var auth
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort: \CachedZone.name) private var cachedZones: [CachedZone]
+    @Query private var cachedWorkers: [CachedWorkerScript]
+    @Query private var cachedRecords: [CachedDNSRecord]
+
+    @State private var viewModel: DashboardViewModel
+
+    // 套餐预设与账单日按账户存储（AccountPrefsStore，开启 iCloud 同步后跨设备）
+    private let prefsStore = AccountPrefsStore.shared
+
+    private var currentAccountId: String {
+        session.selectedAccount?.id ?? ""
+    }
+
+    private var accountPrefs: AccountPrefsStore.Prefs {
+        prefsStore.prefs(for: currentAccountId)
+    }
+
+    private var workersPlanPaidBinding: Binding<Bool> {
+        Binding(
+            get: { prefsStore.prefs(for: currentAccountId).workersPlanPaid },
+            set: { value in prefsStore.update(currentAccountId) { $0.workersPlanPaid = value } }
+        )
+    }
+
+    private var r2PlanPaidBinding: Binding<Bool> {
+        Binding(
+            get: { prefsStore.prefs(for: currentAccountId).r2PlanPaid },
+            set: { value in prefsStore.update(currentAccountId) { $0.r2PlanPaid = value } }
+        )
+    }
+
+    private var billingCycleDayBinding: Binding<Int> {
+        Binding(
+            get: { prefsStore.prefs(for: currentAccountId).billingCycleDay },
+            set: { value in prefsStore.update(currentAccountId) { $0.billingCycleDay = value } }
+        )
+    }
+
+    private let accountSwitchTip = AccountSwitchTip()
+
+    /// 用量宫格点开的服务明细（sheet）
+    @State private var usageDetail: UsageService?
+
+    /// 「今日」日界口径（设置页修改，App Group 与 Widget 共享）；变更后强制刷新用量
+    @AppStorage(DayBoundary.storageKey, store: UserDefaults(suiteName: WidgetSnapshot.appGroupID))
+    private var dayBoundaryRaw = DayBoundary.utc.rawValue
+
+    init(session: SessionStore) {
+        _viewModel = State(initialValue: DashboardViewModel(
+            analyticsService: session.analyticsService,
+            accountService: session.accountService,
+            r2Service: session.r2Service,
+            d1Service: session.d1Service,
+            zoneService: session.zoneService,
+            workerService: session.workerService,
+            dnsService: session.dnsService
+        ))
+    }
+
+    // 订阅接口可用时自动识别，否则用按账户的本地预设
+    private var effectiveWorkersPaid: Bool { viewModel.billing?.workersPaid ?? accountPrefs.workersPlanPaid }
+    private var effectiveR2Paid: Bool { viewModel.billing?.r2Paid ?? accountPrefs.r2PlanPaid }
+
+    private var monthlyLabel: String {
+        (viewModel.billing?.periodStart != nil || accountPrefs.billingCycleDay != 1) ? String(localized: "账期") : String(localized: "本月")
+    }
+
+    private var activeCount: Int {
+        cachedZones.filter { $0.status == "active" }.count
+    }
+
+    /// 首页展示的域名：用户 pin 过的优先；一个没 pin 时兜底展示前 3 个
+    private var displayZones: [CachedZone] {
+        let pinned = cachedZones.filter(\.pinned)
+        return pinned.isEmpty ? Array(cachedZones.prefix(3)) : pinned
+    }
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    daybreakHeader
+                        .islandReveal(0)
+                    Group {
+                        if cachedZones.isEmpty && viewModel.isLoadingAssets {
+                            statSkeleton
+                        } else {
+                            statIslands
+                        }
+                    }
+                    .islandReveal(1)
+                    usageSection
+                        .islandReveal(2)
+                    zonesSection
+                        .islandReveal(3)
+                    networkSection
+                        .islandReveal(4)
+
+                    if let error = session.error {
+                        ContentUnavailableView {
+                            Label("加载失败", systemImage: "wifi.exclamationmark")
+                        } description: {
+                            Text(error)
+                        } actions: {
+                            Button("重试") {
+                                Task { await session.ensureAccounts() }
+                            }
+                            .buttonStyle(.borderedProminent)
+                        }
+                    }
+                }
+                .padding(OCLayout.pagePadding)
+            }
+            .background { SkyBackground() }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationDestination(for: CachedZone.self) { zone in
+                ZoneDetailView(zone: zone, session: session)
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    accountMenu
+                }
+            }
+            .task(id: session.accounts.count) {
+                AccountSwitchTip.hasMultipleAccounts = session.accounts.count > 1
+            }
+            .task(id: displayZones.map(\.id)) {
+                await loadTraffic()
+            }
+            .task(id: session.selectedAccount?.id) {
+                await loadAssets()
+            }
+            .task(id: session.selectedAccount?.id) {
+                await loadUsage()
+            }
+            .onChange(of: accountPrefs.billingCycleDay) {
+                Task { await loadUsage(force: true) }
+            }
+            .onChange(of: dayBoundaryRaw) {
+                Task { await loadUsage(force: true) }
+            }
+            .refreshable {
+                await session.ensureAccounts()
+                await loadAssets(force: true)
+                await loadTraffic(force: true)
+                await loadUsage(force: true)
+            }
+            .sheet(item: $usageDetail) { service in
+                usageDetailSheet(service)
+            }
+        }
+    }
+
+    /// 首屏资产统计：域名 / Workers / DNS 数量不等用户进入对应页面，进 Dashboard 就拉
+    private func loadAssets(force: Bool = false) async {
+        guard let account = session.selectedAccount else { return }
+        await viewModel.loadAssets(
+            accountId: account.id,
+            accountName: account.name,
+            canReadWorkers: auth.hasScope("workers-scripts.read"),
+            canReadDNS: auth.hasScope("dns.read"),
+            context: modelContext,
+            force: force
+        )
+    }
+
+    private func loadTraffic(force: Bool = false) async {
+        guard auth.hasScope("analytics.read") else { return }
+        await viewModel.loadTraffic(
+            zones: displayZones.map { (id: $0.id, name: $0.name) },
+            force: force
+        )
+    }
+
+    private func loadUsage(force: Bool = false) async {
+        guard auth.hasScope("account-analytics.read"),
+              let accountId = session.selectedAccount?.id else { return }
+        await viewModel.loadUsage(
+            accountId: accountId,
+            fallbackPeriodStart: BillingCycle.periodStart(billingDay: prefsStore.prefs(for: accountId).billingCycleDay),
+            force: force
+        )
+        writeUsageWidgetSnapshot()
+    }
+
+    /// 用量快照 → App Group（用量 Widget 数据源；按服务分组，额度口径与页面一致）
+    private func writeUsageWidgetSnapshot() {
+        guard let usage = viewModel.usage else { return }
+        let workersPaid = effectiveWorkersPaid
+        let label = workersPaid ? monthlyLabel : String(localized: "今日")
+
+        func compact(_ value: Int) -> String {
+            value.formatted(.number.notation(.compactName))
+        }
+        func bytes(_ value: Int) -> String {
+            Int64(value).formatted(.byteCount(style: .decimal))
+        }
+
+        var services: [WidgetUsageService] = []
+
+        var workersRows = [
+            WidgetUsageRow(
+                title: String(localized: "请求 · \(label)"),
+                used: workersPaid ? usage.workersRequestsMonth : usage.workersRequestsToday,
+                quota: workersPaid ? 10_000_000 : 100_000,
+                valueText: compact(workersPaid ? usage.workersRequestsMonth : usage.workersRequestsToday)
+            ),
+        ]
+        if workersPaid, let monthUs = usage.cpuTimeMonthUs {
+            workersRows.append(WidgetUsageRow(
+                title: "CPU · \(label)",
+                used: Int(monthUs / 1000), quota: 30_000_000,
+                valueText: compact(Int(monthUs / 1000)) + " ms"
+            ))
+        }
+        services.append(WidgetUsageService(id: "workers", name: "Workers", rows: workersRows))
+
+        // R2：付费档无硬上限，但仍以"包含额度"为参考画条
+        services.append(WidgetUsageService(id: "r2", name: "R2", rows: [
+            WidgetUsageRow(title: String(localized: "存储"), used: usage.r2StorageBytes, quota: 10_000_000_000,
+                           valueText: bytes(usage.r2StorageBytes)),
+            WidgetUsageRow(title: String(localized: "A 类操作 · \(monthlyLabel)"), used: usage.r2ClassAMonth, quota: 1_000_000,
+                           valueText: compact(usage.r2ClassAMonth)),
+            WidgetUsageRow(title: String(localized: "B 类操作 · \(monthlyLabel)"), used: usage.r2ClassBMonth, quota: 10_000_000,
+                           valueText: compact(usage.r2ClassBMonth)),
+        ]))
+
+        if let d1 = usage.d1Usage {
+            var rows = [
+                WidgetUsageRow(title: String(localized: "行读取 · \(label)"),
+                               used: workersPaid ? d1.rowsReadPeriod : d1.rowsReadToday,
+                               quota: workersPaid ? 25_000_000_000 : 5_000_000,
+                               valueText: compact(workersPaid ? d1.rowsReadPeriod : d1.rowsReadToday)),
+                WidgetUsageRow(title: String(localized: "行写入 · \(label)"),
+                               used: workersPaid ? d1.rowsWrittenPeriod : d1.rowsWrittenToday,
+                               quota: workersPaid ? 50_000_000 : 100_000,
+                               valueText: compact(workersPaid ? d1.rowsWrittenPeriod : d1.rowsWrittenToday)),
+            ]
+            if let storage = usage.d1StorageBytes {
+                rows.append(WidgetUsageRow(title: String(localized: "存储"), used: storage, quota: 5_000_000_000,
+                                           valueText: bytes(storage)))
+            }
+            services.append(WidgetUsageService(id: "d1", name: "D1", rows: rows))
+        }
+
+        if let kv = usage.kvUsage {
+            var rows = [
+                WidgetUsageRow(title: String(localized: "读取 · \(label)"),
+                               used: workersPaid ? kv.readsPeriod : kv.readsToday,
+                               quota: workersPaid ? 10_000_000 : 100_000,
+                               valueText: compact(workersPaid ? kv.readsPeriod : kv.readsToday)),
+                WidgetUsageRow(title: String(localized: "写入 · \(label)"),
+                               used: workersPaid ? kv.writesPeriod : kv.writesToday,
+                               quota: workersPaid ? 1_000_000 : 1_000,
+                               valueText: compact(workersPaid ? kv.writesPeriod : kv.writesToday)),
+            ]
+            if let storage = usage.kvStorageBytes {
+                rows.append(WidgetUsageRow(title: String(localized: "存储"), used: storage, quota: 1_000_000_000,
+                                           valueText: bytes(storage)))
+            }
+            services.append(WidgetUsageService(id: "kv", name: "KV", rows: rows))
+        }
+
+        WidgetDataStore.saveUsage(WidgetUsageData(services: services, updatedAt: Date()))
+        WidgetCenter.shared.reloadTimelines(ofKind: "UsageWidget")
+    }
+
+    // MARK: - 问候区（晨昏头部：日期 + 时段问候 + 健康一句话 + 地平线弧，每分钟自走）
+
+    private func timeGreeting(at date: Date) -> String {
+        switch Calendar.current.component(.hour, from: date) {
+        case 0..<5:   String(localized: "夜深了")
+        case 5..<11:  String(localized: "早上好")
+        case 11..<13: String(localized: "中午好")
+        case 13..<18: String(localized: "下午好")
+        default:      String(localized: "晚上好")
+        }
+    }
+
+    private var healthLine: String {
+        guard !cachedZones.isEmpty else {
+            return viewModel.isLoadingAssets
+                ? String(localized: "正在同步域名与资产…")
+                : String(localized: "当前账号还没有域名")
+        }
+        if activeCount == cachedZones.count {
+            return String(localized: "\(cachedZones.count) 个域名全部正常")
+        }
+        return String(localized: "\(activeCount)/\(cachedZones.count) 个域名已启用")
+    }
+
+    private var daybreakHeader: some View {
+        TimelineView(.everyMinute) { context in
+            VStack(alignment: .leading, spacing: 5) {
+                Text(context.date, format: .dateTime.month().day().weekday(.wide))
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                if let account = session.selectedAccount {
+                    Text("\(timeGreeting(at: context.date))，\(account.name)")
+                        .font(.system(.largeTitle, design: .rounded, weight: .bold))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
+                    Text(healthLine)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                } else if session.isLoadingAccounts {
+                    Text("加载账号中…")
+                        .font(.system(.largeTitle, design: .rounded, weight: .bold))
+                        .redacted(reason: .placeholder)
+                } else {
+                    Text("未选择账号")
+                        .font(.system(.largeTitle, design: .rounded, weight: .bold))
+                        .foregroundStyle(.secondary)
+                }
+                HorizonArc(date: context.date)
+                    .frame(height: 44)
+                    .padding(.top, 2)
+            }
+        }
+        .padding(.top, 4)
+    }
+
+    // MARK: - 右上角账号头像菜单
+
+    private var accountMenu: some View {
+        Menu {
+            ForEach(session.accounts) { account in
+                Button {
+                    session.selectedAccount = account
+                } label: {
+                    if account.id == session.selectedAccount?.id {
+                        Label(account.name, systemImage: "checkmark")
+                    } else {
+                        Text(account.name)
+                    }
+                }
+            }
+        } label: {
+            Text(String(session.selectedAccount?.name.first ?? "?").uppercased())
+                .font(.system(size: 14, weight: .bold, design: .rounded))
+                .foregroundStyle(.white)
+                .frame(width: 30, height: 30)
+                .background(
+                    LinearGradient(
+                        colors: [Color(red: 1, green: 0.65, blue: 0.31), .ocOrangePressed],
+                        startPoint: .topLeading, endPoint: .bottomTrailing
+                    ),
+                    in: Circle()
+                )
+                .symbolEffect(.bounce, value: session.selectedAccount?.id)
+        }
+        .popoverTip(accountSwitchTip)
+    }
+
+    // MARK: - 资产指标格（2×2）
+
+    private var statIslands: some View {
+        VStack(spacing: OCLayout.islandGap) {
+            HStack(spacing: OCLayout.islandGap) {
+                StatIsland(
+                    label: String(localized: "域名"),
+                    value: cachedZones.count,
+                    sub: String(localized: "\(activeCount) 已启用")
+                )
+                StatIsland(
+                    label: "Workers",
+                    value: cachedWorkers.count,
+                    sub: String(localized: "已部署脚本")
+                )
+            }
+            HStack(spacing: OCLayout.islandGap) {
+                StatIsland(
+                    label: String(localized: "DNS 记录"),
+                    value: viewModel.dnsRecordTotal ?? cachedRecords.count,
+                    sub: viewModel.dnsRecordTotal != nil
+                        ? String(localized: "全部域名")
+                        : String(localized: "已同步域名")
+                )
+                fourthStatIsland
+            }
+        }
+    }
+
+    /// 指标格骨架：首屏缓存为空且资产统计进行中时展示
+    private var statSkeleton: some View {
+        VStack(spacing: OCLayout.islandGap) {
+            ForEach(0..<2, id: \.self) { row in
+                HStack(spacing: OCLayout.islandGap) {
+                    ForEach(0..<2, id: \.self) { column in
+                        VStack(alignment: .leading, spacing: 7) {
+                            SkeletonBlock(width: 40 + CGFloat(((row * 2 + column) * 17) % 26), height: 10)
+                            SkeletonBlock(width: 46, height: 24, cornerRadius: 7)
+                            SkeletonBlock(width: 64, height: 9)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(OCLayout.islandPadding)
+                        .glassIsland(cornerRadius: OCLayout.chipRadius)
+                    }
+                }
+            }
+        }
+        .skeletonPulse()
+    }
+
+    /// 第四格：优先 R2 存储桶数，其次 D1 数据库数，都不可用时回退已启用域名数
+    @ViewBuilder
+    private var fourthStatIsland: some View {
+        if let buckets = viewModel.r2BucketCount {
+            StatIsland(label: "R2", value: buckets, sub: String(localized: "存储桶"))
+        } else if let databases = viewModel.d1DatabaseCount {
+            StatIsland(label: "D1", value: databases, sub: String(localized: "数据库"))
+        } else {
+            StatIsland(label: String(localized: "已启用"), value: activeCount, sub: String(localized: "活跃域名"))
+        }
+    }
+
+    // MARK: - 用量
+
+    private var usageSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text("用量")
+                    .font(.title3.bold())
+                Spacer()
+                if viewModel.billing != nil {
+                    // 订阅接口可用：套餐与周期自动识别，无需手动设置
+                    Label(planSummary, systemImage: "checkmark.seal")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                } else {
+                    // 手动设置（OAuth 无 billing scope 时的兜底）
+                    Menu {
+                        Section("Workers 套餐") {
+                            Picker("Workers 套餐", selection: workersPlanPaidBinding) {
+                                Text("Free").tag(false)
+                                Text("Paid").tag(true)
+                            }
+                        }
+                        Section("R2 套餐") {
+                            Picker("R2 套餐", selection: r2PlanPaidBinding) {
+                                Text("Free").tag(false)
+                                Text("Paid").tag(true)
+                            }
+                        }
+                        Section("账单日（用量周期起点）") {
+                            Picker("账单日", selection: billingCycleDayBinding) {
+                                ForEach(1...28, id: \.self) { day in
+                                    Text(day == 1 ? String(localized: "1 日（自然月）") : String(localized: "\(day) 日")).tag(day)
+                                }
+                            }
+                        }
+                    } label: {
+                        Label(planSummary, systemImage: "slider.horizontal.3")
+                            .font(.subheadline)
+                            .foregroundStyle(Color.ocOrange)
+                    }
+                }
+            }
+
+            if !auth.hasScope("account-analytics.read") {
+                Label("需要「流量分析」权限才能展示账号用量", systemImage: "lock")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.vertical, 16)
+                    .glassIsland(cornerRadius: OCLayout.chipRadius)
+            } else if let usage = viewModel.usage {
+                usageGrid(usage)
+            } else {
+                usageSkeleton
+            }
+        }
+    }
+
+    /// 用量宫格骨架：与真实瓦片同形状的 2×2 占位
+    private var usageSkeleton: some View {
+        let columns = [
+            GridItem(.flexible(), spacing: OCLayout.islandGap),
+            GridItem(.flexible(), spacing: OCLayout.islandGap),
+        ]
+        return LazyVGrid(columns: columns, spacing: OCLayout.islandGap) {
+            ForEach(0..<4, id: \.self) { index in
+                VStack(alignment: .leading, spacing: 8) {
+                    SkeletonBlock(width: 80 + CGFloat((index * 23) % 30), height: 10)
+                    HStack(spacing: 9) {
+                        Circle()
+                            .stroke(.quaternary, lineWidth: 4)
+                            .frame(width: 34, height: 34)
+                        VStack(alignment: .leading, spacing: 5) {
+                            SkeletonBlock(width: 56, height: 13)
+                            SkeletonBlock(width: 40, height: 9)
+                        }
+                    }
+                    .frame(minHeight: 36, alignment: .leading)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(12)
+                .glassIsland(cornerRadius: OCLayout.chipRadius)
+            }
+        }
+        .skeletonPulse()
+    }
+
+    private var planSummary: String {
+        "W \(effectiveWorkersPaid ? "Paid" : "Free") · R2 \(effectiveR2Paid ? "Paid" : "Free")"
+    }
+
+    // MARK: - 用量宫格（每个服务一格环形仪表，点击看明细）
+
+    private func usageGrid(_ usage: AccountUsage) -> some View {
+        let columns = [
+            GridItem(.flexible(), spacing: OCLayout.islandGap),
+            GridItem(.flexible(), spacing: OCLayout.islandGap),
+        ]
+        return LazyVGrid(columns: columns, spacing: OCLayout.islandGap) {
+            Button { usageDetail = .workers } label: { workersTile(usage) }
+                .buttonStyle(.plain)
+            Button { usageDetail = .r2 } label: { r2Tile(usage) }
+                .buttonStyle(.plain)
+            if usage.d1Usage != nil || usage.d1StorageBytes != nil {
+                Button { usageDetail = .d1 } label: { d1Tile(usage) }
+                    .buttonStyle(.plain)
+            }
+            if usage.kvUsage != nil || usage.kvStorageBytes != nil {
+                Button { usageDetail = .kv } label: { kvTile(usage) }
+                    .buttonStyle(.plain)
+            }
+        }
+    }
+
+    private func compactText(_ value: Int) -> String {
+        value.formatted(.number.notation(.compactName))
+    }
+
+    /// 一个服务有多个额度指标时，瓦片展示消耗比例最高的那个（瓶颈指标）
+    private func tile(_ title: String, from candidates: [GaugedMetric]) -> UsageServiceTile {
+        guard let top = candidates.max(by: { $0.ratio < $1.ratio }) else {
+            return UsageServiceTile(title: title, context: "—", valueText: "—", quotaText: nil, ratio: nil)
+        }
+        return UsageServiceTile(
+            title: title,
+            context: top.context,
+            valueText: top.valueText,
+            quotaText: top.quotaText,
+            ratio: top.ratio
+        )
+    }
+
+    private func workersTile(_ usage: AccountUsage) -> UsageServiceTile {
+        let label = effectiveWorkersPaid ? monthlyLabel : String(localized: "今日")
+        let requests = effectiveWorkersPaid ? usage.workersRequestsMonth : usage.workersRequestsToday
+        let requestQuota = effectiveWorkersPaid ? 10_000_000 : 100_000
+        var candidates = [
+            GaugedMetric(
+                context: String(localized: "请求 · \(label)"),
+                valueText: compactText(requests),
+                quotaText: "/ \(compactText(requestQuota))",
+                ratio: Double(requests) / Double(requestQuota)
+            ),
+        ]
+        if effectiveWorkersPaid, let cpuUs = usage.cpuTimeMonthUs {
+            let cpuMs = Int(cpuUs / 1000)
+            candidates.append(GaugedMetric(
+                context: "CPU · \(label)",
+                valueText: compactText(cpuMs) + " ms",
+                quotaText: "/ 30M ms",
+                ratio: Double(cpuMs) / 30_000_000
+            ))
+        }
+        return tile("Workers", from: candidates)
+    }
+
+    private func r2Tile(_ usage: AccountUsage) -> UsageServiceTile {
+        // A/B 类操作额度两档都有：免费档是免费额度，付费档是账期包含额度（1M / 10M）
+        var candidates = [
+            GaugedMetric(
+                context: String(localized: "A 类 · \(monthlyLabel)"),
+                valueText: compactText(usage.r2ClassAMonth),
+                quotaText: "/ 1M",
+                ratio: Double(usage.r2ClassAMonth) / 1_000_000
+            ),
+            GaugedMetric(
+                context: String(localized: "B 类 · \(monthlyLabel)"),
+                valueText: compactText(usage.r2ClassBMonth),
+                quotaText: "/ 10M",
+                ratio: Double(usage.r2ClassBMonth) / 10_000_000
+            ),
+        ]
+        if !effectiveR2Paid {
+            candidates.append(GaugedMetric(
+                context: String(localized: "存储"),
+                valueText: Int64(usage.r2StorageBytes).formatted(.byteCount(style: .decimal)),
+                quotaText: "/ 10 GB",
+                ratio: Double(usage.r2StorageBytes) / 10_000_000_000
+            ))
+        }
+        return tile("R2", from: candidates)
+    }
+
+    private func d1Tile(_ usage: AccountUsage) -> UsageServiceTile {
+        let label = effectiveWorkersPaid ? monthlyLabel : String(localized: "今日")
+        var candidates: [GaugedMetric] = []
+        if let d1 = usage.d1Usage {
+            let reads = effectiveWorkersPaid ? d1.rowsReadPeriod : d1.rowsReadToday
+            let readQuota = effectiveWorkersPaid ? 25_000_000_000 : 5_000_000
+            let writes = effectiveWorkersPaid ? d1.rowsWrittenPeriod : d1.rowsWrittenToday
+            let writeQuota = effectiveWorkersPaid ? 50_000_000 : 100_000
+            candidates.append(GaugedMetric(
+                context: String(localized: "行读取 · \(label)"),
+                valueText: compactText(reads),
+                quotaText: "/ \(compactText(readQuota))",
+                ratio: Double(reads) / Double(readQuota)
+            ))
+            candidates.append(GaugedMetric(
+                context: String(localized: "行写入 · \(label)"),
+                valueText: compactText(writes),
+                quotaText: "/ \(compactText(writeQuota))",
+                ratio: Double(writes) / Double(writeQuota)
+            ))
+        }
+        if let storage = usage.d1StorageBytes {
+            candidates.append(GaugedMetric(
+                context: String(localized: "存储"),
+                valueText: Int64(storage).formatted(.byteCount(style: .file)),
+                quotaText: "/ 5 GB",
+                ratio: Double(storage) / 5_000_000_000
+            ))
+        }
+        return tile("D1", from: candidates)
+    }
+
+    private func kvTile(_ usage: AccountUsage) -> UsageServiceTile {
+        let label = effectiveWorkersPaid ? monthlyLabel : String(localized: "今日")
+        var candidates: [GaugedMetric] = []
+        if let kv = usage.kvUsage {
+            let reads = effectiveWorkersPaid ? kv.readsPeriod : kv.readsToday
+            let readQuota = effectiveWorkersPaid ? 10_000_000 : 100_000
+            let writes = effectiveWorkersPaid ? kv.writesPeriod : kv.writesToday
+            let writeQuota = effectiveWorkersPaid ? 1_000_000 : 1_000
+            candidates.append(GaugedMetric(
+                context: String(localized: "读取 · \(label)"),
+                valueText: compactText(reads),
+                quotaText: "/ \(compactText(readQuota))",
+                ratio: Double(reads) / Double(readQuota)
+            ))
+            candidates.append(GaugedMetric(
+                context: String(localized: "写入 · \(label)"),
+                valueText: compactText(writes),
+                quotaText: "/ \(compactText(writeQuota))",
+                ratio: Double(writes) / Double(writeQuota)
+            ))
+        }
+        if let storage = usage.kvStorageBytes {
+            candidates.append(GaugedMetric(
+                context: String(localized: "存储"),
+                valueText: Int64(storage).formatted(.byteCount(style: .file)),
+                quotaText: "/ 1 GB",
+                ratio: Double(storage) / 1_000_000_000
+            ))
+        }
+        return tile("KV", from: candidates)
+    }
+
+    // MARK: - 用量明细 sheet
+
+    private func usageDetailSheet(_ service: UsageService) -> some View {
+        NavigationStack {
+            ScrollView {
+                if let usage = viewModel.usage {
+                    VStack(spacing: 14) {
+                        switch service {
+                        case .workers: workersRows(usage)
+                        case .r2:      r2Rows(usage)
+                        case .d1:      d1Rows(usage)
+                        case .kv:      kvRows(usage)
+                        }
+                    }
+                    .padding()
+                }
+            }
+            .navigationTitle(service.title)
+            .navigationBarTitleDisplayMode(.inline)
+        }
+        .presentationDetents([.medium])
+        .presentationDragIndicator(.visible)
+    }
+
+    // MARK: - 分组内容行
+
+    @ViewBuilder
+    private func workersRows(_ usage: AccountUsage) -> some View {
+            if effectiveWorkersPaid {
+                UsageRow(
+                    icon: "bolt",
+                    title: String(localized: "Workers 请求 · \(monthlyLabel)"),
+                    used: usage.workersRequestsMonth,
+                    quota: 10_000_000
+                )
+            } else {
+                UsageRow(
+                    icon: "bolt",
+                    title: String(localized: "Workers 请求 · 今日"),
+                    used: usage.workersRequestsToday,
+                    quota: 100_000
+                )
+            }
+
+            if effectiveWorkersPaid, let monthUs = usage.cpuTimeMonthUs {
+                // Workers Standard 含 30M CPU-ms / 计费周期
+                UsageRow(
+                    icon: "cpu",
+                    title: "Workers CPU · \(monthlyLabel)",
+                    valueText: "\(Int(monthUs / 1000).formatted(.number.notation(.compactName))) / 30M ms",
+                    used: Int(monthUs / 1000),
+                    quota: 30_000_000
+                )
+            } else if let todayUs = usage.cpuTimeTodayUs {
+                // Free 无 CPU 月度额度（单次 10ms 上限），展示今日合计
+                UsageRow(
+                    icon: "cpu",
+                    title: String(localized: "Workers CPU · 今日"),
+                    valueText: Int(todayUs / 1000).formatted(.number.notation(.compactName)) + " ms",
+                    used: nil, quota: nil
+                )
+            } else {
+                // CPU 总量字段不可用时回退单次分位
+                UsageRow(
+                    icon: "cpu",
+                    title: String(localized: "Workers CPU · 单次"),
+                    valueText: cpuText(usage),
+                    used: nil, quota: nil
+                )
+            }
+    }
+
+    @ViewBuilder
+    private func r2Rows(_ usage: AccountUsage) -> some View {
+            UsageRow(
+                icon: "externaldrive",
+                title: String(localized: "R2 存储"),
+                valueText: Int64(usage.r2StorageBytes).formatted(.byteCount(style: .decimal))
+                    + (effectiveR2Paid ? "" : " / 10 GB"),
+                used: effectiveR2Paid ? nil : usage.r2StorageBytes,
+                quota: effectiveR2Paid ? nil : 10_000_000_000
+            )
+
+            // 操作额度两档都有：免费档是免费额度，付费档是账期包含额度
+            UsageRow(
+                icon: "arrow.up.circle",
+                title: String(localized: "R2 A 类操作 · \(monthlyLabel)"),
+                used: usage.r2ClassAMonth,
+                quota: 1_000_000
+            )
+
+            UsageRow(
+                icon: "arrow.down.circle",
+                title: String(localized: "R2 B 类操作 · \(monthlyLabel)"),
+                used: usage.r2ClassBMonth,
+                quota: 10_000_000
+            )
+    }
+
+    @ViewBuilder
+    private func d1Rows(_ usage: AccountUsage) -> some View {
+            // D1（额度跟随 Workers 套餐：Free 按日，Paid 按计费周期）
+            if let d1 = usage.d1Usage {
+                if effectiveWorkersPaid {
+                    UsageRow(
+                        icon: "eye",
+                        title: String(localized: "D1 行读取 · \(monthlyLabel)"),
+                        used: d1.rowsReadPeriod,
+                        quota: 25_000_000_000
+                    )
+                    UsageRow(
+                        icon: "pencil",
+                        title: String(localized: "D1 行写入 · \(monthlyLabel)"),
+                        used: d1.rowsWrittenPeriod,
+                        quota: 50_000_000
+                    )
+                } else {
+                    UsageRow(
+                        icon: "eye",
+                        title: String(localized: "D1 行读取 · 今日"),
+                        used: d1.rowsReadToday,
+                        quota: 5_000_000
+                    )
+                    UsageRow(
+                        icon: "pencil",
+                        title: String(localized: "D1 行写入 · 今日"),
+                        used: d1.rowsWrittenToday,
+                        quota: 100_000
+                    )
+                }
+            }
+
+            if let d1Storage = usage.d1StorageBytes {
+                UsageRow(
+                    icon: "cylinder",
+                    title: String(localized: "D1 存储"),
+                    valueText: Int64(d1Storage).formatted(.byteCount(style: .file)) + " / 5 GB",
+                    used: d1Storage,
+                    quota: 5_000_000_000
+                )
+            }
+    }
+
+    @ViewBuilder
+    private func kvRows(_ usage: AccountUsage) -> some View {
+            // KV（额度跟随 Workers 套餐：Free 按日，Paid 按计费周期）
+            if let kv = usage.kvUsage {
+                if effectiveWorkersPaid {
+                    UsageRow(
+                        icon: "key",
+                        title: String(localized: "KV 读取 · \(monthlyLabel)"),
+                        used: kv.readsPeriod,
+                        quota: 10_000_000
+                    )
+                    UsageRow(
+                        icon: "key.fill",
+                        title: String(localized: "KV 写入 · \(monthlyLabel)"),
+                        used: kv.writesPeriod,
+                        quota: 1_000_000
+                    )
+                } else {
+                    UsageRow(
+                        icon: "key",
+                        title: String(localized: "KV 读取 · 今日"),
+                        used: kv.readsToday,
+                        quota: 100_000
+                    )
+                    UsageRow(
+                        icon: "key.fill",
+                        title: String(localized: "KV 写入 · 今日"),
+                        used: kv.writesToday,
+                        quota: 1_000
+                    )
+                }
+            }
+
+            if let kvStorage = usage.kvStorageBytes {
+                UsageRow(
+                    icon: "square.grid.2x2",
+                    title: String(localized: "KV 存储"),
+                    valueText: Int64(kvStorage).formatted(.byteCount(style: .file)) + " / 1 GB",
+                    used: kvStorage,
+                    quota: 1_000_000_000
+                )
+            }
+    }
+
+    private func cpuText(_ usage: AccountUsage) -> String {
+        guard let p50 = usage.cpuP50Us else { return "—" }
+        let p50ms = p50 / 1000
+        if let p99 = usage.cpuP99Us {
+            return String(format: "P50 %.1f ms · P99 %.1f ms", p50ms, p99 / 1000)
+        }
+        return String(format: "P50 %.1f ms", p50ms)
+    }
+
+    // MARK: - 域名卡片
+
+    private var zonesSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text("域名")
+                    .font(.title3.bold())
+                Spacer()
+                Button("全部") {
+                    AppRouter.shared.pendingModule = .zones
+                }
+                .font(.subheadline)
+                .foregroundStyle(Color.ocOrange)
+            }
+
+            if cachedZones.isEmpty && viewModel.isLoadingAssets {
+                SkeletonIslandRows(rows: 3, icon: .circle(32))
+            } else if cachedZones.isEmpty {
+                Text("下拉刷新后，这里会展示域名概览")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.vertical, 20)
+                    .glassIsland(cornerRadius: OCLayout.chipRadius)
+            } else {
+                VStack(spacing: 0) {
+                    ForEach(displayZones) { zone in
+                        NavigationLink(value: zone) {
+                            DashboardZoneCard(
+                                zone: zone,
+                                points: viewModel.trafficByZone[zone.id]?.points
+                            )
+                        }
+                        .buttonStyle(.plain)
+
+                        if zone.id != displayZones.last?.id {
+                            Divider()
+                                .padding(.leading, 56)
+                        }
+                    }
+                }
+                .glassIsland()
+
+                if cachedZones.first(where: \.pinned) == nil {
+                    Label("在域名详情页点图钉，可固定想在首页看到的域名", systemImage: "pin")
+                        .font(.caption)
+                        .foregroundStyle(.tertiary)
+                        .padding(.horizontal, 4)
+                }
+            }
+        }
+    }
+
+    // MARK: - 网络（单行服务，胶囊形态，不配段落标题）
+
+    private var networkSection: some View {
+        ProGatedNavigationLink(
+            label: "Cloudflare Tunnel",
+            systemImage: "arrow.triangle.2.circlepath",
+            requiredScope: "argotunnel.read",
+            feature: .tunnel,
+            showsChevron: true
+        ) {
+            TunnelListView(session: session)
+        }
+        .padding(.horizontal, OCLayout.islandPadding + 2)
+        .padding(.vertical, 12)
+        .glassIsland(cornerRadius: 24)
+    }
+}
+
+// MARK: - 用量宫格的服务与瓦片
+
+/// 单个有额度的指标（瓦片从中挑消耗比例最高者展示）
+private nonisolated struct GaugedMetric {
+    let context: String
+    let valueText: String
+    let quotaText: String
+    let ratio: Double
+}
+
+/// 用量宫格里可点开明细的服务
+private nonisolated enum UsageService: String, Identifiable {
+    case workers, r2, d1, kv
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .workers: "Workers"
+        case .r2:      "R2"
+        case .d1:      "D1"
+        case .kv:      "KV"
+        }
+    }
+}
+
+/// 服务瓦片：环形仪表对着额度，数值用主文本色
+private struct UsageServiceTile: View {
+
+    let title: String
+    let context: String
+    let valueText: String
+    let quotaText: String?
+    let ratio: Double?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("\(title) · \(context)")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+            HStack(spacing: 9) {
+                if let ratio {
+                    UsageRing(ratio: ratio)
+                        .frame(width: 34, height: 34)
+                }
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(valueText)
+                        .font(.system(.body, design: .rounded, weight: .bold))
+                        .monospacedDigit()
+                        .contentTransition(.numericText())
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                    if let quotaText {
+                        Text(quotaText)
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
+                    }
+                }
+            }
+            // 无环的瓦片（按量计费档）也保持同一指标区高度，四格等高
+            .frame(minHeight: 36, alignment: .leading)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(12)
+        .contentShape(Rectangle())
+        .glassIsland(cornerRadius: OCLayout.chipRadius)
+    }
+}
+
+/// 额度环：随消耗比例从品牌橙渐变到警示红
+private struct UsageRing: View {
+
+    let ratio: Double
+
+    private var color: Color {
+        if ratio >= 0.9 { return .red }
+        if ratio >= 0.7 { return .orange }
+        return .ocOrange
+    }
+
+    var body: some View {
+        ZStack {
+            Circle()
+                .stroke(.quaternary, lineWidth: 4)
+            Circle()
+                .trim(from: 0, to: min(max(ratio, 0.02), 1))
+                .stroke(color, style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                .rotationEffect(.degrees(-90))
+        }
+        .accessibilityHidden(true)
+    }
+}
+
+// MARK: - 用量行（值 + 可选额度进度条）
+
+private struct UsageRow: View {
+
+    let icon: String
+    let title: String
+    var valueText: String? = nil
+    let used: Int?
+    let quota: Int?
+
+    private var ratio: Double? {
+        guard let used, let quota, quota > 0 else { return nil }
+        return min(Double(used) / Double(quota), 1.0)
+    }
+
+    private var barColor: Color {
+        guard let ratio else { return .ocOrange }
+        if ratio >= 0.9 { return .red }
+        if ratio >= 0.7 { return .orange }
+        return .ocOrange
+    }
+
+    private var displayValue: String {
+        if let valueText { return valueText }
+        guard let used else { return "—" }
+        let usedText = used.formatted(.number.notation(.compactName))
+        if let quota {
+            return "\(usedText) / \(quota.formatted(.number.notation(.compactName)))"
+        }
+        return usedText
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(spacing: 10) {
+                Image(systemName: icon)
+                    .font(.footnote.weight(.medium))
+                    .foregroundStyle(.tertiary)
+                    .frame(width: 24)
+                Text(title)
+                    .font(.subheadline)
+                Spacer()
+                Text(displayValue)
+                    .font(.subheadline.weight(.semibold).monospacedDigit())
+                    .foregroundStyle(.secondary)
+            }
+            if let ratio {
+                ProgressView(value: ratio)
+                    .tint(barColor)
+                    .padding(.leading, 34)
+            }
+        }
+    }
+}
+
+// MARK: - 域名信息卡（基础信息 + 24h 请求迷你图）
+
+private struct DashboardZoneCard: View {
+
+    let zone: CachedZone
+    let points: [TrafficDataPoint]?
+
+    private var statusText: String {
+        switch zone.status {
+        case "active":                  String(localized: "已启用")
+        case "pending", "initializing": String(localized: "待激活")
+        default:                        String(localized: "已暂停")
+        }
+    }
+
+    private var totalRequests: Int? {
+        guard let points, !points.isEmpty else { return nil }
+        return points.reduce(0) { $0 + $1.requests }
+    }
+
+    /// 套餐取首词（"Free Website" → "Free"），与状态并进副标题
+    private var planShort: String {
+        zone.planName.components(separatedBy: " ").first ?? zone.planName
+    }
+
+    var body: some View {
+        HStack(spacing: 10) {
+            ZoneAvatar(domain: zone.name, size: 32)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(zone.name)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(.primary)
+                    .lineLimit(1)
+                Text("\(planShort) · \(statusText)")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+            }
+            .layoutPriority(1)
+            Spacer(minLength: 8)
+            if let points, let total = totalRequests {
+                VStack(alignment: .trailing, spacing: 2) {
+                    Sparkline(values: points.map { Double($0.requests) }, color: .ocOrange)
+                        .frame(width: 56, height: 16)
+                    Text(total.formatted(.number.notation(.compactName)))
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                        .monospacedDigit()
+                        .contentTransition(.numericText())
+                }
+            }
+            StatusDot(status: zone.status, size: 7)
+        }
+        .padding(.horizontal, OCLayout.islandPadding)
+        .padding(.vertical, 10)
+        .contentShape(Rectangle())
+    }
+}
+
+// MARK: - 指标小岛（数字用主文本色，橙色只留给可交互元素）
+
+private struct StatIsland: View {
+
+    let label: String
+    let value: Int
+    var sub: String? = nil
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(label)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            Text("\(value)")
+                .font(.system(.title, design: .rounded, weight: .bold))
+                .monospacedDigit()
+                .contentTransition(.numericText())
+            if let sub {
+                Text(sub)
+                    .font(.caption2)
+                    .foregroundStyle(.tertiary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(OCLayout.islandPadding)
+        .glassIsland(cornerRadius: OCLayout.chipRadius)
+    }
+}
