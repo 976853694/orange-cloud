@@ -1,0 +1,110 @@
+{
+  "sourceLanguage" : "zh-Hans",
+  "strings" : {
+    "打开 ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Open ${applicationName}"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName}を開く"
+          }
+        },
+        "zh-Hans" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "打开 ${applicationName}"
+            ]
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "開啟 ${applicationName}"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "開啟 ${applicationName}"
+          }
+        }
+      }
+    },
+    "查询 ${applicationName} 域名状态" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check ${applicationName} domain status"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${applicationName}のドメイン状態を確認"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查詢 ${applicationName} 網域狀態"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查詢 ${applicationName} 域名狀態"
+          }
+        }
+      }
+    },
+    "用 ${applicationName} 查域名" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Check domains with ${applicationName}"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName}でドメインを確認"
+          }
+        },
+        "zh-Hans" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "用 ${applicationName} 查域名",
+              "查询 ${applicationName} 域名状态"
+            ]
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "用 ${applicationName} 查網域"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "用 ${applicationName} 查域名"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
