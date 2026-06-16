@@ -23,7 +23,9 @@ struct Orange_CloudApp: App {
     init() {
         let manager = AuthManager()
         _authManager = State(initialValue: manager)
+        WhatsNewGate.wasLoggedInAtLaunch = manager.isLoggedIn
         BackgroundRefresh.register(authManager: manager)
+        WatchSessionManager.shared.start(authManager: manager)
         EntitlementStore.shared.start()
         try? Tips.configure()
     }

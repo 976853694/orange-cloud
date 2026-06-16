@@ -11,7 +11,7 @@ import SwiftUI
 
 /// 触发付费墙的场景，决定付费墙头部与锁定态文案
 nonisolated enum ProFeature: String, Identifiable, Sendable {
-    case multiAccount, storage, workerTail, waf, tunnel, analyticsRange
+    case multiAccount, storage, workerTail, waf, tunnel, analyticsRange, snippets
 
     var id: String { rawValue }
 
@@ -23,6 +23,7 @@ nonisolated enum ProFeature: String, Identifiable, Sendable {
         case .waf:            String(localized: "WAF 管理需要 Pro")
         case .tunnel:         String(localized: "Tunnel 需要 Pro")
         case .analyticsRange: String(localized: "更长时间范围需要 Pro")
+        case .snippets:       String(localized: "Snippets 需要 Pro")
         }
     }
 
@@ -34,6 +35,7 @@ nonisolated enum ProFeature: String, Identifiable, Sendable {
         case .waf:            String(localized: "查看与启停 WAF 自定义规则属于 Orange Cloud Pro。")
         case .tunnel:         String(localized: "Cloudflare Tunnel 状态查看属于 Orange Cloud Pro。")
         case .analyticsRange: String(localized: "7 天与 30 天流量分析属于 Pro；24 小时视图永久免费。")
+        case .snippets:       String(localized: "查看与管理域名的边缘 Snippets（JS 代码片段）属于 Orange Cloud Pro。")
         }
     }
 
@@ -45,6 +47,7 @@ nonisolated enum ProFeature: String, Identifiable, Sendable {
         case .waf:            "shield"
         case .tunnel:         "arrow.triangle.2.circlepath"
         case .analyticsRange: "chart.xyaxis.line"
+        case .snippets:       "curlybraces"
         }
     }
 }

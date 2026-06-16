@@ -77,6 +77,15 @@ extension FeaturePermission {
             isRequired: false
         ),
         .init(
+            id: "snippets",
+            title: String(localized: "Snippets"),
+            description: String(localized: "查看和编辑域名的边缘代码片段"),
+            icon: "curlybraces",
+            readScopes: ["snippets.read"],
+            editScopes: ["snippets.write"],
+            isRequired: false
+        ),
+        .init(
             id: "r2",
             title: String(localized: "R2 对象存储"),
             description: String(localized: "浏览和管理 R2 存储桶"),

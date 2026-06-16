@@ -93,11 +93,11 @@ struct UsageWidget: Widget {
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: "UsageWidget", intent: UsageConfigIntent.self, provider: UsageWidgetProvider()) { entry in
             UsageWidgetView(entry: entry)
-                .containerBackground(for: .widget) { WidgetSky(date: entry.date) }
+                .daybreakContainer(date: entry.date)
         }
         .configurationDisplayName("账号用量")
         .description("Workers / R2 / D1 / KV 的额度使用情况，可按服务选择")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryInline, .accessoryCircular, .accessoryRectangular])
         .contentMarginsDisabled()
     }
 }
@@ -107,7 +107,18 @@ struct UsageWidgetView: View {
     @Environment(\.widgetFamily) private var family
     let entry: UsageWidgetEntry
 
+    @ViewBuilder
     var body: some View {
+        switch family {
+        case .accessoryInline:      inlineView
+        case .accessoryCircular:    circularView
+        case .accessoryRectangular: rectangularView
+        default:                    systemBody
+        }
+    }
+
+    @ViewBuilder
+    private var systemBody: some View {
         if let service = entry.service, !service.rows.isEmpty {
             switch family {
             case .systemMedium: mediumView(service)
@@ -116,6 +127,93 @@ struct UsageWidgetView: View {
         } else {
             WidgetEmptyHint(text: entry.missingName.map { String(localized: "暂无 \($0) 用量数据\n打开 App 刷新") }
                 ?? String(localized: "打开 App 同步用量"))
+        }
+    }
+
+    // MARK: - 锁屏 accessory
+
+    /// 首要指标的额度占比（无额度返回 nil）
+    private func ratio(_ row: WidgetUsageRow) -> Double? {
+        row.quota.map { min(Double(row.used) / Double(max($0, 1)), 1) }
+    }
+
+    @ViewBuilder
+    private var inlineView: some View {
+        if let service = entry.service, let row = service.rows.first {
+            Label {
+                if let percent = ratio(row).map({ Int($0 * 100) }) {
+                    Text("\(service.name) \(percent)% · \(row.title)")
+                } else {
+                    Text("\(service.name) \(row.valueText) · \(row.title)")
+                }
+            } icon: {
+                Image(systemName: "gauge.medium")
+            }
+        } else {
+            Label("Orange Cloud", systemImage: "gauge.medium")
+        }
+    }
+
+    @ViewBuilder
+    private var circularView: some View {
+        if let service = entry.service, let row = service.rows.first, let value = ratio(row) {
+            Gauge(value: value) {
+                Text(service.name)
+            } currentValueLabel: {
+                Text("\(Int(value * 100))")
+                    .minimumScaleFactor(0.5)
+            }
+            .gaugeStyle(.accessoryCircularCapacity)
+            .tint(barColor(value))
+        } else {
+            ZStack {
+                AccessoryWidgetBackground()
+                VStack(spacing: -1) {
+                    Text(entry.service?.rows.first?.valueText ?? "—")
+                        .font(.system(.callout, design: .rounded).weight(.semibold))
+                        .minimumScaleFactor(0.4)
+                        .lineLimit(1)
+                    Text(entry.service?.name ?? "")
+                        .font(.system(size: 9))
+                        .foregroundStyle(.secondary)
+                }
+                .padding(3)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var rectangularView: some View {
+        if let service = entry.service, let row = service.rows.first {
+            VStack(alignment: .leading, spacing: 2) {
+                HStack {
+                    Text("\(service.name) 用量")
+                        .font(.headline)
+                        .widgetAccentable()
+                        .lineLimit(1)
+                    Spacer(minLength: 4)
+                    if let percent = ratio(row).map({ Int($0 * 100) }) {
+                        Text("\(percent)%")
+                            .font(.caption)
+                            .monospacedDigit()
+                    }
+                }
+                if let value = ratio(row) {
+                    Gauge(value: value) { EmptyView() }
+                        .gaugeStyle(.accessoryLinearCapacity)
+                        .tint(barColor(value))
+                }
+                Text(row.quota.map { "\(row.valueText) / \($0.formatted(.number.notation(.compactName)))" } ?? row.valueText)
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .monospacedDigit()
+                    .lineLimit(1)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        } else {
+            Text(entry.missingName.map { String(localized: "暂无 \($0) 用量数据") } ?? String(localized: "打开 App 同步用量"))
+                .font(.caption2)
+                .foregroundStyle(.secondary)
         }
     }
 

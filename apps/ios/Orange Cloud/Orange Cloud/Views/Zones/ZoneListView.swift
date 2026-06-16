@@ -127,7 +127,7 @@ struct ZoneListView: View {
             .searchable(text: $searchText, prompt: "搜索域名")
             .navigationDestination(for: CachedZone.self) { zone in
                 ZoneDetailView(zone: zone, session: session)
-                    .navigationTransition(.zoom(sourceID: zone.id, in: namespace))
+                    .zoomNavigationTransition(sourceID: zone.id, in: namespace)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -151,7 +151,7 @@ struct ZoneListView: View {
                         ZoneCard(zone: zone, accountName: session.selectedAccount?.name ?? "")
                     }
                     .buttonStyle(.plain)
-                    .matchedTransitionSource(id: zone.id, in: namespace)
+                    .zoomTransitionSource(id: zone.id, in: namespace)
                 }
             }
             .padding(OCLayout.pagePadding)
@@ -167,7 +167,7 @@ struct ZoneListView: View {
         Button("刷新", systemImage: "arrow.clockwise") {
             Task { await refresh() }
         }
-        .symbolEffect(.rotate, isActive: viewModel.isLoading)
+        .loadingSpinSymbolEffect(isActive: viewModel.isLoading)
     }
 
     private var emptyState: some View {

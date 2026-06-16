@@ -97,7 +97,7 @@ struct PaywallView: View {
             Image(systemName: "checkmark.seal.fill")
                 .font(.system(size: 40))
                 .foregroundStyle(Color.ocOrange)
-                .symbolEffect(.bounce, options: .nonRepeating)
+                .oneShotBounceSymbolEffect()
             Text("Pro 已解锁")
                 .font(.headline)
             Text("感谢支持 Orange Cloud 的持续开发。")

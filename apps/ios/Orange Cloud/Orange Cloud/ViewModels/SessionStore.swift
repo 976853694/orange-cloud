@@ -24,6 +24,7 @@ final class SessionStore {
     let kvService:         KVService
     let tunnelService:     TunnelService
     let wafService:        WAFService
+    let snippetService:    SnippetService
     let zoneSettingsService: ZoneSettingsService
 
     var accounts: [Account] = []
@@ -57,6 +58,7 @@ final class SessionStore {
         self.kvService         = KVService(client: client)
         self.tunnelService     = TunnelService(client: client)
         self.wafService        = WAFService(client: client)
+        self.snippetService    = SnippetService(client: client)
         self.zoneSettingsService = ZoneSettingsService(client: client)
     }
 

@@ -56,7 +56,7 @@ struct WorkerListView: View {
             .searchable(text: $searchText, prompt: "搜索脚本")
             .navigationDestination(for: CachedWorkerScript.self) { script in
                 WorkerDetailView(script: script, session: session)
-                    .navigationTransition(.zoom(sourceID: script.key, in: namespace))
+                    .zoomNavigationTransition(sourceID: script.key, in: namespace)
             }
             .navigationDestination(item: $tailTarget) { script in
                 WorkerTailView(accountId: script.accountId, scriptName: script.id, session: session)
@@ -66,7 +66,7 @@ struct WorkerListView: View {
                     Button("刷新", systemImage: "arrow.clockwise") {
                         Task { await refresh() }
                     }
-                    .symbolEffect(.rotate, isActive: viewModel.isLoading)
+                    .loadingSpinSymbolEffect(isActive: viewModel.isLoading)
                 }
             }
             .task {
@@ -95,7 +95,7 @@ struct WorkerListView: View {
                     NavigationLink(value: script) {
                         WorkerRow(script: script)
                     }
-                    .matchedTransitionSource(id: script.key, in: namespace)
+                    .zoomTransitionSource(id: script.key, in: namespace)
                     .swipeActions(edge: .trailing) {
                         Button {
                             if auth.hasScope("workers-tail.read") {

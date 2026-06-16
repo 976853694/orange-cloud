@@ -166,6 +166,8 @@ final class AuthManager {
         UserDefaults.standard.set(currentSessionId?.uuidString, forKey: Self.currentSessionKey)
         UserDefaults(suiteName: WidgetSnapshot.appGroupID)?
             .set(currentSessionId?.uuidString, forKey: Self.currentSessionKey)
+        // 身份/登录态变化后把当前 token 推给 Apple Watch（未配对/未激活时静默 no-op）
+        WatchSessionManager.shared.pushCurrentState()
     }
 
     /// 一次性迁移：把既有 token 重存进共享钥匙串组（Widget 可读）
@@ -245,15 +247,27 @@ final class AuthManager {
     /// 打开系统授权窗口，等待 orangecloud:// 回调
     private func authenticate(with url: URL, ephemeral: Bool) async throws -> URL {
         try await withCheckedThrowingContinuation { continuation in
-            let session = ASWebAuthenticationSession(
-                url: url,
-                callback: .customScheme(OAuthConfig.callbackScheme)
-            ) { callbackURL, error in
+            let completion: (URL?, (any Error)?) -> Void = { callbackURL, error in
                 if let callbackURL {
                     continuation.resume(returning: callbackURL)
                 } else {
                     continuation.resume(throwing: error ?? AuthError.invalidCallback)
                 }
+            }
+            // iOS 17.4+ 用 callback API；iOS 17.0–17.3 回退旧的 callbackURLScheme 初始化器
+            let session: ASWebAuthenticationSession
+            if #available(iOS 17.4, *) {
+                session = ASWebAuthenticationSession(
+                    url: url,
+                    callback: .customScheme(OAuthConfig.callbackScheme),
+                    completionHandler: completion
+                )
+            } else {
+                session = ASWebAuthenticationSession(
+                    url: url,
+                    callbackURLScheme: OAuthConfig.callbackScheme,
+                    completionHandler: completion
+                )
             }
             session.presentationContextProvider = contextProvider
             session.prefersEphemeralWebBrowserSession = ephemeral

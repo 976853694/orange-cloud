@@ -7,12 +7,14 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct SettingsView: View {
 
     @Environment(AuthManager.self) private var auth
     @Environment(SessionStore.self) private var session
     @Environment(EntitlementStore.self) private var entitlements
+    @Environment(\.requestReview) private var requestReview
 
     @State private var showAddAccount = false
     @State private var showProPaywall = false
@@ -202,6 +204,21 @@ struct SettingsView: View {
                         Text(appVersion)
                             .foregroundStyle(.secondary)
                     }
+                    // 系统应用内评分弹窗（无需 App Store ID）；iOS 限频，可能不弹
+                    Button {
+                        requestReview()
+                    } label: {
+                        HStack(spacing: 12) {
+                            TintIcon(systemImage: "star.fill", color: .yellow)
+                            Text("为 App 评分")
+                                .foregroundStyle(.primary)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .font(.caption.weight(.semibold))
+                                .foregroundStyle(.tertiary)
+                        }
+                    }
+                    aboutLink("GitHub", icon: "chevron.left.forwardslash.chevron.right", url: "https://github.com/chen2he/orange-cloud")
                     aboutLink("隐私政策", icon: "doc.text", url: "https://orange-cloud.chatiro.app/privacy")
                     aboutLink("使用条款", icon: "doc.plaintext", url: "https://orange-cloud.chatiro.app/terms")
                 } header: {

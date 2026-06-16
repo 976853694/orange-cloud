@@ -206,5 +206,7 @@ final class DashboardViewModel {
         WidgetDataStore.saveZones(metrics)
         WidgetCenter.shared.reloadTimelines(ofKind: "ZoneStatWidget")
         WidgetCenter.shared.reloadTimelines(ofKind: "ZoneChartWidget")
+        // 数据刷新后把最新快照推给 Apple Watch
+        WatchSessionManager.shared.pushCurrentState()
     }
 }

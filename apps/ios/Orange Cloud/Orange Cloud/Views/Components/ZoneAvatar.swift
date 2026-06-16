@@ -28,7 +28,7 @@ struct ZoneAvatar: View {
             .frame(width: size, height: size)
             .background(
                 LinearGradient(
-                    colors: [base, base.mix(with: .black, by: 0.28)],
+                    colors: [base, base.mixed(with: .black, by: 0.28)],
                     startPoint: .topLeading, endPoint: .bottomTrailing
                 ),
                 in: Circle()

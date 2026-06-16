@@ -100,6 +100,17 @@ struct ZoneDetailView: View {
                     ) {
                         WAFRuleListView(zoneId: zone.id, zoneName: zone.name, session: session)
                     }
+
+                    ProGatedNavigationLink(
+                        label: String(localized: "Snippets"),
+                        systemImage: "curlybraces",
+                        requiredScope: "snippets.read",
+                        feature: .snippets,
+                        tint: .indigo,
+                        showsChevron: true
+                    ) {
+                        SnippetsListView(zoneId: zone.id, zoneName: zone.name, session: session)
+                    }
                 }
 
                 sectionCard(String(localized: "操作")) {

@@ -1,8 +1,7 @@
 {
-  "sourceLanguage" : "zh-Hans",
+  "sourceLanguage" : "en",
   "strings" : {
     "打开 ${applicationName}" : {
-      "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -16,14 +15,6 @@
             "value" : "${applicationName}を開く"
           }
         },
-        "zh-Hans" : {
-          "stringSet" : {
-            "state" : "new",
-            "values" : [
-              "打开 ${applicationName}"
-            ]
-          }
-        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -34,6 +25,30 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "開啟 ${applicationName}"
+          }
+        },
+        "es-MX" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir ${applicationName}"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${applicationName} 열기"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir o ${applicationName}"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir o ${applicationName}"
           }
         }
       }
@@ -64,11 +79,34 @@
             "state" : "translated",
             "value" : "查詢 ${applicationName} 域名狀態"
           }
+        },
+        "es-MX" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver estado del dominio en ${applicationName}"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${applicationName} 도메인 상태 확인"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver status dos domínios no ${applicationName}"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver estado dos domínios no ${applicationName}"
+          }
         }
       }
     },
     "用 ${applicationName} 查域名" : {
-      "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -82,15 +120,6 @@
             "value" : "${applicationName}でドメインを確認"
           }
         },
-        "zh-Hans" : {
-          "stringSet" : {
-            "state" : "new",
-            "values" : [
-              "用 ${applicationName} 查域名",
-              "查询 ${applicationName} 域名状态"
-            ]
-          }
-        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -101,6 +130,30 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "用 ${applicationName} 查域名"
+          }
+        },
+        "es-MX" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consultar dominios con ${applicationName}"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${applicationName}에서 도메인 확인"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consultar domínios com o ${applicationName}"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consultar domínios com o ${applicationName}"
           }
         }
       }

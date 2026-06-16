@@ -82,6 +82,47 @@ actor CFAPIClient {
         }
     }
 
+    /// multipart/form-data 写入带文件 part（Snippets 上传 JS 模块）。
+    /// metadata part 为 JSON（如 {"main_module":"snippet.js"}）；文件 part 的字段名即文件名，
+    /// 与 main_module 引用一致，Content-Type 由调用方给（JS 模块用 application/javascript+module）。
+    func putMultipartFile<T: Codable & Sendable>(
+        _ path: String,
+        metadata: [String: String],
+        fileName: String,
+        fileContent: Data,
+        fileContentType: String
+    ) async throws -> T {
+        let boundary = "OrangeCloud-\(UUID().uuidString)"
+        var body = Data()
+
+        // metadata part
+        let metadataJSON = try JSONEncoder().encode(metadata)
+        body.append(Data("--\(boundary)\r\n".utf8))
+        body.append(Data("Content-Disposition: form-data; name=\"metadata\"\r\n".utf8))
+        body.append(Data("Content-Type: application/json\r\n\r\n".utf8))
+        body.append(metadataJSON)
+        body.append(Data("\r\n".utf8))
+
+        // 文件 part（字段名 = filename = fileName，main_module 引用它）
+        body.append(Data("--\(boundary)\r\n".utf8))
+        body.append(Data("Content-Disposition: form-data; name=\"\(fileName)\"; filename=\"\(fileName)\"\r\n".utf8))
+        body.append(Data("Content-Type: \(fileContentType)\r\n\r\n".utf8))
+        body.append(fileContent)
+        body.append(Data("\r\n".utf8))
+
+        body.append(Data("--\(boundary)--\r\n".utf8))
+
+        let data = try await performRequest(
+            method: "PUT", path: path, queryItems: [], body: body,
+            contentType: "multipart/form-data; boundary=\(boundary)"
+        )
+        do {
+            return try JSONDecoder().decode(T.self, from: data)
+        } catch {
+            throw APIError.decodingError(error)
+        }
+    }
+
     /// GraphQL Analytics API。信封是 {data, errors}（GraphQL 错误时 HTTP 仍为 200），
     /// 与 REST 的 {result, success} 不同。复用 request 自动获得 Token 刷新与 401 重试。
     func graphQL<D: Codable & Sendable, V: Codable & Sendable>(
