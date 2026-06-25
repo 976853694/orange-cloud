@@ -49,7 +49,7 @@ struct StorageView: View {
     private var canWriteD1: Bool { auth.hasScope("d1.write") }
 
     init(session: SessionStore) {
-        _r2ViewModel = State(initialValue: R2BucketListViewModel(service: session.r2Service))
+        _r2ViewModel = State(initialValue: R2BucketListViewModel(service: session.r2Service, analyticsService: session.analyticsService))
         _d1ViewModel = State(initialValue: D1DatabaseListViewModel(service: session.d1Service))
         _kvViewModel = State(initialValue: KVNamespaceListViewModel(service: session.kvService))
     }
@@ -141,8 +141,7 @@ struct StorageView: View {
                     StorageRow(
                         icon: "externaldrive", tint: .ocOrange, mono: false,
                         name: bucket.name,
-                        sub: [bucket.location, WorkerScript.parseDate(bucket.creationDate).map { $0.formatted(.dateTime.year().month().day()) }]
-                            .compactMap(\.self).joined(separator: " · ")
+                        sub: r2Subtitle(for: bucket)
                     )
                 }
                 .glassRow()
@@ -150,6 +149,18 @@ struct StorageView: View {
             .scrollContentBackground(.hidden)
             .refreshable { await load() }
         }
+    }
+
+    /// 桶副标题：有用量数据时显示存储/对象/请求，否则回退到位置 · 创建日期
+    private func r2Subtitle(for bucket: R2Bucket) -> String {
+        if let usage = r2ViewModel.usageByBucket[bucket.name], usage.storageBytes > 0 || usage.objectCount > 0 {
+            var parts = [Int64(usage.storageBytes).formatted(.byteCount(style: .file))]
+            if usage.objectCount > 0 { parts.append(String(localized: "\(usage.objectCount) 个对象")) }
+            if usage.totalRequests > 0 { parts.append(String(localized: "本月 \(usage.totalRequests.formatted()) 次操作")) }
+            return parts.joined(separator: " · ")
+        }
+        return [bucket.location, WorkerScript.parseDate(bucket.creationDate).map { $0.formatted(.dateTime.year().month().day()) }]
+            .compactMap(\.self).joined(separator: " · ")
     }
 
     // MARK: - D1

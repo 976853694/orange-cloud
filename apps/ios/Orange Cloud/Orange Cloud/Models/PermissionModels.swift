@@ -135,10 +135,37 @@ extension FeaturePermission {
         .init(
             id: "zone_settings",
             title: String(localized: "缓存与防护"),
-            description: String(localized: "清理缓存、Under Attack / 开发模式开关"),
+            description: String(localized: "缓存清理、SSL/TLS、Under Attack / 开发模式"),
             icon: "speedometer",
             readScopes: ["zone-settings.read"],
             editScopes: ["zone-settings.write", "cache.purge"],
+            isRequired: false
+        ),
+        .init(
+            id: "ssl_certs",
+            title: String(localized: "SSL 证书"),
+            description: String(localized: "查看证书、开关 Universal SSL、删除高级证书"),
+            icon: "checkmark.seal",
+            readScopes: ["ssl-and-certificates.read"],
+            editScopes: ["ssl-and-certificates.write"],
+            isRequired: false
+        ),
+        .init(
+            id: "transform_rules",
+            title: "Transform Rules",
+            description: String(localized: "查看与编辑 URL 重写、请求/响应头规则"),
+            icon: "arrow.triangle.branch",
+            readScopes: ["zone-transform-rules.read"],
+            editScopes: ["zone-transform-rules.write"],
+            isRequired: false
+        ),
+        .init(
+            id: "ip_access_rules",
+            title: String(localized: "IP 访问规则"),
+            description: String(localized: "查看与管理 IP / ASN / 国家或地区访问规则"),
+            icon: "hand.raised",
+            readScopes: ["firewall-services.read"],
+            editScopes: ["firewall-services.write"],
             isRequired: false
         ),
         // Pages 是后续功能，实现后再加回（最小权限：不为未实现功能申请 scope）

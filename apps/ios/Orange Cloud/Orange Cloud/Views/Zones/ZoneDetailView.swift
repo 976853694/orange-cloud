@@ -24,6 +24,7 @@ struct ZoneDetailView: View {
     // 操作区
     @State private var actionsViewModel: ZoneActionsViewModel
     @State private var showPurgeConfirm = false
+    @State private var showPurgeByURL = false
     @State private var showPurgeDone = false
     @State private var showActionDenied = false
     @State private var deniedScopeHint = ""
@@ -111,6 +112,56 @@ struct ZoneDetailView: View {
                     ) {
                         SnippetsListView(zoneId: zone.id, zoneName: zone.name, session: session)
                     }
+
+                    PermissionGatedNavigationLink(
+                        label: "SSL/TLS",
+                        systemImage: "lock.shield",
+                        requiredScope: "zone-settings.read",
+                        tint: .green,
+                        showsChevron: true
+                    ) {
+                        ZoneSSLSettingsView(zoneId: zone.id, zoneName: zone.name, session: session)
+                    }
+
+                    PermissionGatedNavigationLink(
+                        label: String(localized: "性能与缓存"),
+                        systemImage: "speedometer",
+                        requiredScope: "zone-settings.read",
+                        tint: .teal,
+                        showsChevron: true
+                    ) {
+                        ZonePerformanceView(zoneId: zone.id, session: session)
+                    }
+
+                    PermissionGatedNavigationLink(
+                        label: String(localized: "SSL 证书"),
+                        systemImage: "checkmark.seal",
+                        requiredScope: "ssl-and-certificates.read",
+                        tint: .green,
+                        showsChevron: true
+                    ) {
+                        ZoneSSLCertsView(zoneId: zone.id, session: session)
+                    }
+
+                    PermissionGatedNavigationLink(
+                        label: "Transform Rules",
+                        systemImage: "arrow.triangle.branch",
+                        requiredScope: "zone-transform-rules.read",
+                        tint: .indigo,
+                        showsChevron: true
+                    ) {
+                        ZoneTransformRulesView(zoneId: zone.id, session: session)
+                    }
+
+                    PermissionGatedNavigationLink(
+                        label: String(localized: "IP 访问规则"),
+                        systemImage: "hand.raised",
+                        requiredScope: "firewall-services.read",
+                        tint: .red,
+                        showsChevron: true
+                    ) {
+                        ZoneAccessRulesView(zoneId: zone.id, session: session)
+                    }
                 }
 
                 sectionCard(String(localized: "操作")) {
@@ -154,6 +205,26 @@ struct ZoneDetailView: View {
                                     .font(.caption)
                                     .foregroundStyle(.tertiary)
                             }
+                        }
+                    }
+                    .disabled(actionsViewModel.isPurging)
+
+                    Button {
+                        if canPurge {
+                            showPurgeByURL = true
+                        } else {
+                            deniedScopeHint = "cache.purge"
+                            showActionDenied = true
+                        }
+                    } label: {
+                        HStack(spacing: 12) {
+                            TintIcon(systemImage: "link", color: .ocOrange)
+                            Text("按 URL 清理缓存")
+                                .foregroundStyle(.primary)
+                            Spacer()
+                            Image(systemName: canPurge ? "chevron.right" : "lock.fill")
+                                .font(.caption.weight(.semibold))
+                                .foregroundStyle(.tertiary)
                         }
                     }
                     .disabled(actionsViewModel.isPurging)
@@ -243,6 +314,11 @@ struct ZoneDetailView: View {
             Button("好", role: .cancel) {}
         } message: {
             Text("边缘节点将在数秒内完成清理。")
+        }
+        .sheet(isPresented: $showPurgeByURL) {
+            PurgeByURLSheet(zoneName: zone.name) { urls in
+                await actionsViewModel.purgeURLs(urls)
+            }
         }
         .onChange(of: actionsViewModel.didPurge) {
             showPurgeDone = true

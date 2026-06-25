@@ -10,6 +10,38 @@ import Foundation
 
 nonisolated enum WhatsNewGenerated {
     static let releases: [WhatsNewRelease] = [
+        WhatsNewRelease(version: "1.4.0", items: [
+            WhatsNewItem(
+                icon:   "checkmark.seal",
+                title:  String(localized: "SSL 证书与加密设置", table: "WhatsNew"),
+                detail: String(localized: "查看域名的边缘证书与到期时间，开关 Universal SSL，并调整 SSL/TLS 加密模式。", table: "WhatsNew")
+            ),
+            WhatsNewItem(
+                icon:   "arrow.triangle.branch",
+                title:  String(localized: "Transform Rules", table: "WhatsNew"),
+                detail: String(localized: "查看并编辑 URL 重写、请求头与响应头规则，直接在手机上管理流量改写。", table: "WhatsNew")
+            ),
+            WhatsNewItem(
+                icon:   "hand.raised",
+                title:  String(localized: "IP 访问规则", table: "WhatsNew"),
+                detail: String(localized: "按 IP、网段、ASN 或国家/地区拦截、质询或放行访问，随时增删规则。", table: "WhatsNew")
+            ),
+            WhatsNewItem(
+                icon:   "shippingbox",
+                title:  String(localized: "R2 存储升级", table: "WhatsNew"),
+                detail: String(localized: "以文件夹方式浏览对象，复制或移动文件，查看各存储桶用量，并管理公开访问域名与 CORS。", table: "WhatsNew")
+            ),
+            WhatsNewItem(
+                icon:   "link",
+                title:  String(localized: "按 URL 精准清缓存", table: "WhatsNew"),
+                detail: String(localized: "无需清空整站，指定单个或多个 URL 精准刷新缓存；并新增性能与缓存设置页。", table: "WhatsNew")
+            ),
+            WhatsNewItem(
+                icon:   "globe",
+                title:  String(localized: "更多语言与稳定性", table: "WhatsNew"),
+                detail: String(localized: "新增德语、法语、阿拉伯语与土耳其语；并改进崩溃诊断，帮助更快定位疑难问题。", table: "WhatsNew")
+            )
+        ]),
         WhatsNewRelease(version: "1.3.2", items: [
             WhatsNewItem(
                 icon:   "sparkles",

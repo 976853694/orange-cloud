@@ -50,6 +50,30 @@
             "state": "translated",
             "value": "App do Apple Watch"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch App"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Apple Watch"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تطبيق Apple Watch"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch uygulaması"
+          }
         }
       }
     },
@@ -101,6 +125,258 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gestão de bases de dados D1"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D1-Datenbankverwaltung"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gestion de base de données D1"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إدارة قاعدة بيانات D1"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D1 veritabanı yönetimi"
+          }
+        }
+      }
+    },
+    "IP 访问规则": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IP Access Rules"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IP 存取規則"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IP 存取規則"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IP アクセスルール"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reglas de acceso por IP"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IP 액세스 규칙"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regras de acesso por IP"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regras de acesso por IP"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IP-Zugriffsregeln"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Règles d'accès IP"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قواعد الوصول حسب IP"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IP erişim kuralları"
+          }
+        }
+      }
+    },
+    "R2 存储升级": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "R2 Storage Upgrades"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "R2 儲存升級"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "R2 儲存升級"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "R2 ストレージの強化"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mejoras en R2 Storage"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "R2 스토리지 개선"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Melhorias no R2 Storage"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Melhorias no R2 Storage"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "R2-Storage-Upgrades"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Améliorations du stockage R2"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تحسينات تخزين R2"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "R2 depolama geliştirmeleri"
+          }
+        }
+      }
+    },
+    "SSL 证书与加密设置": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSL Certificates & Encryption"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSL 憑證與加密設定"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSL 憑證與加密設定"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSL 証明書と暗号化設定"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certificados SSL y cifrado"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSL 인증서 및 암호화 설정"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certificados SSL e criptografia"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certificados SSL e encriptação"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSL-Zertifikate & Verschlüsselung"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certificats SSL et chiffrement"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شهادات SSL والتشفير"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSL sertifikaları ve şifreleme"
           }
         }
       }
@@ -154,6 +430,106 @@
             "state": "translated",
             "value": "Snippets"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snippets"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snippets"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snippets"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snippets"
+          }
+        }
+      }
+    },
+    "Transform Rules": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transform Rules"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transform Rules"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transform Rules"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transform Rules"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transform Rules"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transform Rules"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transform Rules"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transform Rules"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transform Rules"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transform Rules"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transform Rules"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transform Rules"
+          }
         }
       }
     },
@@ -205,6 +581,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gestão de túneis"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tunnel-Verwaltung"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gestion des tunnels"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إدارة الأنفاق"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tünel yönetimi"
           }
         }
       }
@@ -258,6 +658,30 @@
             "state": "translated",
             "value": "VoiceOver, texto maior, indicações que não dependem só da cor e contraste suficiente — tudo pronto para funcionar bem com as funcionalidades de acessibilidade do sistema."
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VoiceOver, größerer Text, nicht nur farbabhängige Hinweise und ausreichender Kontrast – alles erfüllt, sodass die App reibungslos mit den Bedienungshilfen des Systems funktioniert."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VoiceOver, texte plus grand, repères ne reposant pas uniquement sur la couleur et contraste suffisant — tout est en place, pour que l’app fonctionne sans accroc avec les fonctionnalités d’accessibilité du système."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‏VoiceOver ونص أكبر وإشارات لا تعتمد على اللون وحده وتباين كافٍ — كل ذلك متوفر، لتعمل التطبيق بسلاسة مع ميزات تسهيلات الاستخدام في النظام."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VoiceOver, daha büyük metin, yalnızca renge dayanmayan ipuçları ve yeterli kontrast — hepsi mevcut; böylece uygulama, sistemin erişilebilirlik özellikleriyle sorunsuz çalışır."
+          }
         }
       }
     },
@@ -309,6 +733,106 @@
           "stringUnit": {
             "state": "translated",
             "value": "Já não é só visualizar: crie túneis, obtenha tokens e comandos de ligação e configure o encaminhamento por nome de anfitrião público."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr als nur Ansehen – Tunnel erstellen, Verbindungstoken und Befehle abrufen und Routing öffentlicher Hostnamen konfigurieren."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus seulement consulter — créez des tunnels, obtenez des jetons de connexion et des commandes, et configurez le routage des noms d’hôte publics."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أكثر من مجرد عرض الآن — أنشئ الأنفاق، واحصل على رموز الاتصال والأوامر، واضبط توجيه أسماء المضيفين العامة."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Artık yalnızca görüntülemek değil — tüneller oluşturun, bağlantı belirteçleri ve komutları alın ve genel ana makine adı yönlendirmesini yapılandırın."
+          }
+        }
+      }
+    },
+    "以文件夹方式浏览对象，复制或移动文件，查看各存储桶用量，并管理公开访问域名与 CORS。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Browse objects by folder, copy or move files, view per-bucket usage, and manage public access domains and CORS."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以資料夾方式瀏覽物件，複製或移動檔案，檢視各儲存桶用量，並管理公開存取網域與 CORS。"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以資料夾方式瀏覽物件，複製或移動檔案，查看各儲存桶用量，並管理公開存取域名與 CORS。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "オブジェクトをフォルダ単位で閲覧し、ファイルのコピーや移動、バケットごとの使用量の確認、公開アクセス用ドメインと CORS の管理ができます。"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explora objetos por carpeta, copia o mueve archivos, consulta el uso por bucket y administra los dominios de acceso público y CORS."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "객체를 폴더별로 탐색하고 파일을 복사하거나 이동하며, 버킷별 사용량을 확인하고 공개 액세스 도메인과 CORS를 관리하세요."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navegue pelos objetos por pasta, copie ou mova arquivos, veja o uso por bucket e gerencie domínios de acesso público e CORS."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navegue pelos objetos por pasta, copie ou mova ficheiros, veja a utilização por bucket e faça a gestão de domínios de acesso público e CORS."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durchsuche Objekte nach Ordnern, kopiere oder verschiebe Dateien, sieh dir die Nutzung pro Bucket an und verwalte Domains für öffentlichen Zugriff sowie CORS."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parcourez les objets par dossier, copiez ou déplacez des fichiers, consultez l'utilisation par bucket et gérez les domaines d'accès public et le CORS."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تصفّح الكائنات حسب المجلد، وانسخ الملفات أو انقلها، واطّلع على الاستخدام لكل حاوية، وأدِر نطاقات الوصول العام وسياسات CORS."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nesneleri klasör klasör inceleyin, dosyaları kopyalayın veya taşıyın, paket başına kullanımı görün ve genel erişim alan adları ile CORS'u yönetin."
           }
         }
       }
@@ -362,6 +886,30 @@
             "state": "translated",
             "value": "Corrigimos um problema em que a app podia fechar ao abrir em alguns dispositivos com iOS 17."
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Problem wurde behoben, bei dem die App auf einigen iOS-17-Geräten beim Start abstürzen konnte."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correction d’un problème qui pouvait faire planter l’app au démarrage sur certains appareils iOS 17."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تم إصلاح مشكلة قد تتسبب في تعطّل التطبيق عند البدء على بعض أجهزة iOS 17."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bazı iOS 17 cihazlarında uygulamanın başlangıçta çökebildiği bir sorun düzeltildi."
+          }
         }
       }
     },
@@ -413,6 +961,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Correção de falha ao abrir"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Absturz beim Start behoben"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correction d’un plantage au démarrage"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إصلاح تعطّل عند البدء"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Başlangıç çökmesi düzeltildi"
           }
         }
       }
@@ -466,6 +1038,30 @@
             "state": "translated",
             "value": "Totalmente acessível"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vollständig barrierefrei"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entièrement accessible"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "متاح بالكامل لذوي الاحتياجات"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamamen erişilebilir"
+          }
         }
       }
     },
@@ -517,6 +1113,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "As falhas ao atualizar já não interrompem com alertas, e o puxar para atualizar ficou mais fiável."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktualisierungsfehler unterbrechen nicht mehr mit Hinweisen, und das Ziehen zum Aktualisieren ist zuverlässiger."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les échecs d’actualisation n’interrompent plus avec des alertes, et le tirer-pour-actualiser est plus fiable."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لم تعد أخطاء التحديث تقاطعك بتنبيهات، وأصبح السحب للتحديث أكثر موثوقية."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yenileme hataları artık uyarılarla bölmüyor ve yenilemek için çekme daha güvenilir."
           }
         }
       }
@@ -570,6 +1190,30 @@
             "state": "translated",
             "value": "Atualização mais fluida"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reibungsloseres Aktualisieren"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualisation plus fluide"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تحديث أكثر سلاسة"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daha akıcı yenileme"
+          }
         }
       }
     },
@@ -621,6 +1265,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Variáveis e segredos"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Variablen & Secrets"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Variables et secrets"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المتغيرات والأسرار"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Değişkenler ve Gizli Bilgiler"
           }
         }
       }
@@ -674,6 +1342,30 @@
             "state": "translated",
             "value": "Adicione à sua conta um domínio que já possui e obtenha os servidores de nomes para configurar no seu registador."
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Füge eine Domain, die dir bereits gehört, deinem Konto hinzu und erhalte die Nameserver, die du bei deinem Registrar einträgst."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajoutez à votre compte un domaine que vous possédez déjà et obtenez les serveurs de noms à configurer chez votre registraire."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أضِف نطاقًا تملكه بالفعل إلى حسابك واحصل على خوادم الأسماء لضبطها لدى مُسجِّل النطاق."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaten sahip olduğunuz bir alan adını hesabınıza ekleyin ve kayıt kuruluşunuzda ayarlamanız gereken ad sunucularını alın."
+          }
         }
       }
     },
@@ -725,6 +1417,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Veja, edite e crie snippets de periferia da Cloudflare — e faça a gestão das suas regras de acionamento — nos detalhes do domínio. Workers leves, desbloqueados com o Pro."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sieh dir Cloudflare-Edge-Code-Snippets in den Domain-Details an, bearbeite und erstelle sie und verwalte ihre Trigger-Regeln – leichtgewichtige Workers, freigeschaltet mit Pro."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consultez, modifiez et créez des snippets de code en périphérie Cloudflare — et gérez leurs règles de déclenchement — directement dans les détails du domaine. Des Workers légers, débloqués avec Pro."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اعرض مقتطفات شفرة Cloudflare على الحافة وعدّلها وأنشئها، وأدِر قواعد تشغيلها — مباشرةً في تفاصيل النطاق. Workers خفيفة، تُفتَح مع Pro."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloudflare uç kod snippet’lerini alan adı ayrıntılarında görüntüleyin, düzenleyin ve oluşturun — ayrıca tetikleme kurallarını yönetin. Hafif Workers, Pro ile açılır."
           }
         }
       }
@@ -778,6 +1494,30 @@
             "state": "translated",
             "value": "Em dispositivos com a Apple Intelligence, descreva o que precisa numa frase para gerar uma regra personalizada do WAF — e traduza regras existentes para linguagem simples. Tudo no dispositivo e offline."
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auf Geräten mit Apple Intelligence beschreibst du dein Anliegen in einem Satz, um eine WAF-Custom-Regel zu generieren – und übersetzt bestehende Regeln in einfache Worte. Läuft vollständig offline auf dem Gerät."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sur les appareils dotés d’Apple Intelligence, décrivez votre besoin en une phrase pour générer une règle WAF personnalisée — et traduisez les règles existantes en langage simple. Tout se passe hors ligne, sur l’appareil."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "على الأجهزة المزوّدة بـ Apple Intelligence، صِف ما تريده بجملة واحدة لإنشاء قاعدة WAF مخصصة — وترجم القواعد الحالية إلى كلمات بسيطة. يتم كل ذلك على الجهاز ودون اتصال."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Intelligence olan cihazlarda, isteğinizi bir cümleyle tanımlayarak özel bir WAF kuralı oluşturun — ve mevcut kuralları sade bir dile çevirin. Tamamen cihazda, çevrimdışı çalışır."
+          }
         }
       }
     },
@@ -829,6 +1569,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Domínios e rotas"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Domains & Routen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Domaines et routes"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "النطاقات والمسارات"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alan adları ve Rotalar"
           }
         }
       }
@@ -882,6 +1646,30 @@
             "state": "translated",
             "value": "Gatilhos Cron"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cron-Trigger"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déclencheurs Cron"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مشغّلات Cron"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cron Tetikleyicileri"
+          }
         }
       }
     },
@@ -933,6 +1721,258 @@
           "stringUnit": {
             "state": "translated",
             "value": "Leve o estado dos domínios e o resumo de tráfego para o pulso, com complicações no mostrador para ver num relance."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bring Domain-Status und Traffic-Übersicht an dein Handgelenk – mit Komplikationen auf dem Zifferblatt für einen Blick jederzeit."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apportez l’état des domaines et l’aperçu du trafic à votre poignet, avec des complications sur le cadran pour un coup d’œil à tout moment."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "انقل حالة النطاقات ونظرة عامة على حركة المرور إلى معصمك، مع تعقيدات على واجهة الساعة لإلقاء نظرة في أي وقت."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alan adı durumunu ve trafik genel görünümünü bileğinize taşıyın; istediğiniz an bir bakış için saat kadranı komplikasyonlarıyla."
+          }
+        }
+      }
+    },
+    "按 IP、网段、ASN 或国家/地区拦截、质询或放行访问，随时增删规则。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Block, challenge, or allow visitors by IP, IP range, ASN, or country — add and remove rules anytime."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "依 IP、網段、ASN 或國家/地區封鎖、質詢或放行存取，隨時新增或刪除規則。"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按 IP、網段、ASN 或國家/地區封鎖、質詢或放行存取，隨時新增或刪除規則。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IP、IP 範囲、ASN、国/地域ごとにアクセスをブロック・チャレンジ・許可でき、ルールはいつでも追加・削除できます。"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloquea, desafía o permite el acceso por IP, rango de IP, ASN o país, y agrega o elimina reglas cuando quieras."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IP, IP 범위, ASN 또는 국가/지역별로 접근을 차단·검증·허용하고 규칙을 언제든 추가하거나 삭제하세요."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloqueie, desafie ou permita o acesso por IP, intervalo de IP, ASN ou país, e adicione ou remova regras quando quiser."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloqueie, desafie ou permita o acesso por IP, intervalo de IP, ASN ou país, e adicione ou remova regras quando quiser."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blockiere, fordere heraus oder erlaube Besucher nach IP, IP-Bereich, ASN oder Land – Regeln jederzeit hinzufügen oder entfernen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloquez, défiez ou autorisez les visiteurs par IP, plage d'IP, ASN ou pays, et ajoutez ou supprimez des règles à tout moment."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "احظر الزوّار أو تحقّق منهم أو اسمح لهم حسب IP أو نطاق IP أو ASN أو الدولة، وأضِف القواعد أو احذفها في أي وقت."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziyaretçileri IP, IP aralığı, ASN veya ülkeye göre engelleyin, doğrulayın ya da izin verin; kuralları istediğiniz zaman ekleyip kaldırın."
+          }
+        }
+      }
+    },
+    "按 URL 精准清缓存": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purge Cache by URL"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "依 URL 精準清除快取"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按 URL 精準清除緩存"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "URL 単位でのキャッシュ削除"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purga de caché por URL"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "URL 단위 캐시 제거"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpeza de cache por URL"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limpeza de cache por URL"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cache gezielt per URL leeren"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purge du cache par URL"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تفريغ ذاكرة التخزين المؤقت حسب URL"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "URL'ye göre önbellek temizleme"
+          }
+        }
+      }
+    },
+    "新增德语、法语、阿拉伯语与土耳其语；并改进崩溃诊断，帮助更快定位疑难问题。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Added German, French, Arabic, and Turkish, plus improved crash diagnostics to track down tricky issues faster."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新增德語、法語、阿拉伯語與土耳其語；並改進當機診斷，協助更快定位疑難問題。"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新增德語、法語、阿拉伯語與土耳其語；並改進崩潰診斷，協助更快定位疑難問題。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ドイツ語・フランス語・アラビア語・トルコ語に対応し、クラッシュ診断も改善して、やっかいな問題をより早く特定できるようにしました。"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregamos alemán, francés, árabe y turco, y mejoramos el diagnóstico de fallos para detectar problemas difíciles más rápido."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "독일어, 프랑스어, 아랍어, 터키어를 추가하고 충돌 진단을 개선하여 까다로운 문제를 더 빠르게 찾아냅니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionamos alemão, francês, árabe e turco, e melhoramos o diagnóstico de falhas para identificar problemas difíceis mais rápido."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adicionámos alemão, francês, árabe e turco, e melhorámos o diagnóstico de falhas para identificar problemas difíceis mais depressa."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deutsch, Französisch, Arabisch und Türkisch kommen hinzu, dazu eine verbesserte Absturzdiagnose, um knifflige Probleme schneller aufzuspüren."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajout de l'allemand, du français, de l'arabe et du turc, ainsi qu'un diagnostic de plantage amélioré pour cerner plus vite les problèmes délicats."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أضفنا الألمانية والفرنسية والعربية والتركية، وحسّنّا تشخيص الأعطال لتحديد المشكلات الصعبة بشكل أسرع."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Almanca, Fransızca, Arapça ve Türkçe eklendi; ayrıca zorlu sorunları daha hızlı bulmak için çökme tanılaması iyileştirildi."
           }
         }
       }
@@ -986,6 +2026,106 @@
             "state": "translated",
             "value": "Adicionámos espanhol, coreano e português — agora em nove idiomas."
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spanisch, Koreanisch und Portugiesisch hinzugefügt – jetzt in neun Sprachen verfügbar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajout de l’espagnol, du coréen et du portugais — désormais disponible en neuf langues."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أُضيفت الإسبانية والكورية والبرتغالية — متاح الآن بتسع لغات."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İspanyolca, Korece ve Portekizce eklendi — artık dokuz dilde."
+          }
+        }
+      }
+    },
+    "无需清空整站，指定单个或多个 URL 精准刷新缓存；并新增性能与缓存设置页。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refresh the cache for specific URLs without clearing the whole site — plus a new performance and cache settings page."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不必清空整站，指定單一或多個 URL 精準刷新快取；並新增效能與快取設定頁。"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不必清空整站，指定單一或多個 URL 精準刷新緩存；並新增效能與緩存設定頁。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サイト全体を消さずに、特定の URL だけキャッシュを更新できます。パフォーマンスとキャッシュの設定ページも追加しました。"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualiza la caché de URLs específicas sin borrar todo el sitio, y estrena una página de ajustes de rendimiento y caché."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사이트 전체를 비우지 않고 특정 URL의 캐시만 새로 고치세요. 성능 및 캐시 설정 페이지도 추가되었습니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atualize o cache de URLs específicas sem limpar o site inteiro — e conte com uma nova página de configurações de desempenho e cache."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atualize a cache de URLs específicos sem limpar o site inteiro — e conte com uma nova página de definições de desempenho e cache."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktualisiere den Cache gezielt für einzelne URLs, ohne die ganze Website zu leeren – dazu eine neue Seite für Leistungs- und Cache-Einstellungen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualisez le cache d'URL précises sans vider tout le site, avec en prime une nouvelle page de réglages de performance et de cache."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حدّث ذاكرة التخزين المؤقت لعناوين URL محددة دون مسح الموقع بأكمله — مع صفحة جديدة لإعدادات الأداء والتخزين المؤقت."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tüm siteyi temizlemeden belirli URL'lerin önbelleğini yenileyin; ayrıca yeni bir performans ve önbellek ayarları sayfası eklendi."
+          }
         }
       }
     },
@@ -1037,6 +2177,106 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mais idiomas"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weitere Sprachen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus de langues"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المزيد من اللغات"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daha fazla dil"
+          }
+        }
+      }
+    },
+    "更多语言与稳定性": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "More Languages & Stability"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更多語言與穩定性"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更多語言與穩定性"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "言語の追加と安定性の向上"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más idiomas y estabilidad"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "언어 추가 및 안정성 향상"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais idiomas e estabilidade"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais idiomas e estabilidade"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Sprachen & Stabilität"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus de langues et de stabilité"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لغات أكثر واستقرار أفضل"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daha fazla dil ve kararlılık"
           }
         }
       }
@@ -1090,6 +2330,182 @@
             "state": "translated",
             "value": "Veja, adicione e remova gatilhos Cron para que um Worker seja executado automaticamente conforme o agendamento."
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sieh dir Cron-Trigger an, füge sie hinzu und entferne sie, damit ein Worker planmäßig automatisch läuft."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consultez, ajoutez et supprimez des déclencheurs Cron pour qu’un Worker s’exécute automatiquement selon un planning."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اعرض مشغّلات Cron وأضِفها واحذفها ليعمل الـ Worker تلقائيًا وفق جدول."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir Worker’ın programa göre otomatik çalışması için Cron tetikleyicilerini görüntüleyin, ekleyin ve kaldırın."
+          }
+        }
+      }
+    },
+    "查看域名的边缘证书与到期时间，开关 Universal SSL，并调整 SSL/TLS 加密模式。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View your domain's edge certificates and expiry dates, toggle Universal SSL, and adjust the SSL/TLS encryption mode."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "檢視網域的邊緣憑證與到期時間，開關 Universal SSL，並調整 SSL/TLS 加密模式。"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看域名的邊緣憑證與到期時間，開關 Universal SSL，並調整 SSL/TLS 加密模式。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ドメインのエッジ証明書と有効期限を確認し、Universal SSL のオン/オフや SSL/TLS 暗号化モードを変更できます。"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consulta los certificados perimetrales de tu dominio y sus fechas de vencimiento, activa o desactiva Universal SSL y ajusta el modo de cifrado SSL/TLS."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "도메인의 엣지 인증서와 만료일을 확인하고 Universal SSL을 켜고 끄며 SSL/TLS 암호화 모드를 조정하세요."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veja os certificados de borda do seu domínio e as datas de validade, ative ou desative o Universal SSL e ajuste o modo de criptografia SSL/TLS."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veja os certificados de extremidade do seu domínio e as datas de validade, ative ou desative o Universal SSL e ajuste o modo de encriptação SSL/TLS."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sieh dir die Edge-Zertifikate deiner Domain samt Ablaufdatum an, schalte Universal SSL ein oder aus und passe den SSL/TLS-Verschlüsselungsmodus an."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consultez les certificats edge de votre domaine et leurs dates d'expiration, activez ou désactivez Universal SSL et ajustez le mode de chiffrement SSL/TLS."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اطّلع على الشهادات الطرفية لنطاقك وتواريخ انتهائها، وفعّل Universal SSL أو عطّله، واضبط وضع تشفير SSL/TLS."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alan adınızın uç sertifikalarını ve son kullanma tarihlerini görüntüleyin, Universal SSL'i açıp kapatın ve SSL/TLS şifreleme modunu ayarlayın."
+          }
+        }
+      }
+    },
+    "查看并编辑 URL 重写、请求头与响应头规则，直接在手机上管理流量改写。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View and edit URL rewrite, request header, and response header rules — manage traffic transformations right from your phone."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "檢視並編輯 URL 重寫、請求標頭與回應標頭規則，直接在手機上管理流量改寫。"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看並編輯 URL 重寫、請求標頭與回應標頭規則，直接在手機上管理流量改寫。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "URL の書き換え、リクエストヘッダー、レスポンスヘッダーのルールを表示・編集し、トラフィックの変換をスマホから管理できます。"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consulta y edita reglas de reescritura de URL, de encabezados de solicitud y de respuesta, y gestiona las transformaciones de tráfico desde tu teléfono."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "URL 재작성, 요청 헤더, 응답 헤더 규칙을 확인하고 편집하여 트래픽 변환을 휴대폰에서 바로 관리하세요."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veja e edite regras de reescrita de URL, de cabeçalhos de solicitação e de resposta, gerenciando as transformações de tráfego direto do seu celular."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veja e edite regras de reescrita de URL, de cabeçalhos de pedido e de resposta, gerindo as transformações de tráfego diretamente do seu telemóvel."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sieh dir Regeln für URL-Rewrites, Request- und Response-Header an, bearbeite sie und verwalte Traffic-Transformationen direkt vom Handy aus."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consultez et modifiez les règles de réécriture d'URL, d'en-têtes de requête et de réponse, et gérez les transformations de trafic directement depuis votre téléphone."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اعرض وحرّر قواعد إعادة كتابة عناوين URL وترويسات الطلب والاستجابة، وأدِر تحويلات حركة المرور مباشرةً من هاتفك."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "URL yeniden yazma, istek başlığı ve yanıt başlığı kurallarını görüntüleyip düzenleyin; trafik dönüşümlerini doğrudan telefonunuzdan yönetin."
+          }
         }
       }
     },
@@ -1141,6 +2557,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Adicionar domínio"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Domain hinzufügen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter un domaine"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إضافة نطاق"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alan adı ekle"
           }
         }
       }
@@ -1194,6 +2634,30 @@
             "state": "translated",
             "value": "Regras de WAF em linguagem natural"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WAF-Regeln in natürlicher Sprache"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Règles WAF en langage naturel"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قواعد WAF بلغة طبيعية"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doğal dilde WAF kuralları"
+          }
         }
       }
     },
@@ -1245,6 +2709,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "As informações de início de sessão passam a ser guardadas em segurança apenas no seu dispositivo, corrigindo terminações de sessão inesperadas ocasionais. O estado de início de sessão deixa de ser sincronizado entre dispositivos através do iCloud."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anmeldedaten werden jetzt nur noch sicher auf deinem Gerät gespeichert, wodurch gelegentliche unerwartete Abmeldungen behoben werden. Der Anmeldestatus wird nicht mehr über iCloud zwischen Geräten synchronisiert."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les informations de connexion sont désormais conservées en sécurité uniquement sur votre appareil, corrigeant des déconnexions inattendues occasionnelles. L’état de connexion n’est plus synchronisé entre appareils via iCloud."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تُحفظ معلومات تسجيل الدخول الآن بأمان على جهازك فقط، ما يصلح حالات تسجيل الخروج غير المتوقعة أحيانًا. ولم تعد حالة تسجيل الدخول تتزامن بين الأجهزة عبر iCloud."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oturum açma bilgileri artık yalnızca cihazınızda güvenle saklanır; bu, ara sıra yaşanan beklenmedik oturum kapanmalarını giderir. Oturum durumu artık iCloud ile cihazlar arasında eşitlenmez."
           }
         }
       }
@@ -1298,6 +2786,30 @@
             "state": "translated",
             "value": "Início de sessão mais estável"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabilere Anmeldung"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connexion plus fiable"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تسجيل دخول أكثر استقرارًا"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daha kararlı oturum açma"
+          }
         }
       }
     },
@@ -1349,6 +2861,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Crie uma base de dados D1 ou elimine-a com segurança após confirmar o nome exato."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erstelle eine D1-Datenbank oder lösche eine sicher, nachdem du ihren genauen Namen bestätigt hast."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créez une base de données D1, ou supprimez-en une en toute sécurité après avoir confirmé son nom exact."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أنشئ قاعدة بيانات D1، أو احذف واحدة بأمان بعد تأكيد اسمها بالضبط."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir D1 veritabanı oluşturun veya tam adını doğruladıktan sonra birini güvenle silin."
           }
         }
       }
@@ -1402,6 +2938,30 @@
             "state": "translated",
             "value": "Faça a gestão das variáveis de ambiente e dos segredos de um Worker: adicione, edite e remova na hora."
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verwalte die Umgebungsvariablen und Secrets eines Workers – jederzeit hinzufügen, bearbeiten und entfernen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gérez les variables d’environnement et les secrets d’un Worker — ajoutez, modifiez et supprimez à la volée."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أدِر متغيرات البيئة والأسرار لـ Worker — إضافة وتعديل وحذف في أي وقت."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir Worker’ın ortam değişkenlerini ve gizli bilgilerini yönetin — anında ekleyin, düzenleyin ve kaldırın."
+          }
         }
       }
     },
@@ -1453,6 +3013,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Faça a gestão do subdomínio workers.dev, domínios personalizados e rotas para controlar como um Worker é acedido."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verwalte die workers.dev-Subdomain, eigene Domains und Routen, um zu steuern, wie ein Worker erreicht wird."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gérez le sous-domaine workers.dev, les domaines personnalisés et les routes pour contrôler l’accès à un Worker."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أدِر نطاق workers.dev الفرعي والنطاقات المخصصة والمسارات للتحكم في كيفية الوصول إلى Worker."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir Worker’a nasıl erişileceğini denetlemek için workers.dev alt alan adını, özel alan adlarını ve rotaları yönetin."
           }
         }
       }

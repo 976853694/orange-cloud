@@ -61,6 +61,96 @@ actor CFAPIClient {
         return try Self.decode(data, path: path)
     }
 
+    // MARK: - 流式文件传输（R2 大对象 copy/move：过临时文件，不把整个对象灌进内存）
+
+    /// 流式下载到临时文件（不进内存）。返回我们自管的临时文件 URL，调用方负责删除。
+    func downloadToFile(_ path: String, queryItems: [URLQueryItem] = []) async throws -> URL {
+        try await streamingDownload(path: path, queryItems: queryItems, isRetry: false)
+    }
+
+    private func streamingDownload(path: String, queryItems: [URLQueryItem], isRetry: Bool) async throws -> URL {
+        let request = try await buildRequest(method: "GET", path: path, queryItems: queryItems, contentType: nil)
+        let (tempURL, response): (URL, URLResponse)
+        do {
+            (tempURL, response) = try await session.download(for: request)
+        } catch {
+            AppLog.network.error("GET /\(Self.logPath(path)) download error: \(error.localizedDescription)")
+            throw APIError.networkError(error)
+        }
+        guard let http = response as? HTTPURLResponse else {
+            throw APIError.networkError(URLError(.badServerResponse))
+        }
+        if http.statusCode == 401 && !isRetry {
+            _ = try await authManager.refreshAccessToken()
+            return try await streamingDownload(path: path, queryItems: queryItems, isRetry: true)
+        }
+        guard (200...299).contains(http.statusCode) else {
+            let data = (try? Data(contentsOf: tempURL)) ?? Data()
+            try? FileManager.default.removeItem(at: tempURL)
+            AppLog.network.error("GET /\(Self.logPath(path)) -> \(http.statusCode)\(Self.cfErrorSummary(data))")
+            throw Self.mapHTTPError(status: http.statusCode, data: data)
+        }
+        // download 返回的系统临时文件在本调用返回后会被清理，须立刻搬到自管位置
+        let dest = FileManager.default.temporaryDirectory
+            .appendingPathComponent("oc-transfer-\(UUID().uuidString)")
+        try? FileManager.default.removeItem(at: dest)
+        try FileManager.default.moveItem(at: tempURL, to: dest)
+        return dest
+    }
+
+    /// 流式上传文件（不进内存），自带 Content-Type；onProgress 回报 0...1（上传腿）。
+    func putFile<T: Codable & Sendable>(
+        _ path: String,
+        fileURL: URL,
+        contentType: String,
+        onProgress: (@Sendable (Double) -> Void)? = nil
+    ) async throws -> T {
+        try await streamingUpload(path: path, fileURL: fileURL, contentType: contentType, onProgress: onProgress, isRetry: false)
+    }
+
+    private func streamingUpload<T: Codable & Sendable>(
+        path: String,
+        fileURL: URL,
+        contentType: String,
+        onProgress: (@Sendable (Double) -> Void)?,
+        isRetry: Bool
+    ) async throws -> T {
+        let request = try await buildRequest(method: "PUT", path: path, queryItems: [], contentType: contentType)
+        let delegate = onProgress.map { UploadProgressDelegate(onProgress: $0) }
+        let (data, response): (Data, URLResponse)
+        do {
+            (data, response) = try await session.upload(for: request, fromFile: fileURL, delegate: delegate)
+        } catch {
+            AppLog.network.error("PUT /\(Self.logPath(path)) upload error: \(error.localizedDescription)")
+            throw APIError.networkError(error)
+        }
+        guard let http = response as? HTTPURLResponse else {
+            throw APIError.networkError(URLError(.badServerResponse))
+        }
+        if http.statusCode == 401 && !isRetry {
+            _ = try await authManager.refreshAccessToken()
+            return try await streamingUpload(path: path, fileURL: fileURL, contentType: contentType, onProgress: onProgress, isRetry: true)
+        }
+        guard (200...299).contains(http.statusCode) else {
+            AppLog.network.error("PUT /\(Self.logPath(path)) -> \(http.statusCode)\(Self.cfErrorSummary(data))")
+            throw Self.mapHTTPError(status: http.statusCode, data: data)
+        }
+        return try Self.decode(data, path: path)
+    }
+
+    /// 构造带 Bearer 的 URLRequest（流式传输用，复用 path 已编码约定 + 临期刷新）
+    private func buildRequest(method: String, path: String, queryItems: [URLQueryItem], contentType: String?) async throws -> URLRequest {
+        let token = try await validAccessToken()
+        var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)!
+        components.percentEncodedPath += "/" + path
+        if !queryItems.isEmpty { components.queryItems = queryItems }
+        var request = URLRequest(url: components.url!)
+        request.httpMethod = method
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        if let contentType { request.setValue(contentType, forHTTPHeaderField: "Content-Type") }
+        return request
+    }
+
     /// multipart/form-data 写入（KV 写值要求 value + metadata 两个 part）
     func putMultipart<T: Codable & Sendable>(_ path: String, fields: [String: String]) async throws -> T {
         let boundary = "OrangeCloud-\(UUID().uuidString)"
@@ -350,5 +440,42 @@ actor CFAPIClient {
     /// 响应体大小（便于发现「200 但空结果」）
     private static func sizeLabel(_ bytes: Int) -> String {
         bytes < 1024 ? "\(bytes)B" : String(format: "%.1fKB", Double(bytes) / 1024)
+    }
+
+    /// 非 2xx → APIError（流式传输复用，优先透出 CF 业务错误）。与 performRequest 内联映射对齐。
+    private static func mapHTTPError(status: Int, data: Data) -> APIError {
+        if let envelope = try? JSONDecoder().decode(CFAPIResponse<EmptyResponse>.self, from: data),
+           let first = envelope.errors.first {
+            return .cloudflareError(code: first.code, message: first.message)
+        }
+        switch status {
+        case 401:       return .unauthorized
+        case 403:       return .forbidden
+        case 404:       return .notFound
+        case 429:       return .rateLimited
+        case 500...599: return .serverError(statusCode: status)
+        default:        return .serverError(statusCode: status)
+        }
+    }
+}
+
+/// 上传进度转发：URLSession 流式上传的 didSendBodyData → 回调（0...1）。
+/// 独立 NSObject，回调在 URLSession 代理队列，不触 actor 隔离。
+private final class UploadProgressDelegate: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
+    private let onProgress: @Sendable (Double) -> Void
+
+    init(onProgress: @escaping @Sendable (Double) -> Void) {
+        self.onProgress = onProgress
+    }
+
+    func urlSession(
+        _ session: URLSession,
+        task: URLSessionTask,
+        didSendBodyData bytesSent: Int64,
+        totalBytesSent: Int64,
+        totalBytesExpectedToSend: Int64
+    ) {
+        guard totalBytesExpectedToSend > 0 else { return }
+        onProgress(Double(totalBytesSent) / Double(totalBytesExpectedToSend))
     }
 }

@@ -86,4 +86,18 @@ final class ZoneActionsViewModel {
         }
         isPurging = false
     }
+
+    /// 按 URL 清理缓存（单文件 purge，调用方负责限制 ≤ 30 个 URL）
+    func purgeURLs(_ urls: [String]) async {
+        guard !isPurging, !urls.isEmpty else { return }
+        isPurging = true
+        error = nil
+        do {
+            try await service.purgeFiles(zoneId: zoneId, urls: urls)
+            didPurge.toggle()
+        } catch {
+            self.error = error.localizedDescription
+        }
+        isPurging = false
+    }
 }

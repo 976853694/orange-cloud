@@ -17,13 +17,19 @@ nonisolated struct ZoneSettingUpdate: Codable, Sendable {
     let value: String
 }
 
-/// POST /zones/{id}/purge_cache
+/// POST /zones/{id}/purge_cache —— 全量清理
 nonisolated struct PurgeRequest: Codable, Sendable {
     let purgeEverything: Bool
 
     enum CodingKeys: String, CodingKey {
         case purgeEverything = "purge_everything"
     }
+}
+
+/// POST /zones/{id}/purge_cache —— 按单文件 URL 清理
+/// （2025-04 起所有套餐可用，单次最多 30 个 URL）
+nonisolated struct PurgeFilesRequest: Codable, Sendable {
+    let files: [String]
 }
 
 nonisolated struct PurgeResult: Codable, Sendable {

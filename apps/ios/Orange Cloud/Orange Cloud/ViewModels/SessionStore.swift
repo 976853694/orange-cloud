@@ -26,6 +26,9 @@ final class SessionStore {
     let wafService:        WAFService
     let snippetService:    SnippetService
     let zoneSettingsService: ZoneSettingsService
+    let sslCertificateService:     SSLCertificateService
+    let transformRuleService:      TransformRuleService
+    let firewallAccessRuleService: FirewallAccessRuleService
 
     var accounts: [Account] = []
     var selectedAccount: Account? {
@@ -60,6 +63,9 @@ final class SessionStore {
         self.wafService        = WAFService(client: client)
         self.snippetService    = SnippetService(client: client)
         self.zoneSettingsService = ZoneSettingsService(client: client)
+        self.sslCertificateService     = SSLCertificateService(client: client)
+        self.transformRuleService      = TransformRuleService(client: client)
+        self.firewallAccessRuleService = FirewallAccessRuleService(client: client)
     }
 
     /// 幂等加载账号列表，首个账号设为当前账号

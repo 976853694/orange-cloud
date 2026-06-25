@@ -378,6 +378,40 @@ struct AnalyticsService {
         return (classA, classB, storageBytes, objectCount)
     }
 
+    /// 每桶用量（本月操作 Class A/B + 当前存储/对象数快照）。复用账号级 R2 查询的 bucketName 维度。
+    /// authz / schema 不支持时抛错由调用方降级（免费账号账户级 GraphQL 常被 authz 挡）。
+    func r2UsageByBucket(accountId: String, periodStart: Date? = nil) async throws -> [String: R2BucketUsage] {
+        let data: R2UsageData = try await client.graphQL(
+            query: R2UsageQuery.text,
+            variables: Self.usageVariables(accountId: accountId, periodStart: periodStart)
+        )
+        guard let account = data.viewer.accounts.first else {
+            throw APIError.notFound
+        }
+
+        var byBucket: [String: R2BucketUsage] = [:]
+        for group in account.r2Storage ?? [] {
+            guard let bucket = group.dimensions?.bucketName, !bucket.isEmpty else { continue }
+            var usage = byBucket[bucket] ?? R2BucketUsage()
+            usage.storageBytes = (group.max?.payloadSize ?? 0) + (group.max?.metadataSize ?? 0)
+            usage.objectCount  = group.max?.objectCount ?? 0
+            byBucket[bucket] = usage
+        }
+        for group in account.r2Ops ?? [] {
+            guard let bucket = group.dimensions?.bucketName, !bucket.isEmpty,
+                  let action = group.dimensions?.actionType else { continue }
+            let count = group.sum?.requests ?? 0
+            var usage = byBucket[bucket] ?? R2BucketUsage()
+            if R2OperationClass.classA.contains(action) {
+                usage.classARequests += count
+            } else if R2OperationClass.classB.contains(action) {
+                usage.classBRequests += count
+            }
+            byBucket[bucket] = usage
+        }
+        return byBucket
+    }
+
     private func fetch(
         zoneId: String,
         range: AnalyticsTimeRange,

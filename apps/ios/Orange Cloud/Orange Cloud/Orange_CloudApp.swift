@@ -22,10 +22,18 @@ struct Orange_CloudApp: App {
     let sharedModelContainer = CacheContainer.shared
 
     init() {
+        // 最先安装崩溃捕获，让启动期任意一步崩溃都能被记录、随下次反馈带出。
+        CrashReporter.install()
+        CrashReporter.recordBreadcrumb("AppStart begin")
         let manager = AuthManager()
         _authManager = State(initialValue: manager)
+        CrashReporter.recordBreadcrumb("AppStart auth manager created")
         WhatsNewGate.wasLoggedInAtLaunch = manager.isLoggedIn
         BackgroundRefresh.register(authManager: manager)
+        // iOS 26 连续后台任务（R2 大对象 copy/move 续传），须在启动时注册处理器
+        if #available(iOS 26.0, *) {
+            ContinuedTaskRunner.register()
+        }
         WatchSessionManager.shared.start(authManager: manager)
         EntitlementStore.shared.start()
         Self.reapOrphanTailActivities()
@@ -34,6 +42,7 @@ struct Orange_CloudApp: App {
             loggedIn: manager.isLoggedIn,
             sessionCount: manager.sessions.count
         )
+        CrashReporter.recordBreadcrumb("AppStart launch completed")
     }
 
     var body: some Scene {
