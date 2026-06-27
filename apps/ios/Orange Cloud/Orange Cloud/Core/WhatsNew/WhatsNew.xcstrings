@@ -381,6 +381,82 @@
         }
       }
     },
+    "Pages 支持「直接上传」部署（粘贴代码或选取文件 / ZIP）；Workers 可新建并整体更新代码，变量与密钥支持 JSON 批量导入。受 OAuth 限制无法读取源码，更新为整体替换。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pages supports Direct Upload deploys (paste code or pick files/ZIP); Workers can be created and updated whole-script, with bulk JSON import for vars and secrets. OAuth can't read source, so an update replaces the whole script."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pages 支援「直接上傳」部署（貼上程式碼或選取檔案 / ZIP）；Workers 可建立並整體更新程式碼，變數與密鑰支援 JSON 批次匯入。受 OAuth 限制無法讀取原始碼，更新為整體取代。"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pages 支援「直接上傳」部署（貼上程式碼或選取檔案 / ZIP）；Workers 可建立並整體更新程式碼，變數與密鑰支援 JSON 批次匯入。受 OAuth 限制無法讀取原始碼，更新為整體取代。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pages は「直接アップロード」デプロイ（コードを貼り付け、またはファイル/ZIP を選択）に対応。Workers は新規作成とスクリプト全体の更新ができ、変数とシークレットは JSON で一括インポートできます。OAuth ではソースを読めないため、更新は全体置換になります。"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pages admite despliegues con Carga directa (pega código o elige archivos/ZIP); los Workers se pueden crear y actualizar por completo, con importación masiva de variables y secretos por JSON. OAuth no puede leer el código, así que la actualización reemplaza todo el script."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pages는 직접 업로드 배포(코드 붙여넣기 또는 파일/ZIP 선택)를 지원하고, Workers는 새로 만들거나 스크립트 전체를 업데이트할 수 있으며 변수와 시크릿을 JSON으로 일괄 가져올 수 있습니다. OAuth로는 소스를 읽을 수 없어 업데이트는 전체 교체 방식입니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Pages aceita deploys por Upload direto (cole o código ou escolha arquivos/ZIP); os Workers podem ser criados e atualizados por completo, com importação em massa de variáveis e segredos via JSON. O OAuth não lê o código-fonte, então a atualização substitui o script inteiro."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Pages aceita implementações por Carregamento direto (cole o código ou escolha ficheiros/ZIP); os Workers podem ser criados e atualizados na íntegra, com importação em massa de variáveis e segredos via JSON. O OAuth não lê o código-fonte, por isso a atualização substitui todo o script."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pages unterstützt Direct-Upload-Deploys (Code einfügen oder Dateien/ZIP wählen); Workers lassen sich anlegen und als ganzes Skript aktualisieren, Variablen und Secrets per JSON im Stapel importieren. OAuth kann den Quellcode nicht lesen, daher ersetzt ein Update das gesamte Skript."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pages prend en charge le déploiement par Téléversement direct (collez le code ou choisissez des fichiers/ZIP) ; les Workers peuvent être créés et mis à jour intégralement, avec import JSON en masse des variables et secrets. OAuth ne peut pas lire le code source, la mise à jour remplace donc tout le script."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يدعم Pages النشر عبر الرفع المباشر (ألصق الشيفرة أو اختر ملفات/ZIP)؛ ويمكن إنشاء Workers وتحديث النص البرمجي بالكامل، مع استيراد المتغيّرات والأسرار دفعةً واحدة عبر JSON. لا يستطيع OAuth قراءة الشيفرة المصدرية، لذا يستبدل التحديثُ النصَّ بأكمله."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pages, Doğrudan Yükleme dağıtımlarını destekler (kodu yapıştırın ya da dosya/ZIP seçin); Workers oluşturulabilir ve betiğin tamamı güncellenebilir, değişkenler ile gizli anahtarlar JSON ile toplu içe aktarılabilir. OAuth kaynağı okuyamadığından güncelleme tüm betiği değiştirir."
+          }
+        }
+      }
+    },
     "R2 存储升级": {
       "localizations": {
         "en": {
@@ -913,6 +989,82 @@
         }
       }
     },
+    "WAF 可视化规则构建器": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visual WAF rule builder"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WAF 視覺化規則建構器"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WAF 視覺化規則建構器"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WAF のビジュアルルールビルダー"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Constructor visual de reglas WAF"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WAF 시각적 규칙 빌더"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Construtor visual de regras WAF"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Construtor visual de regras WAF"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visueller WAF-Regelbaukasten"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Générateur visuel de règles WAF"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أداة بناء قواعد WAF المرئية"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Görsel WAF kural oluşturucu"
+          }
+        }
+      }
+    },
     "Zero Trust": {
       "localizations": {
         "en": {
@@ -985,6 +1137,82 @@
           "stringUnit": {
             "state": "translated",
             "value": "Zero Trust"
+          }
+        }
+      }
+    },
+    "Zero Trust 编辑器": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zero Trust editing"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zero Trust 編輯器"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zero Trust 編輯器"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zero Trust エディタ"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edición de Zero Trust"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zero Trust 편집기"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edição de Zero Trust"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edição de Zero Trust"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zero-Trust-Editor"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Édition Zero Trust"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "محرّر Zero Trust"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zero Trust düzenleme"
           }
         }
       }
@@ -1369,6 +1597,82 @@
         }
       }
     },
+    "全新「开发者平台」": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A new Developer Platform"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全新「開發者平台」"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全新「開發者平台」"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新しい「開発者プラットフォーム」"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nueva plataforma para desarrolladores"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "새로운 개발자 플랫폼"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nova plataforma do desenvolvedor"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nova plataforma do programador"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neue Entwicklerplattform"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nouvelle plateforme développeur"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "منصة مطوّرين جديدة"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yeni Geliştirici Platformu"
+          }
+        }
+      }
+    },
     "全球流量地图": {
       "localizations": {
         "en": {
@@ -1517,6 +1821,82 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tamamen erişilebilir"
+          }
+        }
+      }
+    },
+    "创建资源，不止于查看": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create resources, not just view them"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "建立資源，不只是檢視"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "建立資源，不只是檢視"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "見るだけでなく、作成も"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea recursos, no solo los veas"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "보기만 하지 않고 직접 생성까지"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie recursos, não só visualize"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie recursos, não apenas os veja"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ressourcen erstellen, nicht nur ansehen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créez des ressources, pas seulement les consulter"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أنشئ الموارد، لا تكتفِ بعرضها"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yalnızca görüntüleme değil, oluşturma"
           }
         }
       }
@@ -1745,6 +2125,82 @@
           "stringUnit": {
             "state": "translated",
             "value": "Değişkenler ve Gizli Bilgiler"
+          }
+        }
+      }
+    },
+    "可视化增删改 Access 自托管应用与策略，以及 Gateway 的 DNS / HTTP / 网络策略，内置带选择器调色板的表达式编辑器。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create, edit and remove Access self-hosted apps and policies, plus Gateway DNS / HTTP / network policies — with an expression editor and a per-type selector palette."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可視化新增、編輯、刪除 Access 自託管應用與政策，以及 Gateway 的 DNS / HTTP / 網路政策，內建附選擇器調色盤的運算式編輯器。"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可視化新增、編輯、刪除 Access 自託管應用與政策，以及 Gateway 的 DNS / HTTP / 網路政策，內建附選擇器調色盤的運算式編輯器。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Access のセルフホスト型アプリとポリシー、Gateway の DNS / HTTP / ネットワークポリシーを視覚的に作成・編集・削除。種類別のセレクタパレットを備えた式エディタ付きです。"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea, edita y elimina apps autoalojadas y políticas de Access, además de las políticas DNS / HTTP / de red de Gateway, con un editor de expresiones y una paleta de selectores por tipo."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Access 자체 호스팅 앱과 정책, Gateway의 DNS / HTTP / 네트워크 정책을 시각적으로 만들고 편집·삭제할 수 있습니다. 유형별 선택기 팔레트가 있는 표현식 편집기를 갖췄습니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie, edite e remova apps auto-hospedados e políticas do Access, além das políticas de DNS / HTTP / rede do Gateway, com um editor de expressões e uma paleta de seletores por tipo."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie, edite e remova apps auto-alojadas e políticas do Access, além das políticas de DNS / HTTP / rede do Gateway, com um editor de expressões e uma paleta de seletores por tipo."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erstelle, bearbeite und lösche selbstgehostete Access-Apps und -Richtlinien sowie Gateway-Richtlinien für DNS / HTTP / Netzwerk – mit Ausdruckseditor und typabhängiger Selektor-Palette."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créez, modifiez et supprimez les applications auto-hébergées et les politiques Access, ainsi que les politiques DNS / HTTP / réseau de Gateway, avec un éditeur d'expressions et une palette de sélecteurs par type."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أنشئ وعدّل واحذف تطبيقات Access ذاتية الاستضافة وسياساتها، إضافةً إلى سياسات DNS / HTTP / الشبكة في Gateway، مع محرّر تعبيرات ولوحة محدِّدات حسب النوع."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Access'in kendi barındırılan uygulamalarını ve ilkelerini, ayrıca Gateway'in DNS / HTTP / ağ ilkelerini görsel olarak oluşturun, düzenleyin ve silin; türüne göre seçici paleti olan bir ifade düzenleyici içerir."
           }
         }
       }
@@ -2433,6 +2889,82 @@
         }
       }
     },
+    "把 Workers、Pages、Queues、Durable Objects、Hyperdrive、Workers AI、AI Gateway 收进一个按「计算 / 数据与消息 / AI」分组的 Tab，对齐 Cloudflare 的产品布局。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workers, Pages, Queues, Durable Objects, Hyperdrive, Workers AI and AI Gateway now share one tab, grouped into Compute / Data & Messaging / AI to mirror Cloudflare's own layout."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "把 Workers、Pages、Queues、Durable Objects、Hyperdrive、Workers AI、AI Gateway 收進一個依「運算 / 資料與訊息 / AI」分組的分頁，對齊 Cloudflare 的產品配置。"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "把 Workers、Pages、Queues、Durable Objects、Hyperdrive、Workers AI、AI Gateway 收進一個依「運算 / 資料與訊息 / AI」分組的分頁，對齊 Cloudflare 的產品配置。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workers、Pages、Queues、Durable Objects、Hyperdrive、Workers AI、AI Gateway を、Cloudflare の構成に合わせて「コンピュート / データとメッセージング / AI」に分類した 1 つのタブにまとめました。"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workers, Pages, Queues, Durable Objects, Hyperdrive, Workers AI y AI Gateway ahora comparten una sola pestaña, agrupados en Cómputo / Datos y mensajería / IA, igual que en Cloudflare."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workers, Pages, Queues, Durable Objects, Hyperdrive, Workers AI, AI Gateway를 컴퓨팅 / 데이터·메시징 / AI로 묶어 하나의 탭에 모았습니다. Cloudflare 구성과 동일합니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workers, Pages, Queues, Durable Objects, Hyperdrive, Workers AI e AI Gateway agora ficam em uma única aba, agrupados em Computação / Dados e mensageria / IA, como na Cloudflare."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workers, Pages, Queues, Durable Objects, Hyperdrive, Workers AI e AI Gateway passam a partilhar um único separador, agrupados em Computação / Dados e mensagens / IA, tal como na Cloudflare."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workers, Pages, Queues, Durable Objects, Hyperdrive, Workers AI und AI Gateway teilen sich jetzt einen Tab – gruppiert nach Compute / Daten & Messaging / KI, passend zu Cloudflares eigener Struktur."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workers, Pages, Queues, Durable Objects, Hyperdrive, Workers AI et AI Gateway partagent désormais un seul onglet, regroupés en Calcul / Données et messagerie / IA, comme chez Cloudflare."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تجتمع الآن Workers وPages وQueues وDurable Objects وHyperdrive وWorkers AI وAI Gateway في علامة تبويب واحدة، مُجمَّعة ضمن الحوسبة / البيانات والمراسلة / الذكاء الاصطناعي، على غرار تنظيم Cloudflare."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workers, Pages, Queues, Durable Objects, Hyperdrive, Workers AI ve AI Gateway artık tek bir sekmeyi paylaşıyor; Cloudflare'in kendi düzenine uygun olarak İşlem / Veri ve Mesajlaşma / Yapay Zekâ olarak gruplandı."
+          }
+        }
+      }
+    },
     "把域名状态与流量概览带上手腕，还能添加到表盘复杂功能随时一瞥。": {
       "localizations": {
         "en": {
@@ -2737,6 +3269,158 @@
         }
       }
     },
+    "授权更省心": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Easier authorization"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "授權更省心"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "授權更省心"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "認可がもっと簡単に"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autorización más simple"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "더 간편한 권한 부여"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autorização mais simples"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autorização mais simples"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einfachere Autorisierung"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autorisation simplifiée"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تفويض أسهل"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daha kolay yetkilendirme"
+          }
+        }
+      }
+    },
+    "授权页新增「全部只读 / 全部读写 / 仅必选」快捷预设。本版新增 Queues、AI Gateway、Workers AI 等模块，需重新授权才会点亮对应入口。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The authorization screen adds quick presets — all read-only, all read-write, or required-only. New modules like Queues, AI Gateway and Workers AI need a fresh authorization to light up."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "授權頁新增「全部唯讀 / 全部讀寫 / 僅必選」快捷預設。本版新增 Queues、AI Gateway、Workers AI 等模組，需重新授權才會點亮對應入口。"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "授權頁新增「全部唯讀 / 全部讀寫 / 僅必選」快捷預設。本版新增 Queues、AI Gateway、Workers AI 等模組，需重新授權才會點亮對應入口。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "認可画面に「すべて読み取り専用 / すべて読み書き / 必須のみ」のクイックプリセットを追加。今回追加の Queues、AI Gateway、Workers AI などの新モジュールは、再認可すると表示されます。"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La pantalla de autorización añade ajustes rápidos: todo de solo lectura, todo de lectura y escritura, o solo lo necesario. Los nuevos módulos como Queues, AI Gateway y Workers AI requieren autorizar de nuevo para activarse."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "권한 부여 화면에 빠른 프리셋(모두 읽기 전용 / 모두 읽기·쓰기 / 필수만)이 추가됐습니다. Queues, AI Gateway, Workers AI 같은 새 모듈은 다시 권한을 부여해야 표시됩니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A tela de autorização ganha predefinições rápidas: tudo somente leitura, tudo leitura e escrita ou apenas o necessário. Os novos módulos, como Queues, AI Gateway e Workers AI, precisam de nova autorização para aparecer."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O ecrã de autorização ganha predefinições rápidas: tudo só de leitura, tudo de leitura e escrita ou apenas o necessário. Os novos módulos, como Queues, AI Gateway e Workers AI, precisam de nova autorização para aparecer."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Autorisierungs-Bildschirm bekommt Schnellvorlagen – alles nur lesen, alles lesen und schreiben oder nur das Nötigste. Neue Module wie Queues, AI Gateway und Workers AI erscheinen erst nach erneuter Autorisierung."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'écran d'autorisation ajoute des préréglages rapides : tout en lecture seule, tout en lecture-écriture ou strictement nécessaire. Les nouveaux modules comme Queues, AI Gateway et Workers AI nécessitent une nouvelle autorisation pour apparaître."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تضيف شاشة التفويض إعداداتٍ سريعة: الكل للقراءة فقط، أو الكل للقراءة والكتابة، أو الضروري فقط. وتحتاج الوحدات الجديدة مثل Queues وAI Gateway وWorkers AI إلى تفويض جديد لتظهر."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yetkilendirme ekranına hızlı ön ayarlar eklendi: tümü salt okunur, tümü okuma-yazma veya yalnızca gerekli. Queues, AI Gateway ve Workers AI gibi yeni modüllerin görünmesi için yeniden yetkilendirme gerekir."
+          }
+        }
+      }
+    },
     "新增「减少动画」开关让界面更跟手，优化多账号切换的稳定性，并在后台预热数据，切回前台更快看到最新内容。": {
       "localizations": {
         "en": {
@@ -3037,6 +3721,82 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hız sınırı kuralları oluşturun ve yönetin: ziyaretçi IP'si başına istekleri bir zaman aralığında sınırlayın, aşıldığında engelleyin veya doğrulama isteyin."
+          }
+        }
+      }
+    },
+    "新建自定义防护规则时，可在「书写规则」与「表达式编辑器」之间随时切换，更快写出想要的条件。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When writing a custom rule, switch any time between a guided rule builder and the raw expression editor to craft conditions faster."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新增自訂防護規則時，可隨時在「書寫規則」與「運算式編輯器」之間切換，更快寫出想要的條件。"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新增自訂防護規則時，可隨時在「書寫規則」與「運算式編輯器」之間切換，更快寫出想要的條件。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カスタムルールの作成時に、ガイド付きのルールビルダーと式エディタをいつでも切り替えて、条件をすばやく組み立てられます。"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Al crear una regla personalizada, alterna en cualquier momento entre el generador guiado y el editor de expresiones para definir condiciones más rápido."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사용자 지정 규칙을 만들 때 가이드형 규칙 빌더와 표현식 편집기를 언제든 전환하며 조건을 더 빠르게 작성할 수 있습니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ao criar uma regra personalizada, alterne quando quiser entre o construtor guiado e o editor de expressões para definir condições mais rápido."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ao criar uma regra personalizada, alterne quando quiser entre o construtor guiado e o editor de expressões para definir condições mais depressa."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wechsle beim Erstellen einer eigenen Regel jederzeit zwischen geführtem Regelbaukasten und Ausdruckseditor, um Bedingungen schneller zu formulieren."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lors de la création d'une règle personnalisée, basculez à tout moment entre le générateur guidé et l'éditeur d'expressions pour définir vos conditions plus vite."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "عند إنشاء قاعدة مخصّصة، بدّل في أي وقت بين أداة البناء الموجَّهة ومحرّر التعبيرات لصياغة الشروط بسرعة أكبر."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Özel bir kural yazarken, koşulları daha hızlı oluşturmak için rehberli kural oluşturucu ile ifade düzenleyici arasında istediğiniz zaman geçiş yapın."
           }
         }
       }
@@ -4181,6 +4941,82 @@
         }
       }
     },
+    "直接新建 R2 存储桶、KV 命名空间、Pages 项目、Queues、Hyperdrive 与 AI Gateway，并可删除。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spin up R2 buckets, KV namespaces, Pages projects, Queues, Hyperdrive and AI Gateway right in the app — and delete them too."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "直接建立 R2 儲存桶、KV 命名空間、Pages 專案、Queues、Hyperdrive 與 AI Gateway，也能刪除。"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "直接建立 R2 儲存桶、KV 命名空間、Pages 專案、Queues、Hyperdrive 與 AI Gateway，亦可刪除。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "R2 バケット、KV 名前空間、Pages プロジェクト、Queues、Hyperdrive、AI Gateway をアプリから直接作成・削除できます。"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea buckets R2, espacios de nombres KV, proyectos de Pages, Queues, Hyperdrive y AI Gateway desde la app, y elimínalos cuando quieras."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "R2 버킷, KV 네임스페이스, Pages 프로젝트, Queues, Hyperdrive, AI Gateway를 앱에서 바로 만들고 삭제할 수 있습니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie buckets R2, namespaces KV, projetos do Pages, Queues, Hyperdrive e AI Gateway direto no app — e exclua quando quiser."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crie buckets R2, espaços de nomes KV, projetos do Pages, Queues, Hyperdrive e AI Gateway diretamente na app — e elimine quando quiser."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lege R2-Buckets, KV-Namespaces, Pages-Projekte, Queues, Hyperdrive und AI Gateway direkt in der App an – und lösche sie wieder."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créez des buckets R2, des espaces de noms KV, des projets Pages, des Queues, Hyperdrive et AI Gateway directement dans l'app, et supprimez-les à volonté."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أنشئ حاويات R2 ومساحات أسماء KV ومشاريع Pages وQueues وHyperdrive وAI Gateway مباشرةً من التطبيق، واحذفها متى شئت."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "R2 paketlerini, KV ad alanlarını, Pages projelerini, Queues, Hyperdrive ve AI Gateway'i doğrudan uygulamada oluşturun ve silin."
+          }
+        }
+      }
+    },
     "管理 Worker 的环境变量与密钥，随手增删改。": {
       "localizations": {
         "en": {
@@ -4557,6 +5393,82 @@
           "stringUnit": {
             "state": "translated",
             "value": "Yük dengeleme"
+          }
+        }
+      }
+    },
+    "部署 Pages 与 Workers": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deploy Pages and Workers"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "部署 Pages 與 Workers"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "部署 Pages 與 Workers"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pages と Workers をデプロイ"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Implementa Pages y Workers"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pages와 Workers 배포"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Implante Pages e Workers"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Implemente Pages e Workers"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pages und Workers bereitstellen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déployez Pages et Workers"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "انشر Pages وWorkers"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pages ve Workers dağıtın"
           }
         }
       }

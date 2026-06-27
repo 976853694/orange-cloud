@@ -10,6 +10,38 @@ import Foundation
 
 nonisolated enum WhatsNewGenerated {
     static let releases: [WhatsNewRelease] = [
+        WhatsNewRelease(version: "1.7.0", items: [
+            WhatsNewItem(
+                icon:   "rectangle.3.group.fill",
+                title:  String(localized: "全新「开发者平台」", table: "WhatsNew"),
+                detail: String(localized: "把 Workers、Pages、Queues、Durable Objects、Hyperdrive、Workers AI、AI Gateway 收进一个按「计算 / 数据与消息 / AI」分组的 Tab，对齐 Cloudflare 的产品布局。", table: "WhatsNew")
+            ),
+            WhatsNewItem(
+                icon:   "plus.circle.fill",
+                title:  String(localized: "创建资源，不止于查看", table: "WhatsNew"),
+                detail: String(localized: "直接新建 R2 存储桶、KV 命名空间、Pages 项目、Queues、Hyperdrive 与 AI Gateway，并可删除。", table: "WhatsNew")
+            ),
+            WhatsNewItem(
+                icon:   "square.and.arrow.up.fill",
+                title:  String(localized: "部署 Pages 与 Workers", table: "WhatsNew"),
+                detail: String(localized: "Pages 支持「直接上传」部署（粘贴代码或选取文件 / ZIP）；Workers 可新建并整体更新代码，变量与密钥支持 JSON 批量导入。受 OAuth 限制无法读取源码，更新为整体替换。", table: "WhatsNew")
+            ),
+            WhatsNewItem(
+                icon:   "lock.shield.fill",
+                title:  String(localized: "Zero Trust 编辑器", table: "WhatsNew"),
+                detail: String(localized: "可视化增删改 Access 自托管应用与策略，以及 Gateway 的 DNS / HTTP / 网络策略，内置带选择器调色板的表达式编辑器。", table: "WhatsNew")
+            ),
+            WhatsNewItem(
+                icon:   "shield.lefthalf.filled",
+                title:  String(localized: "WAF 可视化规则构建器", table: "WhatsNew"),
+                detail: String(localized: "新建自定义防护规则时，可在「书写规则」与「表达式编辑器」之间随时切换，更快写出想要的条件。", table: "WhatsNew")
+            ),
+            WhatsNewItem(
+                icon:   "checklist",
+                title:  String(localized: "授权更省心", table: "WhatsNew"),
+                detail: String(localized: "授权页新增「全部只读 / 全部读写 / 仅必选」快捷预设。本版新增 Queues、AI Gateway、Workers AI 等模块，需重新授权才会点亮对应入口。", table: "WhatsNew")
+            )
+        ]),
         WhatsNewRelease(version: "1.6.0", items: [
             WhatsNewItem(
                 icon:   "folder.badge.gearshape",

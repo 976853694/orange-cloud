@@ -1,5 +1,211 @@
 [
   {
+    "version": "1.7.0",
+    "date": "2026.06.28",
+    "channel": "App Store",
+    "inApp": true,
+    "items": [
+      {
+        "icon": "rectangle.3.group.fill",
+        "title": {
+          "zh-Hans": "全新「开发者平台」",
+          "en": "A new Developer Platform",
+          "zh-Hant": "全新「開發者平台」",
+          "zh-HK": "全新「開發者平台」",
+          "ja": "新しい「開発者プラットフォーム」",
+          "es-MX": "Nueva plataforma para desarrolladores",
+          "ko": "새로운 개발자 플랫폼",
+          "pt-BR": "Nova plataforma do desenvolvedor",
+          "pt-PT": "Nova plataforma do programador",
+          "de": "Neue Entwicklerplattform",
+          "fr": "Nouvelle plateforme développeur",
+          "ar": "منصة مطوّرين جديدة",
+          "tr": "Yeni Geliştirici Platformu"
+        },
+        "detail": {
+          "zh-Hans": "把 Workers、Pages、Queues、Durable Objects、Hyperdrive、Workers AI、AI Gateway 收进一个按「计算 / 数据与消息 / AI」分组的 Tab，对齐 Cloudflare 的产品布局。",
+          "en": "Workers, Pages, Queues, Durable Objects, Hyperdrive, Workers AI and AI Gateway now share one tab, grouped into Compute / Data & Messaging / AI to mirror Cloudflare's own layout.",
+          "zh-Hant": "把 Workers、Pages、Queues、Durable Objects、Hyperdrive、Workers AI、AI Gateway 收進一個依「運算 / 資料與訊息 / AI」分組的分頁，對齊 Cloudflare 的產品配置。",
+          "zh-HK": "把 Workers、Pages、Queues、Durable Objects、Hyperdrive、Workers AI、AI Gateway 收進一個依「運算 / 資料與訊息 / AI」分組的分頁，對齊 Cloudflare 的產品配置。",
+          "ja": "Workers、Pages、Queues、Durable Objects、Hyperdrive、Workers AI、AI Gateway を、Cloudflare の構成に合わせて「コンピュート / データとメッセージング / AI」に分類した 1 つのタブにまとめました。",
+          "es-MX": "Workers, Pages, Queues, Durable Objects, Hyperdrive, Workers AI y AI Gateway ahora comparten una sola pestaña, agrupados en Cómputo / Datos y mensajería / IA, igual que en Cloudflare.",
+          "ko": "Workers, Pages, Queues, Durable Objects, Hyperdrive, Workers AI, AI Gateway를 컴퓨팅 / 데이터·메시징 / AI로 묶어 하나의 탭에 모았습니다. Cloudflare 구성과 동일합니다.",
+          "pt-BR": "Workers, Pages, Queues, Durable Objects, Hyperdrive, Workers AI e AI Gateway agora ficam em uma única aba, agrupados em Computação / Dados e mensageria / IA, como na Cloudflare.",
+          "pt-PT": "Workers, Pages, Queues, Durable Objects, Hyperdrive, Workers AI e AI Gateway passam a partilhar um único separador, agrupados em Computação / Dados e mensagens / IA, tal como na Cloudflare.",
+          "de": "Workers, Pages, Queues, Durable Objects, Hyperdrive, Workers AI und AI Gateway teilen sich jetzt einen Tab – gruppiert nach Compute / Daten & Messaging / KI, passend zu Cloudflares eigener Struktur.",
+          "fr": "Workers, Pages, Queues, Durable Objects, Hyperdrive, Workers AI et AI Gateway partagent désormais un seul onglet, regroupés en Calcul / Données et messagerie / IA, comme chez Cloudflare.",
+          "ar": "تجتمع الآن Workers وPages وQueues وDurable Objects وHyperdrive وWorkers AI وAI Gateway في علامة تبويب واحدة، مُجمَّعة ضمن الحوسبة / البيانات والمراسلة / الذكاء الاصطناعي، على غرار تنظيم Cloudflare.",
+          "tr": "Workers, Pages, Queues, Durable Objects, Hyperdrive, Workers AI ve AI Gateway artık tek bir sekmeyi paylaşıyor; Cloudflare'in kendi düzenine uygun olarak İşlem / Veri ve Mesajlaşma / Yapay Zekâ olarak gruplandı."
+        }
+      },
+      {
+        "icon": "plus.circle.fill",
+        "title": {
+          "zh-Hans": "创建资源，不止于查看",
+          "en": "Create resources, not just view them",
+          "zh-Hant": "建立資源，不只是檢視",
+          "zh-HK": "建立資源，不只是檢視",
+          "ja": "見るだけでなく、作成も",
+          "es-MX": "Crea recursos, no solo los veas",
+          "ko": "보기만 하지 않고 직접 생성까지",
+          "pt-BR": "Crie recursos, não só visualize",
+          "pt-PT": "Crie recursos, não apenas os veja",
+          "de": "Ressourcen erstellen, nicht nur ansehen",
+          "fr": "Créez des ressources, pas seulement les consulter",
+          "ar": "أنشئ الموارد، لا تكتفِ بعرضها",
+          "tr": "Yalnızca görüntüleme değil, oluşturma"
+        },
+        "detail": {
+          "zh-Hans": "直接新建 R2 存储桶、KV 命名空间、Pages 项目、Queues、Hyperdrive 与 AI Gateway，并可删除。",
+          "en": "Spin up R2 buckets, KV namespaces, Pages projects, Queues, Hyperdrive and AI Gateway right in the app — and delete them too.",
+          "zh-Hant": "直接建立 R2 儲存桶、KV 命名空間、Pages 專案、Queues、Hyperdrive 與 AI Gateway，也能刪除。",
+          "zh-HK": "直接建立 R2 儲存桶、KV 命名空間、Pages 專案、Queues、Hyperdrive 與 AI Gateway，亦可刪除。",
+          "ja": "R2 バケット、KV 名前空間、Pages プロジェクト、Queues、Hyperdrive、AI Gateway をアプリから直接作成・削除できます。",
+          "es-MX": "Crea buckets R2, espacios de nombres KV, proyectos de Pages, Queues, Hyperdrive y AI Gateway desde la app, y elimínalos cuando quieras.",
+          "ko": "R2 버킷, KV 네임스페이스, Pages 프로젝트, Queues, Hyperdrive, AI Gateway를 앱에서 바로 만들고 삭제할 수 있습니다.",
+          "pt-BR": "Crie buckets R2, namespaces KV, projetos do Pages, Queues, Hyperdrive e AI Gateway direto no app — e exclua quando quiser.",
+          "pt-PT": "Crie buckets R2, espaços de nomes KV, projetos do Pages, Queues, Hyperdrive e AI Gateway diretamente na app — e elimine quando quiser.",
+          "de": "Lege R2-Buckets, KV-Namespaces, Pages-Projekte, Queues, Hyperdrive und AI Gateway direkt in der App an – und lösche sie wieder.",
+          "fr": "Créez des buckets R2, des espaces de noms KV, des projets Pages, des Queues, Hyperdrive et AI Gateway directement dans l'app, et supprimez-les à volonté.",
+          "ar": "أنشئ حاويات R2 ومساحات أسماء KV ومشاريع Pages وQueues وHyperdrive وAI Gateway مباشرةً من التطبيق، واحذفها متى شئت.",
+          "tr": "R2 paketlerini, KV ad alanlarını, Pages projelerini, Queues, Hyperdrive ve AI Gateway'i doğrudan uygulamada oluşturun ve silin."
+        }
+      },
+      {
+        "icon": "square.and.arrow.up.fill",
+        "title": {
+          "zh-Hans": "部署 Pages 与 Workers",
+          "en": "Deploy Pages and Workers",
+          "zh-Hant": "部署 Pages 與 Workers",
+          "zh-HK": "部署 Pages 與 Workers",
+          "ja": "Pages と Workers をデプロイ",
+          "es-MX": "Implementa Pages y Workers",
+          "ko": "Pages와 Workers 배포",
+          "pt-BR": "Implante Pages e Workers",
+          "pt-PT": "Implemente Pages e Workers",
+          "de": "Pages und Workers bereitstellen",
+          "fr": "Déployez Pages et Workers",
+          "ar": "انشر Pages وWorkers",
+          "tr": "Pages ve Workers dağıtın"
+        },
+        "detail": {
+          "zh-Hans": "Pages 支持「直接上传」部署（粘贴代码或选取文件 / ZIP）；Workers 可新建并整体更新代码，变量与密钥支持 JSON 批量导入。受 OAuth 限制无法读取源码，更新为整体替换。",
+          "en": "Pages supports Direct Upload deploys (paste code or pick files/ZIP); Workers can be created and updated whole-script, with bulk JSON import for vars and secrets. OAuth can't read source, so an update replaces the whole script.",
+          "zh-Hant": "Pages 支援「直接上傳」部署（貼上程式碼或選取檔案 / ZIP）；Workers 可建立並整體更新程式碼，變數與密鑰支援 JSON 批次匯入。受 OAuth 限制無法讀取原始碼，更新為整體取代。",
+          "zh-HK": "Pages 支援「直接上傳」部署（貼上程式碼或選取檔案 / ZIP）；Workers 可建立並整體更新程式碼，變數與密鑰支援 JSON 批次匯入。受 OAuth 限制無法讀取原始碼，更新為整體取代。",
+          "ja": "Pages は「直接アップロード」デプロイ（コードを貼り付け、またはファイル/ZIP を選択）に対応。Workers は新規作成とスクリプト全体の更新ができ、変数とシークレットは JSON で一括インポートできます。OAuth ではソースを読めないため、更新は全体置換になります。",
+          "es-MX": "Pages admite despliegues con Carga directa (pega código o elige archivos/ZIP); los Workers se pueden crear y actualizar por completo, con importación masiva de variables y secretos por JSON. OAuth no puede leer el código, así que la actualización reemplaza todo el script.",
+          "ko": "Pages는 직접 업로드 배포(코드 붙여넣기 또는 파일/ZIP 선택)를 지원하고, Workers는 새로 만들거나 스크립트 전체를 업데이트할 수 있으며 변수와 시크릿을 JSON으로 일괄 가져올 수 있습니다. OAuth로는 소스를 읽을 수 없어 업데이트는 전체 교체 방식입니다.",
+          "pt-BR": "O Pages aceita deploys por Upload direto (cole o código ou escolha arquivos/ZIP); os Workers podem ser criados e atualizados por completo, com importação em massa de variáveis e segredos via JSON. O OAuth não lê o código-fonte, então a atualização substitui o script inteiro.",
+          "pt-PT": "O Pages aceita implementações por Carregamento direto (cole o código ou escolha ficheiros/ZIP); os Workers podem ser criados e atualizados na íntegra, com importação em massa de variáveis e segredos via JSON. O OAuth não lê o código-fonte, por isso a atualização substitui todo o script.",
+          "de": "Pages unterstützt Direct-Upload-Deploys (Code einfügen oder Dateien/ZIP wählen); Workers lassen sich anlegen und als ganzes Skript aktualisieren, Variablen und Secrets per JSON im Stapel importieren. OAuth kann den Quellcode nicht lesen, daher ersetzt ein Update das gesamte Skript.",
+          "fr": "Pages prend en charge le déploiement par Téléversement direct (collez le code ou choisissez des fichiers/ZIP) ; les Workers peuvent être créés et mis à jour intégralement, avec import JSON en masse des variables et secrets. OAuth ne peut pas lire le code source, la mise à jour remplace donc tout le script.",
+          "ar": "يدعم Pages النشر عبر الرفع المباشر (ألصق الشيفرة أو اختر ملفات/ZIP)؛ ويمكن إنشاء Workers وتحديث النص البرمجي بالكامل، مع استيراد المتغيّرات والأسرار دفعةً واحدة عبر JSON. لا يستطيع OAuth قراءة الشيفرة المصدرية، لذا يستبدل التحديثُ النصَّ بأكمله.",
+          "tr": "Pages, Doğrudan Yükleme dağıtımlarını destekler (kodu yapıştırın ya da dosya/ZIP seçin); Workers oluşturulabilir ve betiğin tamamı güncellenebilir, değişkenler ile gizli anahtarlar JSON ile toplu içe aktarılabilir. OAuth kaynağı okuyamadığından güncelleme tüm betiği değiştirir."
+        }
+      },
+      {
+        "icon": "lock.shield.fill",
+        "title": {
+          "zh-Hans": "Zero Trust 编辑器",
+          "en": "Zero Trust editing",
+          "zh-Hant": "Zero Trust 編輯器",
+          "zh-HK": "Zero Trust 編輯器",
+          "ja": "Zero Trust エディタ",
+          "es-MX": "Edición de Zero Trust",
+          "ko": "Zero Trust 편집기",
+          "pt-BR": "Edição de Zero Trust",
+          "pt-PT": "Edição de Zero Trust",
+          "de": "Zero-Trust-Editor",
+          "fr": "Édition Zero Trust",
+          "ar": "محرّر Zero Trust",
+          "tr": "Zero Trust düzenleme"
+        },
+        "detail": {
+          "zh-Hans": "可视化增删改 Access 自托管应用与策略，以及 Gateway 的 DNS / HTTP / 网络策略，内置带选择器调色板的表达式编辑器。",
+          "en": "Create, edit and remove Access self-hosted apps and policies, plus Gateway DNS / HTTP / network policies — with an expression editor and a per-type selector palette.",
+          "zh-Hant": "可視化新增、編輯、刪除 Access 自託管應用與政策，以及 Gateway 的 DNS / HTTP / 網路政策，內建附選擇器調色盤的運算式編輯器。",
+          "zh-HK": "可視化新增、編輯、刪除 Access 自託管應用與政策，以及 Gateway 的 DNS / HTTP / 網路政策，內建附選擇器調色盤的運算式編輯器。",
+          "ja": "Access のセルフホスト型アプリとポリシー、Gateway の DNS / HTTP / ネットワークポリシーを視覚的に作成・編集・削除。種類別のセレクタパレットを備えた式エディタ付きです。",
+          "es-MX": "Crea, edita y elimina apps autoalojadas y políticas de Access, además de las políticas DNS / HTTP / de red de Gateway, con un editor de expresiones y una paleta de selectores por tipo.",
+          "ko": "Access 자체 호스팅 앱과 정책, Gateway의 DNS / HTTP / 네트워크 정책을 시각적으로 만들고 편집·삭제할 수 있습니다. 유형별 선택기 팔레트가 있는 표현식 편집기를 갖췄습니다.",
+          "pt-BR": "Crie, edite e remova apps auto-hospedados e políticas do Access, além das políticas de DNS / HTTP / rede do Gateway, com um editor de expressões e uma paleta de seletores por tipo.",
+          "pt-PT": "Crie, edite e remova apps auto-alojadas e políticas do Access, além das políticas de DNS / HTTP / rede do Gateway, com um editor de expressões e uma paleta de seletores por tipo.",
+          "de": "Erstelle, bearbeite und lösche selbstgehostete Access-Apps und -Richtlinien sowie Gateway-Richtlinien für DNS / HTTP / Netzwerk – mit Ausdruckseditor und typabhängiger Selektor-Palette.",
+          "fr": "Créez, modifiez et supprimez les applications auto-hébergées et les politiques Access, ainsi que les politiques DNS / HTTP / réseau de Gateway, avec un éditeur d'expressions et une palette de sélecteurs par type.",
+          "ar": "أنشئ وعدّل واحذف تطبيقات Access ذاتية الاستضافة وسياساتها، إضافةً إلى سياسات DNS / HTTP / الشبكة في Gateway، مع محرّر تعبيرات ولوحة محدِّدات حسب النوع.",
+          "tr": "Access'in kendi barındırılan uygulamalarını ve ilkelerini, ayrıca Gateway'in DNS / HTTP / ağ ilkelerini görsel olarak oluşturun, düzenleyin ve silin; türüne göre seçici paleti olan bir ifade düzenleyici içerir."
+        }
+      },
+      {
+        "icon": "shield.lefthalf.filled",
+        "title": {
+          "zh-Hans": "WAF 可视化规则构建器",
+          "en": "Visual WAF rule builder",
+          "zh-Hant": "WAF 視覺化規則建構器",
+          "zh-HK": "WAF 視覺化規則建構器",
+          "ja": "WAF のビジュアルルールビルダー",
+          "es-MX": "Constructor visual de reglas WAF",
+          "ko": "WAF 시각적 규칙 빌더",
+          "pt-BR": "Construtor visual de regras WAF",
+          "pt-PT": "Construtor visual de regras WAF",
+          "de": "Visueller WAF-Regelbaukasten",
+          "fr": "Générateur visuel de règles WAF",
+          "ar": "أداة بناء قواعد WAF المرئية",
+          "tr": "Görsel WAF kural oluşturucu"
+        },
+        "detail": {
+          "zh-Hans": "新建自定义防护规则时，可在「书写规则」与「表达式编辑器」之间随时切换，更快写出想要的条件。",
+          "en": "When writing a custom rule, switch any time between a guided rule builder and the raw expression editor to craft conditions faster.",
+          "zh-Hant": "新增自訂防護規則時，可隨時在「書寫規則」與「運算式編輯器」之間切換，更快寫出想要的條件。",
+          "zh-HK": "新增自訂防護規則時，可隨時在「書寫規則」與「運算式編輯器」之間切換，更快寫出想要的條件。",
+          "ja": "カスタムルールの作成時に、ガイド付きのルールビルダーと式エディタをいつでも切り替えて、条件をすばやく組み立てられます。",
+          "es-MX": "Al crear una regla personalizada, alterna en cualquier momento entre el generador guiado y el editor de expresiones para definir condiciones más rápido.",
+          "ko": "사용자 지정 규칙을 만들 때 가이드형 규칙 빌더와 표현식 편집기를 언제든 전환하며 조건을 더 빠르게 작성할 수 있습니다.",
+          "pt-BR": "Ao criar uma regra personalizada, alterne quando quiser entre o construtor guiado e o editor de expressões para definir condições mais rápido.",
+          "pt-PT": "Ao criar uma regra personalizada, alterne quando quiser entre o construtor guiado e o editor de expressões para definir condições mais depressa.",
+          "de": "Wechsle beim Erstellen einer eigenen Regel jederzeit zwischen geführtem Regelbaukasten und Ausdruckseditor, um Bedingungen schneller zu formulieren.",
+          "fr": "Lors de la création d'une règle personnalisée, basculez à tout moment entre le générateur guidé et l'éditeur d'expressions pour définir vos conditions plus vite.",
+          "ar": "عند إنشاء قاعدة مخصّصة، بدّل في أي وقت بين أداة البناء الموجَّهة ومحرّر التعبيرات لصياغة الشروط بسرعة أكبر.",
+          "tr": "Özel bir kural yazarken, koşulları daha hızlı oluşturmak için rehberli kural oluşturucu ile ifade düzenleyici arasında istediğiniz zaman geçiş yapın."
+        }
+      },
+      {
+        "icon": "checklist",
+        "title": {
+          "zh-Hans": "授权更省心",
+          "en": "Easier authorization",
+          "zh-Hant": "授權更省心",
+          "zh-HK": "授權更省心",
+          "ja": "認可がもっと簡単に",
+          "es-MX": "Autorización más simple",
+          "ko": "더 간편한 권한 부여",
+          "pt-BR": "Autorização mais simples",
+          "pt-PT": "Autorização mais simples",
+          "de": "Einfachere Autorisierung",
+          "fr": "Autorisation simplifiée",
+          "ar": "تفويض أسهل",
+          "tr": "Daha kolay yetkilendirme"
+        },
+        "detail": {
+          "zh-Hans": "授权页新增「全部只读 / 全部读写 / 仅必选」快捷预设。本版新增 Queues、AI Gateway、Workers AI 等模块，需重新授权才会点亮对应入口。",
+          "en": "The authorization screen adds quick presets — all read-only, all read-write, or required-only. New modules like Queues, AI Gateway and Workers AI need a fresh authorization to light up.",
+          "zh-Hant": "授權頁新增「全部唯讀 / 全部讀寫 / 僅必選」快捷預設。本版新增 Queues、AI Gateway、Workers AI 等模組，需重新授權才會點亮對應入口。",
+          "zh-HK": "授權頁新增「全部唯讀 / 全部讀寫 / 僅必選」快捷預設。本版新增 Queues、AI Gateway、Workers AI 等模組，需重新授權才會點亮對應入口。",
+          "ja": "認可画面に「すべて読み取り専用 / すべて読み書き / 必須のみ」のクイックプリセットを追加。今回追加の Queues、AI Gateway、Workers AI などの新モジュールは、再認可すると表示されます。",
+          "es-MX": "La pantalla de autorización añade ajustes rápidos: todo de solo lectura, todo de lectura y escritura, o solo lo necesario. Los nuevos módulos como Queues, AI Gateway y Workers AI requieren autorizar de nuevo para activarse.",
+          "ko": "권한 부여 화면에 빠른 프리셋(모두 읽기 전용 / 모두 읽기·쓰기 / 필수만)이 추가됐습니다. Queues, AI Gateway, Workers AI 같은 새 모듈은 다시 권한을 부여해야 표시됩니다.",
+          "pt-BR": "A tela de autorização ganha predefinições rápidas: tudo somente leitura, tudo leitura e escrita ou apenas o necessário. Os novos módulos, como Queues, AI Gateway e Workers AI, precisam de nova autorização para aparecer.",
+          "pt-PT": "O ecrã de autorização ganha predefinições rápidas: tudo só de leitura, tudo de leitura e escrita ou apenas o necessário. Os novos módulos, como Queues, AI Gateway e Workers AI, precisam de nova autorização para aparecer.",
+          "de": "Der Autorisierungs-Bildschirm bekommt Schnellvorlagen – alles nur lesen, alles lesen und schreiben oder nur das Nötigste. Neue Module wie Queues, AI Gateway und Workers AI erscheinen erst nach erneuter Autorisierung.",
+          "fr": "L'écran d'autorisation ajoute des préréglages rapides : tout en lecture seule, tout en lecture-écriture ou strictement nécessaire. Les nouveaux modules comme Queues, AI Gateway et Workers AI nécessitent une nouvelle autorisation pour apparaître.",
+          "ar": "تضيف شاشة التفويض إعداداتٍ سريعة: الكل للقراءة فقط، أو الكل للقراءة والكتابة، أو الضروري فقط. وتحتاج الوحدات الجديدة مثل Queues وAI Gateway وWorkers AI إلى تفويض جديد لتظهر.",
+          "tr": "Yetkilendirme ekranına hızlı ön ayarlar eklendi: tümü salt okunur, tümü okuma-yazma veya yalnızca gerekli. Queues, AI Gateway ve Workers AI gibi yeni modüllerin görünmesi için yeniden yetkilendirme gerekir."
+        }
+      }
+    ]
+  },
+  {
     "version": "1.6.0",
     "date": "2026.06.28",
     "channel": "App Store",
