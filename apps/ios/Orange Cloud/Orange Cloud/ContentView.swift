@@ -13,7 +13,8 @@ struct ContentView: View {
     @Environment(AuthManager.self) private var auth
 
     var body: some View {
-        Group {
+        @Bindable var router = AppRouter.shared
+        return Group {
             if auth.isLoggedIn {
                 // 按身份重建会话子树：切换/新增登录身份时 SessionStore（含 token 客户端）全新创建
                 SessionRootView(auth: auth)
@@ -23,6 +24,11 @@ struct ContentView: View {
             }
         }
         .animation(.smooth, value: auth.isLoggedIn)
+        // 「免登录工具箱」挂在 auth 闸门之上（不随 .id 会话重建销毁），
+        // 登录前后、通知点按统一从这里弹出。
+        .fullScreenCover(isPresented: $router.presentToolbox) {
+            ToolboxHubView()
+        }
     }
 }
 
