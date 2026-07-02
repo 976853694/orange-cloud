@@ -1,7 +1,7 @@
 {
-  "versionCode": 8,
-  "versionName": "1.5.0",
+  "versionCode": 9,
+  "versionName": "1.6.0",
   "minVersionCode": 1,
   "url": "https://o-c.do/orange-cloud.apk",
-  "note": "免登录开发者工具箱（DNS 查询 / SSL 证书 / HTTP / WHOIS / IP 归属 / CIDR / CF Trace）；多账号无痕登录与身份重命名；修复与体验优化。"
+  "note": "Pages 项目支持自定义域名管理（一键 CNAME 解析）；Workers / Pages 列表支持按创建日期、最近更新排序。"
 }
