@@ -274,7 +274,7 @@ private struct DashboardHomeView: View {
             value.formatted(.number.notation(.compactName))
         }
         func bytes(_ value: Int) -> String {
-            Int64(value).formatted(.byteCount(style: .decimal))
+            Int64(value).ocBytes
         }
 
         var services: [WidgetUsageService] = []
@@ -722,7 +722,7 @@ private struct DashboardHomeView: View {
         if !effectiveR2Paid {
             candidates.append(GaugedMetric(
                 context: String(localized: "存储"),
-                valueText: Int64(usage.r2StorageBytes).formatted(.byteCount(style: .decimal)),
+                valueText: Int64(usage.r2StorageBytes).ocBytes,
                 quotaText: "/ 10 GB",
                 ratio: Double(usage.r2StorageBytes) / 10_000_000_000
             ))
@@ -754,7 +754,7 @@ private struct DashboardHomeView: View {
         if let storage = usage.d1StorageBytes {
             candidates.append(GaugedMetric(
                 context: String(localized: "存储"),
-                valueText: Int64(storage).formatted(.byteCount(style: .file)),
+                valueText: Int64(storage).ocBytes,
                 quotaText: "/ 5 GB",
                 ratio: Double(storage) / 5_000_000_000
             ))
@@ -786,7 +786,7 @@ private struct DashboardHomeView: View {
         if let storage = usage.kvStorageBytes {
             candidates.append(GaugedMetric(
                 context: String(localized: "存储"),
-                valueText: Int64(storage).formatted(.byteCount(style: .file)),
+                valueText: Int64(storage).ocBytes,
                 quotaText: "/ 1 GB",
                 ratio: Double(storage) / 1_000_000_000
             ))
@@ -871,7 +871,7 @@ private struct DashboardHomeView: View {
             UsageRow(
                 icon: "externaldrive",
                 title: String(localized: "R2 存储"),
-                valueText: Int64(usage.r2StorageBytes).formatted(.byteCount(style: .decimal))
+                valueText: Int64(usage.r2StorageBytes).ocBytes
                     + (effectiveR2Paid ? "" : " / 10 GB"),
                 used: effectiveR2Paid ? nil : usage.r2StorageBytes,
                 quota: effectiveR2Paid ? nil : 10_000_000_000
@@ -930,7 +930,7 @@ private struct DashboardHomeView: View {
                 UsageRow(
                     icon: "cylinder",
                     title: String(localized: "D1 存储"),
-                    valueText: Int64(d1Storage).formatted(.byteCount(style: .file)) + " / 5 GB",
+                    valueText: Int64(d1Storage).ocBytes + " / 5 GB",
                     used: d1Storage,
                     quota: 5_000_000_000
                 )
@@ -974,7 +974,7 @@ private struct DashboardHomeView: View {
                 UsageRow(
                     icon: "square.grid.2x2",
                     title: String(localized: "KV 存储"),
-                    valueText: Int64(kvStorage).formatted(.byteCount(style: .file)) + " / 1 GB",
+                    valueText: Int64(kvStorage).ocBytes + " / 1 GB",
                     used: kvStorage,
                     quota: 1_000_000_000
                 )
