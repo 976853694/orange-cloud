@@ -137632,6 +137632,462 @@
           }
         }
       }
+    },
+    "加入体验者计划？" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هل تريد الانضمام إلى برنامج تحسين التطبيق؟"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Am Insider-Programm teilnehmen?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join the Insider Program?"
+          }
+        },
+        "es-MX" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Unirte al programa Insider?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rejoindre le programme Insider ?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "インサイダープログラムに参加しますか？"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인사이더 프로그램에 참여하시겠습니까?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Participar do Programa Insider?"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aderir ao Programa Insider?"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insider Programı'na katılmak ister misiniz?"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加入體驗者計畫？"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加入體驗者計劃？"
+          }
+        }
+      }
+    },
+    "加入" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "انضمام"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teilnehmen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Join"
+          }
+        },
+        "es-MX" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unirme"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rejoindre"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "参加"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "참여"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Participar"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aderir"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Katıl"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加入"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "加入"
+          }
+        }
+      }
+    },
+    "暂不" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ليس الآن"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jetzt nicht"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not Now"
+          }
+        },
+        "es-MX" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ahora no"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus tard"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今はしない"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "나중에"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agora não"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agora não"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şimdi değil"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暫不"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暫不"
+          }
+        }
+      }
+    },
+    "开启后，App 会上报匿名诊断日志与崩溃信息（不含令牌、账号数据或任何个人信息），帮助我们更快定位登录与稳定性问题。可随时在设置中关闭。" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عند التفعيل، يرسل التطبيق سجلات تشخيص مجهولة الهوية ومعلومات الأعطال (لا تتضمن أبدًا رموزك أو بيانات حسابك أو أي معلومات شخصية) لمساعدتنا في تحديد مشكلات تسجيل الدخول والاستقرار بشكل أسرع. يمكنك إيقافه في أي وقت من الإعدادات."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wenn aktiviert, sendet die App anonyme Diagnoseprotokolle und Absturzberichte (niemals deine Tokens, Kontodaten oder persönliche Informationen), damit wir Anmelde- und Stabilitätsprobleme schneller eingrenzen können. Du kannst dies jederzeit in den Einstellungen deaktivieren."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When enabled, the app reports anonymous diagnostic logs and crash data (never your tokens, account data, or any personal information) to help us track down sign-in and stability issues faster. You can turn this off anytime in Settings."
+          }
+        },
+        "es-MX" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Al activarlo, la app envía registros de diagnóstico anónimos e informes de fallos (nunca tus tokens, datos de cuenta ni información personal) para ayudarnos a identificar más rápido los problemas de inicio de sesión y estabilidad. Puedes desactivarlo en cualquier momento en Ajustes."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une fois activé, l'app envoie des journaux de diagnostic anonymes et des rapports de plantage (jamais vos jetons, données de compte ni aucune information personnelle) pour nous aider à identifier plus vite les problèmes de connexion et de stabilité. Vous pouvez désactiver cela à tout moment dans les réglages."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "オンにすると、匿名の診断ログとクラッシュ情報（トークン、アカウントデータ、個人情報は一切含まれません）を送信し、ログインや安定性の問題の特定に役立てます。設定でいつでもオフにできます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "활성화하면 익명 진단 로그와 충돌 정보(토큰, 계정 데이터, 개인정보는 포함되지 않음)를 전송하여 로그인 및 안정성 문제를 더 빠르게 파악하는 데 도움이 됩니다. 설정에서 언제든지 끌 수 있습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quando ativado, o app envia registros de diagnóstico anônimos e relatórios de falhas (nunca seus tokens, dados de conta ou informações pessoais) para nos ajudar a identificar mais rápido problemas de login e estabilidade. Você pode desativar a qualquer momento nos Ajustes."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quando ativado, a app envia registos de diagnóstico anónimos e relatórios de falhas (nunca os seus tokens, dados de conta ou informações pessoais) para nos ajudar a identificar mais rapidamente problemas de início de sessão e estabilidade. Pode desativar a qualquer momento nas Definições."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etkinleştirildiğinde uygulama, oturum açma ve kararlılık sorunlarını daha hızlı bulmamıza yardımcı olmak için anonim tanılama günlükleri ve çökme bilgileri gönderir (belirteçleriniz, hesap verileriniz veya hiçbir kişisel bilgi asla dahil edilmez). Ayarlar'dan istediğiniz zaman kapatabilirsiniz."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟後，App 會回報匿名診斷日誌與當機資訊（不含權杖、帳號資料或任何個人資訊），協助我們更快定位登入與穩定性問題。可隨時在設定中關閉。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟後，App 會上報匿名診斷日誌與崩潰資訊（不含權杖、帳戶資料或任何個人資料），協助我們更快定位登入與穩定性問題。可隨時在設定中關閉。"
+          }
+        }
+      }
+    },
+    "体验者计划" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "برنامج تحسين التطبيق"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insider-Programm"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insider Program"
+          }
+        },
+        "es-MX" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Programa Insider"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Programme Insider"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "インサイダープログラム"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인사이더 프로그램"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Programa Insider"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Programa Insider"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insider Programı"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "體驗者計畫"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "體驗者計劃"
+          }
+        }
+      }
+    },
+    "开启后上报匿名诊断日志与崩溃信息（不含令牌、账号数据或任何个人信息），帮助我们更快定位登录与稳定性问题。" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عند التفعيل، تُرسَل سجلات تشخيص مجهولة الهوية ومعلومات الأعطال (لا تتضمن أبدًا رموزك أو بيانات حسابك أو أي معلومات شخصية) لمساعدتنا في تحديد مشكلات تسجيل الدخول والاستقرار بشكل أسرع."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wenn aktiviert, werden anonyme Diagnoseprotokolle und Absturzberichte gesendet (niemals deine Tokens, Kontodaten oder persönliche Informationen), damit wir Anmelde- und Stabilitätsprobleme schneller eingrenzen können."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When enabled, reports anonymous diagnostic logs and crash data (never your tokens, account data, or any personal information) to help us track down sign-in and stability issues faster."
+          }
+        },
+        "es-MX" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Al activarlo, se envían registros de diagnóstico anónimos e informes de fallos (nunca tus tokens, datos de cuenta ni información personal) para ayudarnos a identificar más rápido los problemas de inicio de sesión y estabilidad."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une fois activé, envoie des journaux de diagnostic anonymes et des rapports de plantage (jamais vos jetons, données de compte ni aucune information personnelle) pour nous aider à identifier plus vite les problèmes de connexion et de stabilité."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "オンにすると、匿名の診断ログとクラッシュ情報（トークン、アカウントデータ、個人情報は一切含まれません）を送信し、ログインや安定性の問題の特定に役立てます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "활성화하면 익명 진단 로그와 충돌 정보(토큰, 계정 데이터, 개인정보는 포함되지 않음)를 전송하여 로그인 및 안정성 문제를 더 빠르게 파악하는 데 도움이 됩니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quando ativado, envia registros de diagnóstico anônimos e relatórios de falhas (nunca seus tokens, dados de conta ou informações pessoais) para nos ajudar a identificar mais rápido problemas de login e estabilidade."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quando ativado, envia registos de diagnóstico anónimos e relatórios de falhas (nunca os seus tokens, dados de conta ou informações pessoais) para nos ajudar a identificar mais rapidamente problemas de início de sessão e estabilidade."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etkinleştirildiğinde, oturum açma ve kararlılık sorunlarını daha hızlı bulmamıza yardımcı olmak için anonim tanılama günlükleri ve çökme bilgileri gönderilir (belirteçleriniz, hesap verileriniz veya hiçbir kişisel bilgi asla dahil edilmez)."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟後回報匿名診斷日誌與當機資訊（不含權杖、帳號資料或任何個人資訊），協助我們更快定位登入與穩定性問題。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟後上報匿名診斷日誌與崩潰資訊（不含權杖、帳戶資料或任何個人資料），協助我們更快定位登入與穩定性問題。"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
