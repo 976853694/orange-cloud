@@ -1369,6 +1369,82 @@
         }
       }
     },
+    "Worker 部署历史": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Worker deployment history"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Worker 部署歷史"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Worker 部署歷史"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Worker のデプロイ履歴"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Historial de despliegues de Worker"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Worker 배포 기록"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Histórico de implantações do Worker"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Histórico de implementações do Worker"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Worker-Bereitstellungsverlauf"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Historique des déploiements Worker"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سجل عمليات نشر Worker"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Worker dağıtım geçmişi"
+          }
+        }
+      }
+    },
     "Workers 与 Pages 列表新增排序：默认（名称）、创建日期、最近更新，选择会被记住。": {
       "localizations": {
         "en": {
@@ -2585,6 +2661,82 @@
         }
       }
     },
+    "删除 D1 数据表": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete D1 tables"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刪除 D1 資料表"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刪除 D1 資料表"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D1 テーブルを削除"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar tablas de D1"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D1 테이블 삭제"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluir tabelas do D1"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar tabelas do D1"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D1-Tabellen löschen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer des tables D1"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حذف جداول D1"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D1 tablolarını silme"
+          }
+        }
+      }
+    },
     "刷新失败不再弹窗打断，下拉刷新更稳定可靠。": {
       "localizations": {
         "en": {
@@ -3269,6 +3421,82 @@
         }
       }
     },
+    "在查询控制台长按任意表即可删除，需输入表名二次确认。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Long-press any table in the query console to drop it, with a type-the-name confirmation."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在查詢主控台長按任一表即可刪除，需輸入表名二次確認。"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在查詢控制台長按任一表即可刪除，需輸入表名二次確認。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "クエリコンソールでテーブルを長押しすると削除できます。テーブル名の入力による確認付きです。"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantén pulsada cualquier tabla en la consola de consultas para eliminarla, con confirmación escribiendo su nombre."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "쿼리 콘솔에서 테이블을 길게 눌러 삭제할 수 있으며 이름을 입력해 확인합니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toque e segure qualquer tabela no console de consultas para excluí-la, com confirmação digitando o nome."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toque sem soltar em qualquer tabela na consola de consultas para a eliminar, com confirmação escrevendo o nome."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Halte in der Abfragekonsole eine Tabelle gedrückt, um sie zu löschen – mit Bestätigung durch Eingabe des Namens."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appuyez longuement sur une table dans la console de requêtes pour la supprimer, avec confirmation en saisissant son nom."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط مطوّلاً على أي جدول في وحدة الاستعلام لحذفه، مع تأكيد بكتابة الاسم."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sorgu konsolunda bir tabloya uzun basarak silin; adını yazarak onaylayın."
+          }
+        }
+      }
+    },
     "域名与路由": {
       "localizations": {
         "en": {
@@ -3569,6 +3797,82 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cron Tetikleyicileri"
+          }
+        }
+      }
+    },
+    "就地编辑与删除 Worker": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit and delete Workers in place"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "就地編輯與刪除 Worker"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "就地編輯與刪除 Worker"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Worker をその場で編集・削除"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edita y elimina Workers directamente"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Worker를 바로 편집·삭제"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edite e exclua Workers diretamente"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edite e elimine Workers diretamente"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Worker direkt bearbeiten und löschen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifier et supprimer des Workers sur place"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تعديل وحذف Workers مباشرةً"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Worker’ları yerinde düzenleyin ve silin"
           }
         }
       }
@@ -5701,6 +6005,82 @@
         }
       }
     },
+    "查看每个 Worker 的历次部署记录，并可删除不再需要的旧部署。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "See every past deployment of a Worker and delete older ones you no longer need."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "檢視每個 Worker 的歷次部署記錄，並可刪除不再需要的舊部署。"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看每個 Worker 的歷次部署記錄，並可刪除不再需要的舊部署。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "各 Worker の過去のデプロイを確認し、不要になった古いデプロイを削除できます。"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consulta cada despliegue anterior de un Worker y elimina los que ya no necesites."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "각 Worker의 과거 배포를 확인하고 더 이상 필요 없는 이전 배포를 삭제할 수 있습니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veja todas as implantações anteriores de um Worker e exclua as antigas que não precisa mais."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Veja todas as implementações anteriores de um Worker e elimine as antigas de que já não precisa."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sieh dir alle bisherigen Bereitstellungen eines Workers an und lösche nicht mehr benötigte alte Bereitstellungen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consultez tous les déploiements passés d’un Worker et supprimez les anciens dont vous n’avez plus besoin."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اطّلع على كل عمليات نشر Worker السابقة واحذف القديمة التي لم تعد بحاجة إليها."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir Worker’ın geçmiş tüm dağıtımlarını görün ve artık ihtiyaç duymadığınız eskileri silin."
+          }
+        }
+      }
+    },
     "根治 iOS 17.0 上概览页、资源列表与域名详情的多处闪退与冻结；同时修复 Tunnel 页面卡死与冷启动请求翻倍的问题。": {
       "localizations": {
         "en": {
@@ -6609,6 +6989,82 @@
           "stringUnit": {
             "state": "translated",
             "value": "R2 paketlerini, KV ad alanlarını, Pages projelerini, Queues, Hyperdrive ve AI Gateway'i doğrudan uygulamada oluşturun ve silin."
+          }
+        }
+      }
+    },
+    "直接载入线上源码修改后重新部署，变量、密钥与绑定自动保留；也可从 .js 文件导入，或删除整个 Worker。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Load the live source, edit it and redeploy — your variables, secrets and bindings are kept. You can also import from a .js file or delete the whole Worker."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "直接載入線上原始碼修改後重新部署，變數、密鑰與繫結自動保留；也可從 .js 檔案匯入，或刪除整個 Worker。"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "直接載入線上原始碼修改後重新部署，變數、密鑰與綁定自動保留；也可從 .js 檔案匯入，或刪除整個 Worker。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "稼働中のソースを読み込んで編集し、再デプロイできます。変数・シークレット・バインディングは保持されます。.js ファイルからの読み込みや Worker 全体の削除にも対応します。"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carga el código en producción, edítalo y vuelve a desplegar; se conservan tus variables, secretos y enlaces. También puedes importar desde un archivo .js o eliminar todo el Worker."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "실행 중인 소스를 불러와 수정한 뒤 다시 배포할 수 있으며 변수, 비밀, 바인딩이 유지됩니다. .js 파일에서 가져오거나 Worker 전체를 삭제할 수도 있습니다."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carregue o código em produção, edite e reimplante — suas variáveis, segredos e bindings são mantidos. Também dá para importar de um arquivo .js ou excluir o Worker inteiro."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carregue o código em produção, edite e reimplante — as suas variáveis, segredos e ligações são mantidos. Também pode importar de um ficheiro .js ou eliminar o Worker inteiro."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lade den Live-Quellcode, bearbeite ihn und stelle neu bereit – Variablen, Secrets und Bindings bleiben erhalten. Du kannst auch aus einer .js-Datei importieren oder den ganzen Worker löschen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chargez le code en production, modifiez-le et redéployez ; vos variables, secrets et liaisons sont conservés. Vous pouvez aussi importer depuis un fichier .js ou supprimer le Worker entier."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حمّل الشيفرة المباشرة وعدّلها وأعد النشر مع الحفاظ على المتغيرات والأسرار والارتباطات. يمكنك أيضًا الاستيراد من ملف ‎.js‎ أو حذف Worker بالكامل."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Canlı kaynağı yükleyip düzenleyin ve yeniden dağıtın; değişkenleriniz, gizli anahtarlarınız ve bağlamalarınız korunur. Ayrıca bir .js dosyasından içe aktarabilir veya Worker’ın tamamını silebilirsiniz."
           }
         }
       }

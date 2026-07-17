@@ -3,7 +3,7 @@
 //  Orange Cloud
 //
 //  Workers 脚本管理（编辑 / 变量 / 密钥 / 触发器）相关模型。
-//  GET  /accounts/{a}/workers/scripts/{n}/content     源码（模块→multipart，service worker→raw JS）
+//  GET  /accounts/{a}/workers/scripts/{n}/content/v2  源码（模块→multipart，service worker→raw JS；v1 /content 被 OAuth 10405 挡，必须 v2）
 //  PUT  /accounts/{a}/workers/scripts/{n}             上传（multipart：metadata + 模块 part），保留绑定用 inherit
 //  GET  /accounts/{a}/workers/scripts/{n}/settings    绑定 + 兼容性日期/标志
 //  PATCH .../settings                                 改绑定（变量），其余绑定回传 inherit
@@ -12,6 +12,34 @@
 //
 
 import Foundation
+
+// MARK: - 部署历史
+
+/// 一次部署（GET /workers/scripts/{n}/deployments 的 result.deployments 元素）。
+/// 列表首项为当前正在服务的活跃部署（Cloudflare 不允许删除活跃部署）。
+nonisolated struct WorkerDeployment: Codable, Identifiable, Hashable, Sendable {
+    let id: String
+    let createdOn: String?
+    let source: String?
+    let authorEmail: String?
+    let annotations: [String: String]?
+
+    enum CodingKeys: String, CodingKey {
+        case id, source, annotations
+        case createdOn   = "created_on"
+        case authorEmail = "author_email"
+    }
+
+    /// annotations["workers/message"]（部署备注）
+    var message: String? { annotations?["workers/message"] }
+
+    var createdDate: Date? { WorkerScript.parseDate(createdOn) }
+}
+
+/// deployments 端点信封的 result（{ deployments: [...] }）
+nonisolated struct WorkerDeploymentsResult: Codable, Sendable {
+    let deployments: [WorkerDeployment]
+}
 
 // MARK: - 脚本源码
 
