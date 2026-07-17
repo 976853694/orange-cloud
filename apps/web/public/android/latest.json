@@ -1,7 +1,7 @@
 {
-  "versionCode": 14,
+  "versionCode": 15,
   "versionName": "1.6.4",
   "minVersionCode": 1,
   "url": "https://o-c.do/orange-cloud.apk",
-  "note": "修复：已授权「流量分析」时账号用量仍提示需要权限的问题。"
+  "note": "Worker 的新建、编辑与删除现为 Pro 会员功能；浏览与查看仍免费。"
 }
