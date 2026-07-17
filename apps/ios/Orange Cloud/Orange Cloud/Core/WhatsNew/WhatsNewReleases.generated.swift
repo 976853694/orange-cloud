@@ -10,6 +10,23 @@ import Foundation
 
 nonisolated enum WhatsNewGenerated {
     static let releases: [WhatsNewRelease] = [
+        WhatsNewRelease(version: "1.8.5", items: [
+            WhatsNewItem(
+                icon:   "clock.arrow.circlepath",
+                title:  String(localized: "Worker 部署历史", table: "WhatsNew"),
+                detail: String(localized: "查看每个 Worker 的历次部署记录，并可删除不再需要的旧部署。", table: "WhatsNew")
+            ),
+            WhatsNewItem(
+                icon:   "square.and.pencil",
+                title:  String(localized: "就地编辑与删除 Worker", table: "WhatsNew"),
+                detail: String(localized: "直接载入线上源码修改后重新部署，变量、密钥与绑定自动保留；也可从 .js 文件导入，或删除整个 Worker。", table: "WhatsNew")
+            ),
+            WhatsNewItem(
+                icon:   "tablecells",
+                title:  String(localized: "删除 D1 数据表", table: "WhatsNew"),
+                detail: String(localized: "在查询控制台长按任意表即可删除，需输入表名二次确认。", table: "WhatsNew")
+            )
+        ]),
         WhatsNewRelease(version: "1.8.4", items: [
             WhatsNewItem(
                 icon:   "shield.lefthalf.filled",

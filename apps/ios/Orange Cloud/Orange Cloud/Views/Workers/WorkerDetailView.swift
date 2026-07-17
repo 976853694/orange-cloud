@@ -92,6 +92,14 @@ struct WorkerDetailView: View {
                     WorkerTriggersView(accountId: script.accountId, scriptName: script.id, session: session)
                 }
                 ProGatedNavigationLink(
+                    label: String(localized: "部署历史"),
+                    systemImage: "clock.arrow.circlepath",
+                    requiredScope: "workers-scripts.read",
+                    feature: .workerRoutes
+                ) {
+                    WorkerDeploymentsView(accountId: script.accountId, scriptName: script.id, session: session)
+                }
+                ProGatedNavigationLink(
                     label: String(localized: "域名"),
                     systemImage: "globe",
                     requiredScope: "workers-scripts.read",

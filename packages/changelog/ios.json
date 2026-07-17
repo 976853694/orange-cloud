@@ -1,5 +1,112 @@
 [
   {
+    "version": "1.8.5",
+    "date": "2026.07.18",
+    "channel": "App Store",
+    "inApp": true,
+    "items": [
+      {
+        "icon": "clock.arrow.circlepath",
+        "title": {
+          "zh-Hans": "Worker 部署历史",
+          "en": "Worker deployment history",
+          "zh-Hant": "Worker 部署歷史",
+          "zh-HK": "Worker 部署歷史",
+          "ja": "Worker のデプロイ履歴",
+          "es-MX": "Historial de despliegues de Worker",
+          "ko": "Worker 배포 기록",
+          "pt-BR": "Histórico de implantações do Worker",
+          "pt-PT": "Histórico de implementações do Worker",
+          "de": "Worker-Bereitstellungsverlauf",
+          "fr": "Historique des déploiements Worker",
+          "ar": "سجل عمليات نشر Worker",
+          "tr": "Worker dağıtım geçmişi"
+        },
+        "detail": {
+          "zh-Hans": "查看每个 Worker 的历次部署记录，并可删除不再需要的旧部署。",
+          "en": "See every past deployment of a Worker and delete older ones you no longer need.",
+          "zh-Hant": "檢視每個 Worker 的歷次部署記錄，並可刪除不再需要的舊部署。",
+          "zh-HK": "查看每個 Worker 的歷次部署記錄，並可刪除不再需要的舊部署。",
+          "ja": "各 Worker の過去のデプロイを確認し、不要になった古いデプロイを削除できます。",
+          "es-MX": "Consulta cada despliegue anterior de un Worker y elimina los que ya no necesites.",
+          "ko": "각 Worker의 과거 배포를 확인하고 더 이상 필요 없는 이전 배포를 삭제할 수 있습니다.",
+          "pt-BR": "Veja todas as implantações anteriores de um Worker e exclua as antigas que não precisa mais.",
+          "pt-PT": "Veja todas as implementações anteriores de um Worker e elimine as antigas de que já não precisa.",
+          "de": "Sieh dir alle bisherigen Bereitstellungen eines Workers an und lösche nicht mehr benötigte alte Bereitstellungen.",
+          "fr": "Consultez tous les déploiements passés d’un Worker et supprimez les anciens dont vous n’avez plus besoin.",
+          "ar": "اطّلع على كل عمليات نشر Worker السابقة واحذف القديمة التي لم تعد بحاجة إليها.",
+          "tr": "Bir Worker’ın geçmiş tüm dağıtımlarını görün ve artık ihtiyaç duymadığınız eskileri silin."
+        }
+      },
+      {
+        "icon": "square.and.pencil",
+        "title": {
+          "zh-Hans": "就地编辑与删除 Worker",
+          "en": "Edit and delete Workers in place",
+          "zh-Hant": "就地編輯與刪除 Worker",
+          "zh-HK": "就地編輯與刪除 Worker",
+          "ja": "Worker をその場で編集・削除",
+          "es-MX": "Edita y elimina Workers directamente",
+          "ko": "Worker를 바로 편집·삭제",
+          "pt-BR": "Edite e exclua Workers diretamente",
+          "pt-PT": "Edite e elimine Workers diretamente",
+          "de": "Worker direkt bearbeiten und löschen",
+          "fr": "Modifier et supprimer des Workers sur place",
+          "ar": "تعديل وحذف Workers مباشرةً",
+          "tr": "Worker’ları yerinde düzenleyin ve silin"
+        },
+        "detail": {
+          "zh-Hans": "直接载入线上源码修改后重新部署，变量、密钥与绑定自动保留；也可从 .js 文件导入，或删除整个 Worker。",
+          "en": "Load the live source, edit it and redeploy — your variables, secrets and bindings are kept. You can also import from a .js file or delete the whole Worker.",
+          "zh-Hant": "直接載入線上原始碼修改後重新部署，變數、密鑰與繫結自動保留；也可從 .js 檔案匯入，或刪除整個 Worker。",
+          "zh-HK": "直接載入線上原始碼修改後重新部署，變數、密鑰與綁定自動保留；也可從 .js 檔案匯入，或刪除整個 Worker。",
+          "ja": "稼働中のソースを読み込んで編集し、再デプロイできます。変数・シークレット・バインディングは保持されます。.js ファイルからの読み込みや Worker 全体の削除にも対応します。",
+          "es-MX": "Carga el código en producción, edítalo y vuelve a desplegar; se conservan tus variables, secretos y enlaces. También puedes importar desde un archivo .js o eliminar todo el Worker.",
+          "ko": "실행 중인 소스를 불러와 수정한 뒤 다시 배포할 수 있으며 변수, 비밀, 바인딩이 유지됩니다. .js 파일에서 가져오거나 Worker 전체를 삭제할 수도 있습니다.",
+          "pt-BR": "Carregue o código em produção, edite e reimplante — suas variáveis, segredos e bindings são mantidos. Também dá para importar de um arquivo .js ou excluir o Worker inteiro.",
+          "pt-PT": "Carregue o código em produção, edite e reimplante — as suas variáveis, segredos e ligações são mantidos. Também pode importar de um ficheiro .js ou eliminar o Worker inteiro.",
+          "de": "Lade den Live-Quellcode, bearbeite ihn und stelle neu bereit – Variablen, Secrets und Bindings bleiben erhalten. Du kannst auch aus einer .js-Datei importieren oder den ganzen Worker löschen.",
+          "fr": "Chargez le code en production, modifiez-le et redéployez ; vos variables, secrets et liaisons sont conservés. Vous pouvez aussi importer depuis un fichier .js ou supprimer le Worker entier.",
+          "ar": "حمّل الشيفرة المباشرة وعدّلها وأعد النشر مع الحفاظ على المتغيرات والأسرار والارتباطات. يمكنك أيضًا الاستيراد من ملف ‎.js‎ أو حذف Worker بالكامل.",
+          "tr": "Canlı kaynağı yükleyip düzenleyin ve yeniden dağıtın; değişkenleriniz, gizli anahtarlarınız ve bağlamalarınız korunur. Ayrıca bir .js dosyasından içe aktarabilir veya Worker’ın tamamını silebilirsiniz."
+        }
+      },
+      {
+        "icon": "tablecells",
+        "title": {
+          "zh-Hans": "删除 D1 数据表",
+          "en": "Delete D1 tables",
+          "zh-Hant": "刪除 D1 資料表",
+          "zh-HK": "刪除 D1 資料表",
+          "ja": "D1 テーブルを削除",
+          "es-MX": "Eliminar tablas de D1",
+          "ko": "D1 테이블 삭제",
+          "pt-BR": "Excluir tabelas do D1",
+          "pt-PT": "Eliminar tabelas do D1",
+          "de": "D1-Tabellen löschen",
+          "fr": "Supprimer des tables D1",
+          "ar": "حذف جداول D1",
+          "tr": "D1 tablolarını silme"
+        },
+        "detail": {
+          "zh-Hans": "在查询控制台长按任意表即可删除，需输入表名二次确认。",
+          "en": "Long-press any table in the query console to drop it, with a type-the-name confirmation.",
+          "zh-Hant": "在查詢主控台長按任一表即可刪除，需輸入表名二次確認。",
+          "zh-HK": "在查詢控制台長按任一表即可刪除，需輸入表名二次確認。",
+          "ja": "クエリコンソールでテーブルを長押しすると削除できます。テーブル名の入力による確認付きです。",
+          "es-MX": "Mantén pulsada cualquier tabla en la consola de consultas para eliminarla, con confirmación escribiendo su nombre.",
+          "ko": "쿼리 콘솔에서 테이블을 길게 눌러 삭제할 수 있으며 이름을 입력해 확인합니다.",
+          "pt-BR": "Toque e segure qualquer tabela no console de consultas para excluí-la, com confirmação digitando o nome.",
+          "pt-PT": "Toque sem soltar em qualquer tabela na consola de consultas para a eliminar, com confirmação escrevendo o nome.",
+          "de": "Halte in der Abfragekonsole eine Tabelle gedrückt, um sie zu löschen – mit Bestätigung durch Eingabe des Namens.",
+          "fr": "Appuyez longuement sur une table dans la console de requêtes pour la supprimer, avec confirmation en saisissant son nom.",
+          "ar": "اضغط مطوّلاً على أي جدول في وحدة الاستعلام لحذفه، مع تأكيد بكتابة الاسم.",
+          "tr": "Sorgu konsolunda bir tabloya uzun basarak silin; adını yazarak onaylayın."
+        }
+      }
+    ]
+  },
+  {
     "version": "1.8.4",
     "date": "2026.07.10",
     "channel": "App Store",
