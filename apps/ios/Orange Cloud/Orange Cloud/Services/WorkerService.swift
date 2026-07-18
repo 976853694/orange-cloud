@@ -310,6 +310,16 @@ struct WorkerService {
 
     // MARK: - 域名 / 路由
 
+    /// 账号级 workers.dev 子域前缀（拼 <脚本名>.<前缀>.workers.dev）。
+    /// 账号未注册子域时端点可能 404 或返回空，调用方以 try? 容错。
+    func accountSubdomain(accountId: String) async throws -> String? {
+        let response: CFAPIResponse<WorkerAccountSubdomain> = try await client.get(
+            "accounts/\(accountId)/workers/subdomain"
+        )
+        guard response.success else { throw response.toAPIError() }
+        return response.result?.subdomain
+    }
+
     /// workers.dev 子域状态
     func subdomain(accountId: String, scriptName: String) async throws -> WorkerSubdomain {
         let response: CFAPIResponse<WorkerSubdomain> = try await client.get(

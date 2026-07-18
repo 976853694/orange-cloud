@@ -148,6 +148,8 @@ nonisolated struct WorkerBinding: Codable, Identifiable, Hashable, Sendable {
 
     var isSecret:    Bool { type == "secret_text" || type == "secrets_store_secret" }
     var isPlainText: Bool { type == "plain_text" }
+    /// 本客户端可原地增删的资源绑定（D1 / KV）——其余类型仍只读
+    var isQuickManaged: Bool { type == "kv_namespace" || type == "d1" }
 
     /// 人类可读的绑定类型标签
     var typeLabel: String {
@@ -208,16 +210,36 @@ nonisolated struct WorkerSettings: Codable, Sendable {
 
 // MARK: - 上传 / 写入请求体
 
-/// 上传 / patch settings 时的单条绑定。inherit 只发 {type,name}；plain_text 发 {type,name,text}。
+/// 上传 / patch settings 时的单条绑定。inherit 只发 {type,name}；plain_text 发 {type,name,text}；
+/// kv_namespace 发 {type,name,namespace_id}；d1 发 {type,name,id}。可选字段为 nil 时不编码（omitted）。
 nonisolated struct WorkerBindingInput: Codable, Sendable {
     let type: String
     let name: String
     let text: String?
+    let namespaceId: String?    // kv_namespace 绑定的命名空间 ID
+    let id: String?             // d1 绑定的数据库 UUID
 
-    init(type: String, name: String, text: String? = nil) {
+    init(type: String, name: String, text: String? = nil, namespaceId: String? = nil, id: String? = nil) {
         self.type = type
         self.name = name
         self.text = text
+        self.namespaceId = namespaceId
+        self.id = id
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case type, name, text, id
+        case namespaceId = "namespace_id"
+    }
+
+    /// 绑定既有 KV 命名空间
+    static func kv(name: String, namespaceId: String) -> WorkerBindingInput {
+        WorkerBindingInput(type: "kv_namespace", name: name, namespaceId: namespaceId)
+    }
+
+    /// 绑定既有 D1 数据库
+    static func d1(name: String, databaseId: String) -> WorkerBindingInput {
+        WorkerBindingInput(type: "d1", name: name, id: databaseId)
     }
 }
 
